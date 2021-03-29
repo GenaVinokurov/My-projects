@@ -5,11 +5,87 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Landing</title>
-  <link rel="stylesheet" href="/pages/normalize.css">
+  <link rel="stylesheet" href="/normalize.css">
+  <link rel="stylesheet" href="/main.css">
   <link rel="stylesheet" href="./css.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-  
+  <section class="header">
+    <div class="container">
+      <header class="header-block">
+        <a class="logo" href="#">
+          <img src="/assets/images/logo.png" alt="online-zoo" class="logo">
+          <h1 class="header-logo__text">Online-zoo</h1>
+        </a>
+        <nav>
+          <ul class="nav">
+            <li><a href="" class="nav-link nav-active">About</a></li>
+            <li><a href="" class="nav-link">Map</a></li>
+            <li><a href="" class="nav-link">Zoos</a></li>
+            <li><a href="" class="nav-link">Contact us</a></li>
+            <li><a href="" class="nav-link">Design</a></li>
+          </ul>
+        </nav>
+      </header>
+      <div class="watch-block">
+        <p class="watch-block__text">Watch your favorite animal ONLINE</p>
+        <a class="btn btn-play" href="#">
+          <img src="/assets/icons/play.png">
+          <span>Play</span>
+        </a>
+      </div>
+    </div>
+  </section>
+  <main class="main">
+    <div class="work">
+      <p class="subtitle">How it works</p>
+      <ul class="work-list">
+        <li class="work-list_img"></li>
+        <li class="work-list_img side"></li>
+        <li class="work-list_img centre"></li>
+        <li class="work-list_img side"></li>
+        <li class="work-list_img"></li>
+      </ul>
+      <p>
+        The application Оnline zoo will allow you to watch zoos' and nature reserves' inhabitants in live. Currently, under video-surveillance are pandas in China, eagles on Catalina Island (USA), alligators in Florida and gorillas in the Congo. We are expanding our capabilities and soon online you will meet Arctic snowy owl in Alaska, Penguin in California, Elephant from South Africa and Polar bear from Canada. You will see unique video-shots at any time of the day. If you liked a pet you watch and you want to please it with a delicious treat, you can pay a donation and the animal will receive a surprise from you during feeding hours. We want to thank you for helping the animals and give you<a href="#"> discount coupons</a> from our partners.
+      </p>
+    </div>
+    <div class="pets container">
+      <p class="subtitle">Pets in zoo</p>
+      <div class="pets-slider">
+        <button class="array prev"></button>
+        <div class="pets-slider__block">
+          <div class="pets-slider__item">
+            <p class="pets-slider__item-title">Panda, China</p>
+          </div>
+          <div class="pets-slider__item">
+            <p class="pets-slider__item-title">Alligator, USA</p>
+          </div>
+          <div class="pets-slider__item">
+            <p class="pets-slider__item-title">Gorilla, Eastern DRC</p>
+          </div>
+          <div class="pets-slider__item">
+            <p class="pets-slider__item-title">Elephant, South Africa</p>
+          </div>
+          <div class="pets-slider__item">
+            <p class="pets-slider__item-title">Polar bear, Canada</p>
+          </div>
+          <div class="pets-slider__item">
+            <p class="pets-slider__item-title">Bald eagle, USA</p>
+          </div>
+          <div class="pets-slider__item">
+            <p class="pets-slider__item-title">Arctic snowy owl, Alaska</p>
+          </div>
+          <div class="pets-slider__item">
+            <p class="pets-slider__item-title">Penguin, USA</p>
+          </div>
+        </div>
+        <button class="array next"></button>
+      </div>
+      <a href="#" class="btn">Choose your favorite</a>
+    </div>
+  </main>
 </body>
 <script src="app.js"></script>
 </html>
