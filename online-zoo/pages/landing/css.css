@@ -37,10 +37,7 @@
 .work p {
   max-width: 933px;
 }
-.subtitle {
-  font-size: 40px;
-  font-weight: 500;
-}
+
 .work-list {
   display: flex;
   justify-content: center;
@@ -167,16 +164,7 @@
 .pets-slider__item:hover .pets-slider__item-title {
   font-size: 18px;
 }
-.array {
-  width: 63px;
-  height: 63px;
-  cursor: pointer;
-  border-radius: 50%;
-  display: block;
-  background: #FFE68E;
-  flex-shrink: 0;
-  border: none;
-}
+
 .array.next {
   transform: rotate(180deg);
 }
@@ -242,17 +230,22 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  margin-bottom: 53px;
 }
 .testimonial-slider__block {
-  display: flex;
-  margin-bottom: 53px;
+  /* display: flex;
+  margin-bottom: 53px; */
+  display: grid;
+  grid-column-gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin: 0 20px;
 }
 .testimonial-card {
   background-color: #A7E1FF;
-  width: 233px;
+  /* width: 233px; */
   height: 369px;
   padding: 22px 20px;
-  margin: 0 10px;
+  /* margin: 0 10px; */
   
 }
 .testimonial-card p {
