@@ -1,0 +1,208 @@
+.animal-video {
+  width: 100%;
+  height: 653px;
+  margin-bottom: 20px;
+}
+.header {
+  margin-bottom: 87px;
+}
+.subtitle {
+  margin-bottom: 80px;
+}
+.animal-list {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(4,1fr);
+  grid-column-gap: 20px;
+  margin-bottom: 30px;
+}
+.animal-list__video {
+  height: 155px;
+  /* width: 275px; */
+  width: 100%;
+}
+.info-title {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background: #A7E1FF;
+  margin-bottom: 20px;
+}
+.info-title p{
+  text-align: start;
+  width: 50%;
+  padding: 20px;
+}
+.info-title p:nth-child(2){
+  padding-left: 30px;
+}
+.info-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+.info-block {
+  width: 100%;
+  background: #A7E1FF;
+  padding: 8px 20px;
+  text-align: start;
+  display: grid;
+  grid-template-columns: 1fr 45px;
+  align-self: flex-start;
+}
+.info-block:first-child {
+  margin-bottom: 20px;
+}
+.info-block__title {
+  text-transform: uppercase;
+  align-self: center;
+}
+.info-block p {
+  text-align: start;
+}
+.info-array {
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  border-radius: 50%;
+  display: block;
+  background: #FFE68E;
+  flex-shrink: 0;
+  border: none;
+  align-self: center;
+  position: relative;
+}
+.info-array::before {
+  position: absolute;
+  content: "";
+  background-image: url(/assets/icons/array-info.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 10px;
+  width: 21px;
+  top: 17px;
+  left: 12.5px;
+}
+
+.info-block__text {
+  display: grid;
+}
+.info-block__description {
+  margin-top: 7px;
+  display: none;
+  align-self: start;
+}
+
+.info-block.open {
+  min-height: 142px;
+}
+.info-block.open .info-block__description {
+  display: block;
+}
+.info-block.open .info-array::before {
+  transform: rotate(180deg);
+}
+.animal{
+  margin-bottom: 80px;
+}
+.tooltip {
+  background-image: url(/assets/images/bg-tooltip.png);
+  width: 112px;
+  height: 380px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: fixed;
+  display: block;
+  padding: 13px 27px 13px 20px;
+  z-index: 3;
+  top: 293px;
+}
+.icon {
+  display: block;
+  position: relative;
+  margin-bottom: 3px;
+}
+.icon.eagle {
+  top: auto;
+  left: auto;
+}
+.icon.eagle:hover::after {
+  top: 12px;
+  right: -139px;
+  max-width: 114px;
+}
+.icon.eagle:hover::before {
+  transform: rotate(0deg);
+  right: -10px;
+}
+.icon.alligator {
+  top: auto;
+  left: auto;
+}
+.icon.gorilla {
+  top: auto;
+  right: auto;
+}
+.icon.panda {
+  top: auto;
+  right: auto;
+}
+.icon.error-panda {
+  height: 67px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon.error-panda .icon-img{
+  width: auto;
+  height: auto;
+  z-index: 2;
+
+}
+.icon.error-panda .icon-border {
+  background: #70CB0E;
+}
+.icon::after {
+  display: none;
+}
+.icon:hover::after {
+  display: block;
+}
+/* --------active */
+.icon.active {
+  pointer-events:none;
+}
+.icon.active .icon-border {
+  border: 4px solid #70CB0E; 
+}
+
+.icon.active:after {
+  top: 12px;
+  right: -115px;
+  max-width: 90px;
+  display: block;
+  background: #70CB0E;
+  padding: 4px 7.5px;
+}
+.icon.active:before {
+  display: block;
+}
+
+.icon.alligator.active::after {
+  content: "ALLIGATOR, Florida USA";
+}
+.icon.eagle.active::after {
+  content: 'Eagle, California USA';
+}
+.icon.panda.active::after {
+  content: "PANDA, China";
+}
+.icon.gorilla.active::after {
+  content: "GORILLA, Eastern DRC";
+}
+.icon.eagle.active::after {
+  top: 12px;
+  right: -139px;
+  max-width: 114px;
+}

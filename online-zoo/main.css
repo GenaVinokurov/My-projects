@@ -319,4 +319,22 @@ p a {
   background: #FFE68E;
   flex-shrink: 0;
   border: none;
+  position: relative;
+}
+.array::before {
+  position: absolute;
+  content: "";
+  background-image: url(/assets/icons/array.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 14px;
+  height: 30px;
+  top: 16px;
+  left: 22px;
+}
+
+.array.next::before {
+  transform: rotate(180deg);
+  left: 26px;
 }
