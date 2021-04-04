@@ -75,7 +75,7 @@
 .info-array::before {
   position: absolute;
   content: "";
-  background-image: url(/assets/icons/array-info.svg);
+  background-image: url(../../../assets/icons/array-info.svg);
   background-size: contain;
   background-repeat: no-repeat;
   height: 10px;
@@ -106,7 +106,7 @@
   margin-bottom: 80px;
 }
 .tooltip {
-  background-image: url(/assets/images/bg-tooltip.png);
+  background-image: url(../../../assets/images/bg-tooltip.png);
   width: 112px;
   height: 380px;
   background-position: center;

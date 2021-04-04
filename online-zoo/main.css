@@ -14,7 +14,7 @@ li {
 }
 @font-face {
   font-family: "SceneW01-Black";
-  src: url(/assets/fonts/SceneW01-Black.woff) format("woff");
+  src: url(../../assets/fonts/SceneW01-Black.woff) format("woff");
 }
 p {
   margin: 0;
@@ -78,7 +78,7 @@ p a {
 .footer::after {
   content: '';
   position: absolute;
-  background-image: url(/assets/images/footer.png);
+  background-image: url(../../assets/images/footer.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -213,14 +213,15 @@ p a {
 }
 .icon.eagle:hover::after {
   content: 'Eagle, California USA';
-  top: 0px;
+  top: 10px;
   right: 75px;
+  width: 114px;
 } 
 .icon:before {
   display: none;
   position: absolute;
   content: "";
-  background-image: url(/assets/icons/triangle-green.svg);
+  background-image: url(../../assets/icons/triangle-green.svg);
   width: 9px;
   height: 9px;
   top: 46%;
@@ -324,7 +325,7 @@ p a {
 .array::before {
   position: absolute;
   content: "";
-  background-image: url(/assets/icons/array.png);
+  background-image: url(../../assets/icons/array.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -337,4 +338,13 @@ p a {
 .array.next::before {
   transform: rotate(180deg);
   left: 26px;
+}
+
+/* ----------------------------------------POPUPS------------------------------------------------ */
+
+.popups-wrapper {
+  position: relative;
+}
+.popup {
+  position: absolute;
 }

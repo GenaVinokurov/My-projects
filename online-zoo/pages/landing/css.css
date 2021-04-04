@@ -1,5 +1,5 @@
 .header {
-  background-image: url(/assets/images/Bg-header.png);
+  background-image: url(../../assets/images/Bg-header.png);
   background-size: cover;
   background-repeat: none;
   background-position: center;
@@ -42,7 +42,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url(/assets/images/bg-work.png);
+  background-image: url(../../assets/images/bg-work.png);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -128,31 +128,31 @@
   transform: scale(1.08, 1.09);
 }
 .pets-slider__item:nth-child(1) { 
-  background-image: url(/assets/images/Animal_desktop_zoom.png); 
+  background-image: url(../../assets/images/Animal_desktop_zoom.png); 
   margin-left: 0;
 } 
 .pets-slider__item:nth-child(2) {
-  background-image: url(/assets/images/Animal_desktop_zoom-4.png);
+  background-image: url(../../assets/images/Animal_desktop_zoom-4.png);
 }
 .pets-slider__item:nth-child(3) {
-  background-image: url(/assets/images/Animal_desktop_zoom-5.png);
+  background-image: url(../../assets/images/Animal_desktop_zoom-5.png);
 }
 .pets-slider__item:nth-child(4) {
-  background-image: url(/assets/images/Animal_desktop_zoom-6.png);
+  background-image: url(../../assets/images/Animal_desktop_zoom-6.png);
   margin-right: 0;
 }
 .pets-slider__item:nth-child(5) {
-  background-image: url(/assets/images/Animal_desktop_zoom-7.png);
+  background-image: url(../../assets/images/Animal_desktop_zoom-7.png);
   margin-left: 0;
 }
 .pets-slider__item:nth-child(6) {
-  background-image: url(/assets/images/Animal_desktop_zoom-1.png);
+  background-image: url(../../assets/images/Animal_desktop_zoom-1.png);
 }
 .pets-slider__item:nth-child(7) {
-  background-image: url(/assets/images/Animal_desktop_zoom-2.png);
+  background-image: url(../../assets/images/Animal_desktop_zoom-2.png);
 }
 .pets-slider__item:nth-child(8) {
-  background-image: url(/assets/images/Animal_desktop_zoom-3.png);
+  background-image: url(../../assets/images/Animal_desktop_zoom-3.png);
   margin-right: 0;
 } 
 .pets-slider__item-title {
@@ -180,7 +180,7 @@
   justify-content: space-around;
   align-items: center;
   position: relative;
-  background-image: url(/assets/images/Bg-arrow.svg);
+  background-image: url(../../assets/images/Bg-arrow.svg);
   background-repeat: no-repeat;
   background-position: center;
 
@@ -201,7 +201,7 @@
 .instruction-block__bg-img {
   width: 100%;
   height: auto;
-  background-image: url(/assets/images/bg-pay.png);
+  background-image: url(../../assets/images/bg-pay.png);
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
