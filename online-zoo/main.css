@@ -329,7 +329,7 @@ p a {
 .array::before {
   position: absolute;
   content: "";
-  background-image: url(../../assets/icons/array.png);
+  background-image: url(./assets/icons/array.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -357,11 +357,15 @@ p a {
   padding: 50px 80px;
   top: calc(50% + 218px);
   left: calc(50% - 315px );
+  display: none;
 }
-.popup-feadback__form {
+.popup-feedback.active {
+  display: block;
+}
+.popup-feedback__form {
   display: flex;
   flex-direction: column;
-
+  align-items: center;
 }
 .popup-feedback__input {
   width: 100%;
@@ -376,7 +380,118 @@ p a {
   width: 100%;
   background: #DFF5B0;
   border: 1px solid #9CA498;
-  text-align: start;
   resize: none;
   padding: 10px;
+  margin-bottom: 20px;
+}
+.btn-submit {
+  width: 177px;
+  border: none;
+}
+.popup-donate {
+  display: none;
+  position: absolute;
+  background: #fff;
+  width: 630px;
+  padding: 50px 80px;
+  top: calc(50% + 218px);
+  left: calc(50% - 315px );
+}
+.popup-donate.active {
+  display: block;
+}
+.popup-donate__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.popup-donate__select {
+  background: #DFF5B0;
+  border: 1px solid #9CA498;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 8px;
+  
+}
+.popup-donate__form::after {
+  position: absolute;
+  content: '';
+  background-image: url(./assets/icons/array.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 10px;
+  height: 21px;
+  right: 15px;
+  top: 12px;
+  transform: rotate(-90deg);
+}
+.popup-donate__form::before {
+  position: absolute;
+  content: '';
+  background: #DFF5B0;
+  width: 16px;
+  height: 16px;
+  right: 5px;
+  top: 12px;
+}
+.popup-donate__wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  text-align: center;
+  width: 100%;
+}
+.popup-donate__input {
+  border: 1px solid #9CA498;
+  padding: 10px;
+  font-size: 16px;
+  width: 67%;
+  margin-right: 8px;
+  text-align: center;
+
+}
+.popup-donate__currency {
+  border: 1px solid #9CA498;
+  padding: 10px;
+  font-size: 16px;
+  width: 33%;
+  text-align: center;
+}
+.popup-donate__text {
+  height: 85px;
+  width: 100%;
+  border: 1px solid #9CA498;
+  resize: none;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+.btn-popup__donate {
+  width: 168px;
+  border: none;
+}
+.popup-donate__option {
+  padding: 11px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+.popup-close {
+  position: absolute;
+  background-image: url(./assets/icons/close.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  top: 15px;
+  right: 15px;
+  width: 27px;
+  height: 27px;
+  cursor: pointer;
 }

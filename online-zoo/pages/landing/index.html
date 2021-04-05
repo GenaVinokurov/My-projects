@@ -12,15 +12,34 @@
 </head>
 <body>
   <!-- popups -->
-  <!-- <div class="popups-wrapper">
-    <div class="popup-feedback" id="feedback">
+  <div class="popups-wrapper">
+    <div class="popup-feedback" data-close="feedback" id="feedback">
+      <span class="popup-close"></span>
       <form action="" class="popup-feedback__form">
         <input type="text" class="popup-feedback__input" placeholder="Name">
         <input type="email" class="popup-feedback__input" placeholder="Email">
         <textarea name="text" class="popup-feedback__text " placeholder="Your text here (300 max)" maxlength="300"></textarea>
+        <input type="submit" class="btn btn-submit" value="Submit">
       </form>
     </div>
-  </div> -->
+    <div class="popup-donate" data-close="donate" id="donate">
+      <span class="popup-close"></span>
+      <form action="" class="popup-donate__form ">
+        <select class="popup-donate__select">
+          <option value="Alligator" class="popup-donate__option">Alligator</option>
+          <option value="Panda" class="popup-donate__option">Panda</option>
+          <option value="Eagle" class="popup-donate__option">Eagle</option>
+          <option value="Gorilla" class="popup-donate__option">Gorilla</option>
+        </select>
+        <div class="popup-donate__wrapper">
+          <input type="number" class="popup-donate__input" placeholder="Donat">
+          <input type="text" class="popup-donate__currency" value="USD">
+        </div>
+        <textarea name="text" class="popup-donate__text " placeholder="Your text here"></textarea>
+        <input type="submit" class="btn btn-popup__donate" value="Donat">
+      </form>
+    </div>
+  </div>
   <section class="header">
     <div class="container">
       <header class="header-block">
@@ -190,7 +209,7 @@
         </div>
         <button class="array next"></button>
       </div>
-      <a href="" class="btn btn-testimonial">Leave feedback</a>
+      <a href="" class="btn btn-testimonial" id="btn-feedback">Leave feedback</a>
     </div>
   </main>
   <footer class="footer">
@@ -200,7 +219,7 @@
           <img src="../../assets/images/logo.png" alt="online-zoo" class="logo">
           <h1 class="header-logo__text">Online-zoo</h1>
         </a>
-        <a href="#" class="btn btn-donate">Donate for volunteers</a>
+        <a href="#" class="btn btn-donate" id="btn-donate">Donate for volunteers</a>
         <nav>
           <ul class="nav">
             <li><a href="../landing/index.html" class="nav-link">About</a></li>
@@ -233,4 +252,5 @@
   </footer>
 </body>
 <script src="app.js"></script>
+<script src="../../main.js"></script>
 </html>
