@@ -75,7 +75,7 @@
 .info-array::before {
   position: absolute;
   content: "";
-  background-image: url(../../../assets/icons/array-info.svg);
+  background-image: url(../../assets/icons/array-info.svg);
   background-size: contain;
   background-repeat: no-repeat;
   height: 10px;
