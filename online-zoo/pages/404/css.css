@@ -1,6 +1,22 @@
-body {
+.error {
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 50px;
+  align-items: flex-end;
+  margin: 50px;
+  position: relative;
+  background-image: url(../../assets/images/404.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  min-height: 698px;
+  min-width: 675px;
+}
+.error-link {
+  font-size: 20px;
+  line-height: 20px;
+  color: #59C3FB;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: "Bebas";
 }

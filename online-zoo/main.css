@@ -14,7 +14,11 @@ li {
 }
 @font-face {
   font-family: "SceneW01-Black";
-  src: url(../../assets/fonts/SceneW01-Black.woff) format("woff");
+  src: url(../online-zoo/assets/fonts/SceneW01-Black.woff) format("woff");
+}
+@font-face {
+  font-family: "Bebas";
+  src: url(../online-zoo/assets/fonts/Bebas-Neue.woff) format("woff");
 }
 p {
   margin: 0;
@@ -344,7 +348,35 @@ p a {
 
 .popups-wrapper {
   position: relative;
+  
 }
-.popup {
+.popup-feedback {
   position: absolute;
+  background: #fff;
+  width: 630px;
+  padding: 50px 80px;
+  top: calc(50% + 218px);
+  left: calc(50% - 315px );
+}
+.popup-feadback__form {
+  display: flex;
+  flex-direction: column;
+
+}
+.popup-feedback__input {
+  width: 100%;
+  background: #DFF5B0;
+  border: 1px solid #9CA498;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+.popup-feedback__text {
+  height: 180px;
+  width: 100%;
+  background: #DFF5B0;
+  border: 1px solid #9CA498;
+  text-align: start;
+  resize: none;
+  padding: 10px;
 }
