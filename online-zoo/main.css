@@ -38,8 +38,11 @@ p a {
   display: block;
   text-align: center;
   height: 51px;
+  transition: 0.5s;
 }
-
+.btn:hover {
+  background-color: #FFE68E;
+}
 .subtitle {
   font-size: 40px;
   font-weight: 500;
@@ -62,6 +65,11 @@ p a {
   font-weight: 500;
   color: #000;
   font-size: 18px;
+}
+.nav-link:hover {
+  background-color: #70CB0E;
+  -webkit-background-clip: text;
+  -webkit-text-stroke: 1px transparent;
 }
 .nav li {
   margin-right: 35px;
@@ -127,6 +135,13 @@ p a {
 }
 .social-networks__wrapper {
   margin-left: 10px;
+}
+.social-networks__icon {
+  transition: 0.5s;
+}
+.social-networks__icon:hover {
+  transform: scale(1.1);
+  
 }
 .footer-bottom {
   display: flex;
@@ -325,7 +340,12 @@ p a {
   flex-shrink: 0;
   border: none;
   position: relative;
+  transition: 0.5s;
 }
+.array:hover {
+  background: #70CB0E;
+}
+
 .array::before {
   position: absolute;
   content: "";

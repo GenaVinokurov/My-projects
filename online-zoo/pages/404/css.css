@@ -19,4 +19,8 @@
   text-transform: uppercase;
   font-weight: bold;
   font-family: "Bebas";
+  transition: 00.5s;
+}
+.error-link:hover {
+  color: #70CB0E;
 }

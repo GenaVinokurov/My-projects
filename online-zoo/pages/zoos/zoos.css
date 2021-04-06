@@ -71,6 +71,10 @@
   border: none;
   align-self: center;
   position: relative;
+  transition: 0.5s;
+}
+.info-array:hover {
+  background: #70CB0E;
 }
 .info-array::before {
   position: absolute;
@@ -162,6 +166,9 @@
 }
 .icon.error-panda .icon-border {
   background: #70CB0E;
+}
+.icon.error-panda:hover .icon-border {
+  background: #fff;
 }
 .icon::after {
   display: none;
