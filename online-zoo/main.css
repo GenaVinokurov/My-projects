@@ -2,7 +2,8 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 .container {
-  width: 1200px;
+  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -39,6 +40,7 @@ p a {
   text-align: center;
   height: 51px;
   transition: 0.5s;
+  cursor: pointer;
 }
 .btn:hover {
   background-color: #FFE68E;
@@ -51,6 +53,7 @@ p a {
 .header-block {
   display: flex;
   padding-top: 12px;
+  position: relative;
 }
 .header-logo__text {
   visibility: hidden;
@@ -147,11 +150,20 @@ p a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-.footer-bottom {
   font-size: 18px;
 }
+.footer-bottom__wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding-left: 70px;
+}
 .btn-donate {
+  max-width: 232px;
+  padding: 15px 28px;
+}
+.btn-donate__mobile {
+  display: none;
   max-width: 232px;
   padding: 15px 28px;
 }
@@ -371,13 +383,14 @@ p a {
   
 }
 .popup-feedback {
-  position: absolute;
+  position: fixed;
   background: #fff;
   width: 630px;
   padding: 50px 80px;
-  top: calc(50% + 218px);
+  top: 25%;
   left: calc(50% - 315px );
   display: none;
+  z-index: 10;
 }
 .popup-feedback.active {
   display: block;
@@ -410,12 +423,13 @@ p a {
 }
 .popup-donate {
   display: none;
-  position: absolute;
+  position: fixed;
   background: #fff;
   width: 630px;
   padding: 50px 80px;
-  top: calc(50% + 218px);
+  top: 25%;
   left: calc(50% - 315px );
+  z-index: 10;
 }
 .popup-donate.active {
   display: block;
@@ -514,4 +528,149 @@ input[type=number] {
   width: 27px;
   height: 27px;
   cursor: pointer;
+}
+
+.burger-menu__button {
+  display: none;
+  background-image: url(./assets/icons/burger.svg);
+  width: 36px;
+  height: 22px;
+  position: absolute;
+  right: 10px;
+  top: 30px;
+}
+.burger-menu__button-close {
+  background-image: url(./assets/icons/burger-close.svg);
+  width: 27px;
+  height: 27px;
+  position: absolute;
+  right: 20px;
+  top: 37px;
+  display: none;
+}
+@media (max-width: 1199px) {
+  /* p {
+    font-size: 14px;
+  } */
+  .container {
+    max-width: 640px;
+    width: 100%;
+  }
+  .btn-donate__mobile {
+    display: block;
+  }
+  .btn-donate {
+    display: none;
+  }
+  .footer-bottom {
+    flex-wrap: wrap;
+  }
+  .footer-bottom__wrapper {
+    flex-direction: column;
+    margin-top: 50px;
+  }
+  .footer-bottom__wrapper p {
+    margin-bottom: 5px;
+  }
+  .footer .nav {
+    left: auto;
+  }
+  .footer-bottom__wrapper p:first-child {
+    order: 2;
+  }
+  .footer-top {
+    margin-bottom: 30px;
+  }
+  .footer::after {
+    top: -120px;
+  }
+  .popup-feedback {
+    width: 600px;
+    left: calc(50% - 300px );
+  }
+  .popup-donate {
+    width: 600px;
+    left: calc(50% - 300px );
+  }
+
+}
+@media (max-width: 639px) {
+  .container {
+    padding: 0 10px;
+    max-width: 320px;
+    width: 100%;
+  }
+  .burger-menu__button {
+    display: block;
+  }
+  header nav {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: -17px;
+    display: none;
+  }
+  header nav.js-act {
+    display: block;
+  }
+  header .nav {
+    flex-direction: column;
+    padding: 40px 30px;
+    background-color: #A7E1FF;
+    align-items: flex-start;
+  }
+  header .nav li {
+    margin-bottom: 20px;
+  }
+  header .nav li:nth-last-child(1){
+    margin-bottom: 0;
+  }
+  .footer-top {
+    flex-direction: column;
+  }
+  footer .nav {
+    flex-direction: column;
+    text-align: center;
+    margin: 44px 0;
+  }
+  .footer .nav li {
+    width: 100%;
+  }
+  .btn-donate__mobile {
+    display: none;
+  }
+  .btn-donate {
+    display: block;
+    order: 1;
+    margin-bottom: 50px;
+  }
+  .social-networks {
+    order: 2;
+    margin-bottom: 20px;
+  }
+  .footer .nav li {
+    margin-bottom: 10px;
+  }
+  .footer-bottom__wrapper {
+    padding: 0 50px;
+  }
+  main .instruction {
+    padding: 100px 0 115px
+  }
+  .footer::after {
+    top: -140px;
+  }
+  .burger-menu__button-close {
+    display: block;
+  }
+  .popup-feedback {
+    width: 300px;
+    padding: 60px 30px 100px;
+    left: calc(50% - 150px );
+  }
+  .popup-donate {
+    width: 300px;
+    padding: 60px 30px 100px;
+    left: calc(50% - 150px );
+  }
 }

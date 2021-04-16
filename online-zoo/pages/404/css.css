@@ -18,9 +18,23 @@
   text-decoration: none;
   text-transform: uppercase;
   font-weight: bold;
-  font-family: "Bebas";
+  /* font-family: "Bebas"; */
   transition: 00.5s;
 }
 .error-link:hover {
   color: #70CB0E;
+}
+@media (max-width: 1199px) {
+  .error {
+    min-width: auto;
+  }
+}
+@media (max-width: 639px) {
+  .error-link {
+    font-size: 11px;
+    text-align: center;
+  }
+  .error {
+    min-height: 240px;
+  }
 }

@@ -47,7 +47,8 @@
           <img src="../../assets/images/logo.png" alt="online-zoo" class="logo">
           <h1 class="header-logo__text">Online-zoo</h1>
         </a>
-        <nav>
+        <span class="burger-menu__button"></span>
+        <nav id="burger-menu">
           <ul class="nav">
             <li><a href="../landing/index.html" class="nav-link nav-active">About</a></li>
             <li><a href="../map/index.html" class="nav-link">Map</a></li>
@@ -55,6 +56,7 @@
             <li><a href="../404/index.html" class="nav-link">Contact us</a></li>
             <li><a href="https://www.figma.com/file/aBvQMVmI665DtzprpiniuH/online-zoo" class="nav-link">Design</a></li>
           </ul>
+          <span class="burger-menu__button-close"></span>
         </nav>
       </header>
       <div class="watch-block">
@@ -94,31 +96,39 @@
       <p class="subtitle">Pets in zoo</p>
       <div class="pets-slider">
         <button class="array prev"></button>
-        <div class="pets-slider__block">
-          <a href="../zoos/panda/index.html" class="pets-slider__item">
-            <p class="pets-slider__item-title">Panda, China</p>
-          </a>
-          <a href="../zoos/alligator/index.html" class="pets-slider__item">
-            <p class="pets-slider__item-title">Alligator, USA</p>
-          </a>
-          <a href="../zoos/gorilla/index.html" class="pets-slider__item">
-            <p class="pets-slider__item-title">Gorilla, Eastern DRC</p>
-          </a>
-          <a class="pets-slider__item">
-            <p class="pets-slider__item-title">Elephant, South Africa</p>
-          </a>
-          <a class="pets-slider__item">
-            <p class="pets-slider__item-title">Polar bear, Canada</p>
-          </a>
-          <a href="../zoos/eagle/index.html" class="pets-slider__item">
-            <p class="pets-slider__item-title">Bald eagle, USA</p>
-          </a>
-          <a class="pets-slider__item">
-            <p class="pets-slider__item-title">Arctic snowy owl, Alaska</p>
-          </a>
-          <a class="pets-slider__item">
-            <p class="pets-slider__item-title">Penguin, USA</p>
-          </a>
+        <div class="pets-slider__wrapper">
+          <div class="pets-slider__block">
+            <a href="../zoos/panda/index.html" class="pets-slider__item panda">
+              <p class="pets-slider__item-title">Panda, China</p>
+            </a>
+            <a href="../zoos/alligator/index.html" class="pets-slider__item alligator">
+              <p class="pets-slider__item-title">Alligator, USA</p>
+            </a>
+          </div>
+          <div class="pets-slider__block">
+            <a href="../zoos/gorilla/index.html" class="pets-slider__item gorilla">
+              <p class="pets-slider__item-title">Gorilla, Eastern DRC</p>
+            </a>
+            <a class="pets-slider__item elephant">
+              <p class="pets-slider__item-title">Elephant, South Africa</p>
+            </a>
+          </div>
+          <div class="pets-slider__block">
+            <a class="pets-slider__item bear">
+              <p class="pets-slider__item-title">Polar bear, Canada</p>
+            </a>
+            <a href="../zoos/eagle/index.html" class="pets-slider__item eagle">
+              <p class="pets-slider__item-title">Bald eagle, USA</p>
+            </a>
+          </div>
+          <div class="pets-slider__block">
+            <a class="pets-slider__item owl">
+              <p class="pets-slider__item-title">Arctic snowy owl, Alaska</p>
+            </a>
+            <a class="pets-slider__item penguin">
+              <p class="pets-slider__item-title">Penguin, USA</p>
+            </a>
+          </div>       
         </div>
         <button class="array next"></button>
       </div>
@@ -209,7 +219,7 @@
         </div>
         <button class="array next"></button>
       </div>
-      <a href="" class="btn btn-testimonial" id="btn-feedback">Leave feedback</a>
+      <a  class="btn btn-testimonial" id="btn-feedback">Leave feedback</a>
     </div>
   </main>
   <footer class="footer">
@@ -219,7 +229,7 @@
           <img src="../../assets/images/logo.png" alt="online-zoo" class="logo">
           <h1 class="header-logo__text">Online-zoo</h1>
         </a>
-        <a href="#" class="btn btn-donate" id="btn-donate">Donate for volunteers</a>
+        <span class="btn btn-donate" id="btn-donate">Donate for volunteers</span>
         <nav>
           <ul class="nav">
             <li><a href="../landing/index.html" class="nav-link">About</a></li>
@@ -245,8 +255,11 @@
       </div>
       <div class="footer-bottom">
         <img src="../../assets/images/logo_school.png" alt="" class="school-logo" title="Yem Digital, Rolling Scopes School">
-        <p>Copyright ©RSSchool and ©Yem Digital 2020 - 2021</p>
-        <p>Grigoreva Margarita</p>
+        <span  class="btn btn-donate__mobile" id="btn-donate">Donate for volunteers</span>
+        <div class="footer-bottom__wrapper">
+          <p>Copyright ©RSSchool and ©Yem Digital 2020 - 2021</p>
+          <p>Grigoreva Margarita</p>
+        </div>
       </div>
     </div>
   </footer>

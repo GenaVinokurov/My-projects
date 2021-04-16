@@ -19,7 +19,8 @@
           <img src="../../../assets/images/logo.png" alt="online-zoo" class="logo">
           <h1 class="header-logo__text">Online-zoo</h1>
         </a>
-        <nav>
+        <span class="burger-menu__button"></span>
+        <nav id="burger-menu">
           <ul class="nav">
             <li><a href="../../../pages/landing/index.html" class="nav-link">About</a></li>
             <li><a href="../../../pages/map/index.html" class="nav-link">Map</a></li>
@@ -27,12 +28,14 @@
             <li><a href="../../../pages/404/index.html" class="nav-link">Contact us</a></li>
             <li><a href="https://www.figma.com/file/aBvQMVmI665DtzprpiniuH/online-zoo" class="nav-link">Design</a></li>
           </ul>
+          <span class="burger-menu__button-close"></span>
         </nav>
       </header>
       </div>
   </section>
   <main class="animal">
     <div class="tooltip">
+      <button class="tooltip-button"></button>
       <a href="../../../pages/zoos/alligator/index.html" class="icon alligator active">
         <div class="icon-border"></div>
         <img src="../../../assets/icons/icon-aligator.png" alt="alligator" class="icon-img">
@@ -58,7 +61,8 @@
       <div class="animal-wrapper">
         <p class="subtitle">Alligator</p>
         <iframe class="animal-video" src="https://www.youtube.com/embed/EnxRJii_dp8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-         <div class="animal-list">
+        <button class="btn btn-feed">Feed</button>
+        <div class="animal-list">
           <iframe class="animal-list__video" src="https://www.youtube.com/embed/EnxRJii_dp8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           <iframe class="animal-list__video" src="https://www.youtube.com/embed/EnxRJii_dp8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           <iframe class="animal-list__video" src="https://www.youtube.com/embed/EnxRJii_dp8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -120,7 +124,7 @@
           <img src="../../../assets/images/logo.png" alt="online-zoo" class="logo">
           <h1 class="header-logo__text">Online-zoo</h1>
         </a>
-        <a href="#" class="btn btn-donate" id="donate">Donate for volunteers</a>
+        <a class="btn btn-donate" id="donate">Donate for volunteers</a>
         <nav>
           <ul class="nav">
             <li><a href="../../../pages/landing/index.html" class="nav-link">About</a></li>
@@ -146,8 +150,11 @@
       </div>
       <div class="footer-bottom">
           <img src="../../../assets/images/logo_school.png" alt="" class="school-logo" title="Yem Digital, Rolling Scopes School">
-        <p>Copyright ©RSSchool and ©Yem Digital 2020 - 2021</p>
-        <p>Grigoreva Margarita</p>
+          <a  class="btn btn-donate__mobile" id="btn-donate">Donate for volunteers</a>
+          <div class="footer-bottom__wrapper">
+            <p>Copyright ©RSSchool and ©Yem Digital 2020 - 2021</p>
+            <p>Grigoreva Margarita</p>
+          </div>
       </div>
     </div>
   </footer>
