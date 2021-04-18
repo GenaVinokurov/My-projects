@@ -536,7 +536,7 @@ input[type=number] {
   width: 36px;
   height: 22px;
   position: absolute;
-  right: 10px;
+  right: 0px;
   top: 30px;
 }
 .burger-menu__button-close {
@@ -592,7 +592,10 @@ input[type=number] {
     width: 600px;
     left: calc(50% - 300px );
   }
-
+  .nav li {
+    margin-right: 32px;
+  }
+  
 }
 @media (max-width: 639px) {
   .container {
@@ -618,6 +621,9 @@ input[type=number] {
     padding: 40px 30px;
     background-color: #A7E1FF;
     align-items: flex-start;
+    width: calc(100% + 20px);
+    margin-left: -10px;
+    
   }
   header .nav li {
     margin-bottom: 20px;
@@ -654,9 +660,7 @@ input[type=number] {
   .footer-bottom__wrapper {
     padding: 0 50px;
   }
-  main .instruction {
-    padding: 100px 0 115px
-  }
+ 
   .footer::after {
     top: -140px;
   }

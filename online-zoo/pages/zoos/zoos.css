@@ -285,6 +285,12 @@
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
   }
+  .animal-video {
+    height: 339px;
+  }
+  .animal-list__video {
+    height: 165px;
+  }
 }
 .btn-feed {
   display: none;
@@ -301,5 +307,15 @@
   }
   .animal-list__video {
     height: 82px;
+  }
+  .tooltip-button {
+    right: -165px;
+    top: -7px;
+  }
+  .info-block.open .info-block__text {
+    padding: 20px 0;
+  }
+  .info-block__description {
+    width: 95%;
   }
 }
