@@ -313,9 +313,7 @@
     font-weight: 900;
     max-width: 440px;
   }
-  .nav {
-    padding-left: 40px;
-  }
+  
   .instruction-wrapper {
     flex-wrap: wrap;
     background-image: none;

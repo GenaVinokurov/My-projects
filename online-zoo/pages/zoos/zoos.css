@@ -186,8 +186,11 @@
 .icon.active .icon-border {
   border: 4px solid #70CB0E; 
 }
+.icon.active .icon-tooltipe {
+  display: flex;
+}
 
-.icon.active:after {
+/* .icon.active:after {
   top: 12px;
   right: -115px;
   max-width: 90px;
@@ -197,9 +200,9 @@
 }
 .icon.active:before {
   display: block;
-}
+} */
 
-.icon.alligator.active::after {
+/* .icon.alligator.active::after {
   content: "ALLIGATOR, Florida USA";
 }
 .icon.eagle.active::after {
@@ -210,12 +213,12 @@
 }
 .icon.gorilla.active::after {
   content: "GORILLA, Eastern DRC";
-}
-.icon.eagle.active::after {
+} */
+/* .icon.eagle.active::after {
   top: 12px;
   right: -139px;
   max-width: 114px;
-}
+} */
 .tooltip-button {
   width: 45px;
   height: 45px;
@@ -253,10 +256,15 @@
 /* ------------------------adaptive 1200px */
 @media (max-width: 1919px) {
   .tooltip {
-    left: -232px;
+    left: -131px;
+    top: 276px;
   }
   .tooltip-button {
     display: block;
+  }
+  
+  .tooltip-button {
+    right: -86px;
   }
 }
 .tooltip.tool-act {

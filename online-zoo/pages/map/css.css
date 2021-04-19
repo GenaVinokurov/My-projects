@@ -5,19 +5,26 @@
   width: 100%;
   padding-bottom: 86px;
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
+}
+.footer {
+  z-index: 1;
 }
 .header-block {
   margin-bottom: 106px;
 }
 .map {
-  background-image: url(../../assets/images/map.png);
+  /* background-image: url(../../assets/images/map.png); */
+  background-image: url(../../assets/images/map-svg.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  width: 100%;
+  width: 1160px;
   height: 745px;
   position: relative;
+}
+.container {
+  overflow: hidden;
 }
 .map-country {
   position: relative;
