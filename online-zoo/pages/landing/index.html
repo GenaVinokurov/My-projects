@@ -13,12 +13,13 @@
 <body>
   <!-- popups -->
   <div class="popups-wrapper">
+    <div class="popups-bg"></div>
     <div class="popup-feedback" data-close="feedback" id="feedback">
       <span class="popup-close"></span>
       <form action="" class="popup-feedback__form">
-        <input type="text" class="popup-feedback__input" placeholder="Name">
-        <input type="email" class="popup-feedback__input" placeholder="Email">
-        <textarea name="text" class="popup-feedback__text " placeholder="Your text here (300 max)" maxlength="300"></textarea>
+        <input type="text" class="popup-feedback__input" placeholder="Name" required>
+        <input type="email" class="popup-feedback__input" placeholder="Email" required>
+        <textarea name="text" class="popup-feedback__text " placeholder="Your text here (300 max)" maxlength="300" required></textarea>
         <input type="submit" class="btn btn-submit" value="Submit">
       </form>
     </div>
@@ -32,11 +33,50 @@
           <option value="Gorilla" class="popup-donate__option">Gorilla</option>
         </select>
         <div class="popup-donate__wrapper">
-          <input type="number" class="popup-donate__input" placeholder="Donat">
-          <input type="text" class="popup-donate__currency" value="USD">
+          <input type="number"
+            class="popup-donate__input"
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            placeholder="Amount"
+            maxlength = "4"
+            required/>
+          <!-- <input type="text" class="popup-donate__currency" value="USD"> -->
+          <select class="popup-donate__currency">
+            <option value="USD" class="popup-donate__option">USD</option>
+            <option value="EUR" class="popup-donate__option">EUR</option>
+            <option value="BYN" class="popup-donate__option">BYN</option>
+          </select>
         </div>
-        <textarea name="text" class="popup-donate__text " placeholder="Your text here"></textarea>
-        <input type="submit" class="btn btn-popup__donate" value="Donat">
+        <textarea name="text" class="popup-donate__text " placeholder="Your text here" maxlength="280"></textarea>
+        <button type="submit" class="btn btn-popup__donate">Next</button>
+      </form>
+    </div>
+    <div class="popup-card">
+      <span class="popup-close"></span>
+      <form action="" class="popup-card__form">
+        <input type="number" 
+          class="card"
+          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+          placeholder="Card Number"
+          maxlength = "16"/>
+          <div class="card-date__wrapper">
+            <input type="number" 
+              class="card-date"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+              placeholder="MM"
+              maxlength = "2"/>
+            <input type="number" 
+              class="card-date"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+              placeholder="YY"
+              maxlength = "2"/>
+            <input type="number" 
+              class="card-cvc"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+              placeholder="CVC"
+              maxlength = "3"/>
+          </div>  
+        <input type="text" class="card" placeholder="Cardholder Name">
+        <span class="btn btn-card">Donate</span>
       </form>
     </div>
   </div>
@@ -71,20 +111,20 @@
   <main class="main">
     <div class="work">
       <p class="subtitle">How it works</p>
-      <ul class="work-list">
-        <li class="">
+      <ul class="work-list carousel__list">
+        <li class="carousel__item" data-pos="-2">
           <img src="../../assets/images/eagle.png" alt="" class="work-list_img">
         </li>
-        <li class="">
+        <li class="carousel__item" data-pos="-1">
           <img src="../../assets/images/tiger.png" alt="" class="work-list_img side">
-        </li>
-        <li class="work-list__li-centre">
+        </li class="carousel__item" data-pos="-0">
+        <li class="work-list__li-centre carousel__item" data-pos="-2">
           <img src="../../assets/images/panda.png" alt="" class="work-list_img centre">
         </li>
-        <li class="">
+        <li class="carousel__item" data-pos="1">
           <img src="../../assets/images/monkey.png" alt="" class="work-list_img side">
         </li>
-        <li class="">
+        <li class="carousel__item" data-pos="2">
           <img src="../../assets/images/elephant.png" alt="" class="work-list_img">
         </li>
       </ul>

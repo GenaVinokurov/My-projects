@@ -422,8 +422,25 @@ p a {
 /* ----------------------------------------POPUPS------------------------------------------------ */
 
 .popups-wrapper {
-  position: relative;
-  
+  display: block;
+  position: fixed;
+  /* width: 100%;
+  height: 100vh; */
+  z-index: 5;
+}
+.popups-wrapper.active {
+  display: block;
+}
+.popups-bg {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(255, 255, 255, 0.6);
+  z-index: 6;
+  display: none;
+}
+.popups-bg.active {
+  display: block;
 }
 .popup-feedback {
   position: fixed;
@@ -571,6 +588,53 @@ input[type=number] {
   width: 27px;
   height: 27px;
   cursor: pointer;
+}
+
+.popup-card {
+  display: none;
+  position: fixed;
+  background: #fff;
+  width: 630px;
+  padding: 50px 80px;
+  top: 25%;
+  left: calc(50% - 315px );
+  z-index: 11;
+}
+.popup-card.active {
+  display: block;
+}
+.popup-card__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card {
+  width: 100%;
+  height: 39px;
+  border: 1px solid #9CA498;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.card-date__wrapper{
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.card-date {
+  width: 80px;
+  height: 39px;
+  border: 1px solid #9CA498;
+  text-align: center;
+  margin-right: 5px;
+}
+
+.card-cvc {
+  width: 75px;
+  height: 39px;
+  border: 1px solid #9CA498;
+  text-align: center;
 }
 
 .burger-menu__button {
