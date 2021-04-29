@@ -171,6 +171,8 @@ p a {
 /* ---------------MAP common style------------------- */
 .icon-wrapper {
   position: relative;
+  /* width: 100vw; */
+  /* left: 0; */
 }
 .icon {
   position: absolute;
@@ -201,11 +203,13 @@ p a {
 }
 .icon.gorilla {
   top: 504px;
-  right: 439px;
+  /* right: 439px; */
+  left: 655px;
 }
 .icon.panda {
   top: 408px;
-  right: 172px;
+  /* right: 172px; */
+  left: 925px;
 }
 .icon::after {
   content: '';
@@ -280,62 +284,8 @@ p a {
   width: 130px;
 }
 
-/*
-.icon:hover::after {
-  background: #70CB0E;
-  padding: 4px 7.5px;
-}
-.icon.eagle:hover::after {
-  content: 'Eagle, California USA';
-  top: 10px;
-  right: 75px;
-  width: 114px;
-} 
-.icon:before {
-  display: none;
-  position: absolute;
-  content: "";
-  background-image: url(../../assets/icons/triangle-green.svg);
-  width: 9px;
-  height: 9px;
-  top: 46%;
-  right: -10px;
-}
-.icon.eagle:hover:before {
-  display: block;
-  top: 43%;
-  right: 66px;
-  transform: rotate(180deg);
-}
-.icon.alligator:hover::after {
-  content: "ALLIGATOR, Florida USA";
-  top: 12px;
-  right: -115px;
-  max-width: 90px;
-}
-.icon.alligator:hover::before {
-  display: block;
-}
-.icon.gorilla:hover::after {
-  content: "GORILLA, Eastern DRC";
-  top: 12px;
-  right: -145px;
-  max-width: 120px;
-}
-.icon.gorilla:hover::before {
-  display: block;
-}
-.icon.panda:hover::after{
-  content: "PANDA, China";
-  top: 12px;
-  right: -113px;
-  max-width: 88px;
-}
-.icon.panda:hover::before {
-  display: block;
-} */
 .zoom {
-  bottom: 13px;
+  bottom: 130px;
   position: sticky;
   left: 95%;
   border-radius: 5px;
@@ -343,6 +293,7 @@ p a {
   display: flex;
   flex-direction: column;
   width: 32px;
+  z-index: 10;
 }
 .zoom-button {
   background: #fff;

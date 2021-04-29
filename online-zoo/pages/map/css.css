@@ -3,28 +3,43 @@
 .header {
   background: #A7E1FF;
   width: 100%;
-  padding-bottom: 86px;
+  /* padding-bottom: 86px; */
   position: relative;
-  /* overflow: hidden; */
+  z-index: 2;
 }
 .footer {
   z-index: 1;
 }
-.header-block {
-  margin-bottom: 106px;
+
+body {
+  overflow-x: hidden;
 }
 .map {
   /* background-image: url(../../assets/images/map.png); */
-  background-image: url(../../assets/images/map-svg.svg);
+  /* background-image: url(../../assets/images/map-svg.svg);
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
-  width: 1160px;
-  height: 745px;
-  position: relative;
+  background-size: cover; */
+  /* width: 1160px; */
+  /* height: 745px; */
+  left: calc(50% - 580px);
+  top: calc(50% - 375px);
+  position: absolute;
 }
-.container {
-  overflow: hidden;
+.map-img {
+  position: absolute;
+  width: 1160px;
+  height: auto;
+}
+.map-wrapper {
+  position: relative;
+  height: 945px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background: #A7E1FF;
+  padding-top: 192px;
 }
 .map-country {
   position: relative;

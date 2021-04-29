@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-  <section class="header">
+  <section class="header" id="header">
     <div class="container">
       <header class="header-block">
         <a class="logo" href="../../pages/landing/index.html">
@@ -30,54 +30,54 @@
           <span class="burger-menu__button-close"></span>
         </nav>
       </header>
-      <section class="map">
-        <div class="map-country">
-          <span class="map-country__name USA"> USA</span>
-          <span class="map-country__name Eastern-DRC">Eastern DRC</span>
-          <span class="map-country__name China">China</span>
-        </div>
-        <div class="icon-wrapper">
-          <div  class="icon eagle">
-            <a href="../../pages/zoos/eagle/index.html" class="icon-border"></a>
-            <img src="../../assets/icons/icon-eagle.png" alt="eagle" class="icon-img">
-            <div class="icon-tooltipe">
-              <span>EAGLE, California, USA</span>
-              <a class="icon-tooltipe__link" href="../../pages/zoos/eagle/index.html">Watch online</a>
-            </div>
-          </div>
-          <div class="icon alligator">
-            <a href="../../pages/zoos/alligator/index.html" class="icon-border"></a>
-            <img src="../../assets/icons/icon-aligator.png" alt="alligator" class="icon-img">
-            <div class="icon-tooltipe">
-              <span>Alligator, Florida, USA</span>
-              <a class="icon-tooltipe__link" href="../../pages/zoos/alligator/index.html">Watch online</a>
-            </div>
-          </div>
-          <div class="icon gorilla">
-            <a href="../../pages/zoos/gorilla/index.html" class="icon-border"></a>
-            <img src="../../assets/icons/icon-gorilla.png" alt="gorilla" class="icon-img">
-            <div class="icon-tooltipe">
-              <span>Gorilla, Eastern DRC</span>
-              <a class="icon-tooltipe__link" href="../../pages/zoos/gorilla/index.html">Watch online</a>
-            </div>
-          </div>
-          <div class="icon panda">
-            <a href="../zoos/panda/index.html" class="icon-border"></a>
-            <img src="../../assets/icons/icon-panda.png" alt="panda" class="icon-img">
-            <div class="icon-tooltipe">
-              <span>Panda, China</span>
-              <a class="icon-tooltipe__link" href="../../pages/zoos/panda/index.html">Watch online</a>
-            </div>
-          </div>
-        </div>
-      </section>
+      
     </div>
-    <div class="zoom">
-      <button class="zoom-button zoom-button__reduce"></button>
-      <button class="zoom-button zoom-button__increase"></button>
-    </div>
+    
   </section>
-  <footer class="footer">
+  <div class="map-wrapper" id="wrapper">
+    <section class="map" >
+      <img src="../../assets/images/map-svg.svg" alt="" class="map-img" id="map">
+      <div class="icon-wrapper" id="icon-wrapper">
+        <div  class="icon eagle">
+          <a href="../../pages/zoos/eagle/index.html" class="icon-border"></a>
+          <img src="../../assets/icons/icon-eagle.png" alt="eagle" class="icon-img">
+          <div class="icon-tooltipe">
+            <span>EAGLE, California, USA</span>
+            <a class="icon-tooltipe__link" href="../../pages/zoos/eagle/index.html">Watch online</a>
+          </div>
+        </div>
+        <div class="icon alligator">
+          <a href="../../pages/zoos/alligator/index.html" class="icon-border"></a>
+          <img src="../../assets/icons/icon-aligator.png" alt="alligator" class="icon-img">
+          <div class="icon-tooltipe">
+            <span>Alligator, Florida, USA</span>
+            <a class="icon-tooltipe__link" href="../../pages/zoos/alligator/index.html">Watch online</a>
+          </div>
+        </div>
+        <div class="icon gorilla">
+          <a href="../../pages/zoos/gorilla/index.html" class="icon-border"></a>
+          <img src="../../assets/icons/icon-gorilla.png" alt="gorilla" class="icon-img">
+          <div class="icon-tooltipe">
+            <span>Gorilla, Eastern DRC</span>
+            <a class="icon-tooltipe__link" href="../../pages/zoos/gorilla/index.html">Watch online</a>
+          </div>
+        </div>
+        <div class="icon panda">
+          <a href="../zoos/panda/index.html" class="icon-border"></a>
+          <img src="../../assets/icons/icon-panda.png" alt="panda" class="icon-img">
+          <div class="icon-tooltipe">
+            <span>Panda, China</span>
+            <a class="icon-tooltipe__link" href="../../pages/zoos/panda/index.html">Watch online</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="zoom">
+      <button class="zoom-button zoom-button__reduce" id="zoomOut"></button>
+      <button class="zoom-button zoom-button__increase" id="zoomIn"></button>
+    </div>
+  </div>
+  <footer class="footer" id="footer">
     <div class="container">
       <div class="footer-top">
         <a class="logo" href="../landing/index.html">
