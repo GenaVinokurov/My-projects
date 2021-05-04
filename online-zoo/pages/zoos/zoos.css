@@ -150,10 +150,12 @@
 .icon.gorilla {
   top: auto;
   right: auto;
+  left: auto;
 }
 .icon.panda {
   top: auto;
   right: auto;
+  left: auto;
 }
 .icon.error-panda {
   height: 67px;

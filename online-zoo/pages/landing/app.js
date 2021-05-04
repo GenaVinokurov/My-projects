@@ -1,3 +1,5 @@
+//------------------------------carousel How it works
+
 const state = {};
 const carouselList = document.querySelector('.carousel__list');
 const carouselItems = document.querySelectorAll('.carousel__item');
@@ -41,3 +43,35 @@ const getPos = function (current, active) {
 
   return diff;
 }
+
+//------------------Carousel Pets in zoo
+const gap = 16;
+
+const carousel = document.getElementById("carousel");
+const content = document.getElementById("content");
+const next = document.getElementById("next");
+const prev = document.getElementById("prev");
+
+next.addEventListener("click", e => {
+  carousel.scrollBy(width + gap, 0);
+  if (carousel.scrollWidth !== 0) {
+    prev.style.visibility = "visible";
+  }
+  if (content.scrollWidth - width - gap <= carousel.scrollLeft + width) {
+    next.style.visibility = "hidden";
+  }
+});
+prev.addEventListener("click", e => {
+  carousel.scrollBy(-(width + gap), 0);
+  if (carousel.scrollLeft - width - gap <= 0) {
+    prev.style.visibility = "hidden";
+  }
+  if (!content.scrollWidth - width - gap <= carousel.scrollLeft + width) {
+    next.style.visibility = "visible";
+  }
+});
+
+let width = carousel.offsetWidth;
+window.addEventListener("resize", e => (width = carousel.offsetWidth));
+
+

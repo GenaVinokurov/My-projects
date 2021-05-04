@@ -79,16 +79,12 @@
 }
 
 .work-list {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
+
   background-image: url(../../assets/images/bg-work.png);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* height: 549px;
   margin-bottom: 48px;
-  padding: 0; */
   display: flex;
   list-style: none;
   position: relative;
@@ -101,41 +97,16 @@
 
 }
 .work-list_img {
-  /* width: 250px;
-  height: 350px;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center; */
   width: 100%;
   max-width: 250px;
   height: auto;
   display: block;
 }
-/* .work-list_img:nth-child(1) {
-  background-image: url(/assets/images/eagle.png);
-}
-.work-list_img:nth-child(2){
-  background-image: url(/assets/images/tiger.png);
-}
-.work-list_img:nth-child(3) {
-  background-image: url(/assets/images/panda.png);
-}
-.work-list_img:nth-child(4) {
-  background-image: url(/assets/images/monkey.png);
-}
-.work-list_img:nth-child(5) {
-  background-image: url(/assets/images/elephant.png);
-} */
-/* .work-list_img.centre {
-  transform: scale(1.4);
-}
-.work-list__li-centre {
-  z-index: 3;
-}
-.work-list_img.side {
-  transform: scale(1.2);
 
-} */
+
+
+/* --------Pets slider */
+
 
 
 .pets {
@@ -151,13 +122,33 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 1160px;
+  width: 100%;
   margin-bottom: 35px;
+  position: relative;
+}
+#carousel {
+  overflow: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+#carousel::-webkit-scrollbar {
+  height: 0;
+}
+#prev {
+  visibility: hidden;
 }
 .pets-slider__wrapper {
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
+  display: grid;
+  /* grid-gap: 16px; */
+  grid-auto-flow: column;
+  margin: auto;
+  box-sizing: border-box;
+  max-width: 992px;
 }
 .pets-slider__item {
   height: 300px;
