@@ -1,0 +1,16 @@
+{
+  "version": "0.1.0",
+  "description": "My new js application",
+  "private": true,
+  "name": "museum",
+  "scripts": {
+    "start": "rss-scripts start",
+    "build": "rss-scripts build"
+  },
+  "devDependencies": {
+    "rss-scripts": "^0.2.1",
+    "sass": "^1.41.1",
+    "sass-loader": "^12.1.0",
+    "webpack": "^5.53.0"
+  }
+}
