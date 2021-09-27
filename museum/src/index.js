@@ -1,4 +1,5 @@
 import "./style.scss";
+// import "./tour-style.scss";
 // import "./assets/video/video0.mp4";
 
 // render();
@@ -75,3 +76,21 @@ fullButton.addEventListener('click', function () {
     }
   }
 })
+
+//-------popup
+
+const formBtn = document.querySelector('#formBtn');
+const closeBtn = document.querySelector('#closeBtn');
+const popup = document.querySelector('.popup');
+const popupOverlay = document.querySelector('.popup-overlay');
+
+formBtn.addEventListener('click', function () {
+  popup.classList.toggle('active');
+});
+closeBtn.addEventListener('click', function () {
+  popup.classList.toggle('active');
+});
+popupOverlay.addEventListener('click', function () {
+  event.preventDefault();
+  popup.classList.toggle('active');
+});
