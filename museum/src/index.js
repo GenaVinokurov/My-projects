@@ -94,3 +94,15 @@ popupOverlay.addEventListener('click', function () {
   event.preventDefault();
   popup.classList.toggle('active');
 });
+
+//---------------------burger
+
+const burgerBtn = document.querySelector('#burgerBtn');
+const burgerMenu = document.querySelector('#burgerMenu');
+
+burgerBtn.addEventListener('click', burgerToggle);
+
+function burgerToggle() {
+  burgerMenu.classList.toggle('active');
+  burgerBtn.classList.toggle('close')
+}

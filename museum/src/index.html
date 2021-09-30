@@ -175,8 +175,46 @@
 				<img src="./assets/img/logo.svg" alt="logo" class="logo__img">
 				<h1 class="logo__name">LOUVRE</h1>
 			</div>
-			<nav class="">
+			<nav class="desktop-nav">
 				<ul class="nav">
+					<li class="nav__li">
+						<a href="#visiting" class="nav__link">
+							Visiting
+						</a>
+					</li>
+					<li class="nav__li">
+						<a href="#explore" class="nav__link">
+							Explore
+						</a>
+					</li>
+					<li class="nav__li">
+						<a href="#video" class="nav__link">
+							Video
+						</a>
+					</li>
+					<li class="nav__li">
+						<a href="#gallery" class="nav__link">
+							Gallery
+						</a>
+					</li>
+					<li class="nav__li">
+						<a href="#tickets" class="nav__link">
+							Tickets
+						</a>
+					</li>
+					<li class="nav__li">
+						<a href="#contacts" class="nav__link">
+							Contacts
+						</a>
+					</li>
+				</ul>
+			</nav>
+			<button class="burger-btn" id="burgerBtn"></button>
+			
+		</div>
+		<div class="burger-menu">
+			<nav class="">
+				<ul class="nav" id="burgerMenu">
 					<li class="nav__li">
 						<a href="#visiting" class="nav__link">
 							Visiting
@@ -417,7 +455,7 @@
 								<button type="button" onclick="this.previousElementSibling.stepUp()"></button>
 							</div>
 							<span class="form__amount-age">Senior 65+</span>
-							<div class="form__amount-button">
+							<div class="form__amount-button form__amount-button2">
 								<button type="button" onclick="this.nextElementSibling.stepDown()"></button>
 								<input type="number" min="0" max="20" value="1" readonly class="number">
 								<button type="button" onclick="this.previousElementSibling.stepUp()"></button>

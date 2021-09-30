@@ -26,8 +26,9 @@ main {
 }
 .container {
   margin: 0 auto;
-  max-width: 1440px;
+  max-width: 1480px;
   width: 100%;
+  padding: 0 20px;
 }
 
 .btn {
@@ -245,7 +246,7 @@ input::-webkit-inner-spin-button {
 
 //----------------VIRTUAL
 .visiting {
-  padding: 75px 0 36px;
+  padding: 75px 20px 36px;
   &__title {
     color: $gold;
     margin-bottom: 100px;
@@ -540,9 +541,10 @@ input::-webkit-inner-spin-button {
   &__wrapper {
     display: flex;
     flex-flow: column wrap;
-    align-content: space-between;
+    align-content: center;
     height: 2800px;
     position: relative;
+    column-gap: 18px;
   }
   &__img {
     position: relative;
@@ -689,8 +691,9 @@ input::-webkit-inner-spin-button {
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
-  width: 1920px;
+  width: 2220px;
   height: 400px;
+  margin: 0 auto;
 }
 
 
@@ -1337,4 +1340,328 @@ input[type=time]::-webkit-calendar-picker-indicator {
   top: 30px;
   background-color: transparent;
   border: none;
+}
+
+//----------------------------------------------------------------------------------
+.burger-menu {
+  display: none;
+}
+.burger-btn {
+  display: none;
+  width: 32px;
+  height: 18px;
+  background-image: url(./assets/img/burger-menu.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-color: transparent;
+  border: none;
+  transition: 0.5s;
+  &.close {
+    background-image: url(./assets/img/burger-close.svg);
+    width: 25px;
+    height: 25px;
+  }
+}
+@media (max-width: 1440px)  {
+  
+  .desktop-nav {
+    display: none;
+  }
+  .burger-menu {
+    display: block;
+    & .nav {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      position: absolute;
+      left: 0px;
+      top: 93px;
+      background-color: $black;
+      transform: translateX(-200%);
+      width: 585px;
+      padding: 35px 0px;
+      transition: 0.5s;
+      
+      &__li {
+        margin-bottom: 25px;
+        position: relative;
+        width: 122px;
+        &::before {
+          position: absolute;
+          content: '';
+          right: 5px;
+          top: 5px;
+          width: 12px;
+          height: 12px;
+          background-image: url(./assets/img/burger-arrow.svg);
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: contain;
+        }
+      }
+      z-index: 20;
+    }
+    & .nav.active {
+      transform: translateX(0);
+    }
+    
+  }
+  .burger-btn {
+    display: block;
+    
+  }
+  .title {
+    font-size: 50px;
+  }
+  .welcome {
+    padding-bottom: 62px;
+    &-slider__slide {
+      background: linear-gradient(90deg, #000000 0%, rgba(0, 0, 0, 0.5) 16.19%, rgba(0, 0, 0, 0) 30.73%), url(./assets/img/welcome/1.jpg);
+      width: 700px;
+      height: 525px;
+      background-size: contain;
+    }
+    &__wrapper {
+      top: 70px;
+    }
+    &__title {
+      margin-bottom: 33px;
+      
+    }
+    &__subtitle {
+      font-size: 24px;
+      margin-bottom: 50px;
+    }
+    & p:nth-child(2) {
+      margin-bottom: 40px;
+    }
+    &-slider {
+      &__items {
+        width: 100%;
+        justify-content: flex-end;
+      }
+      &__counter {
+        font-size: 20px;
+      }
+      &__dot {
+        width: 12px;
+        height: 12px;
+      }
+      &__dots-wrapper {
+        margin-right: 33px;
+      }
+      &__counter-wrapper {
+        margin-right: 35px;
+      }
+    }
+  }
+  .btn {
+    width: 300px;
+    height: 60px;
+    font-size: 20px;
+    line-height: 60px;
+  }
+  .visiting {
+    &__card {
+      margin-bottom: 11px;
+      &-img {
+        width: 330px;
+        height: 215px;
+      }
+      &-name {
+        font-size: 28px;
+        letter-spacing: 3px;
+        &.underline-title::after {
+          width: 150px;
+        }
+      }
+      &-description {
+        font-size: 20px;
+        &:nth-last-child(1) {
+          font-size: 16px;
+        }
+      }
+    }
+    &__wrapper {
+      justify-content: center;
+      column-gap: 108px;
+    }
+    &__title {
+      margin-bottom: 87px;
+    }
+  }
+  .explore {
+    padding-bottom: 60px;
+    &__container {
+      flex-direction: column;
+    }
+    &__description {
+      width: 100%;
+    }
+    &__img {
+      width: 100%;
+      max-width: 720px;
+      height: 100%;
+      margin: 0 auto;
+    }
+    &__text {
+      width: auto;
+      font-size: 20px;
+      margin: 0;
+    }
+    &__text:nth-last-child(1) {
+      display: none;
+    }
+    
+    &__title.underline-title::after {
+      width: 100%;
+    }
+    &__title {
+      margin-bottom: 87px;
+    }
+    &__description {
+      margin-bottom: 60px;
+    }
+  }
+  .video {
+    &__description {
+      display: none;
+    }
+    &__title-wrapper {
+      margin-bottom: 42px;
+    }
+
+  }
+  .player {
+    &__controls {
+      padding: 15px 40px;
+    }
+    &__volume-btn {
+      width: 26px;
+      height: 20px;
+    }
+    &__fullscreen {
+      width: 26px;
+    }
+    &__rewind {
+      margin: 0;
+      width: 63%;
+    }
+    &__button {
+      margin-right: 0;
+    }
+    &__small-wrapper {
+      & iframe {
+        width: 300px;
+        height: 170px;
+      }
+    }
+  }
+  .gallery {
+    &__img {
+      max-width: 304px;
+    }
+    &__container {
+      height: 1370px;
+    }
+  }
+  .form {
+    &__type-wrapper {
+      display: none;
+    }
+    &__amount-wrapper {
+      align-items: flex-start;
+    }
+    &__amount-button {
+      width: 177px;
+      margin-bottom: 28px;
+    }
+    &__amount-button2 {
+      margin-bottom: 15px;
+    }
+    &__amount-total {
+      margin: 5px 0 70px;
+    }
+  }
+  .tickets {
+    padding: 75px 0 60px;
+    &__title {
+      margin-bottom: 87px;
+    }
+    &__img {
+      // max-width: 700px;
+      width: 700px;
+      max-height: 440px;
+    }
+    &__wrapper {
+      grid-column-gap: 80px;
+    }
+  }
+  .contacts {
+    padding: 70px 0;
+    &__img {
+      max-width: 694px;
+    }
+    &__title.underline-title::after {
+      bottom: -30px;
+    }
+    &__title {
+      margin-bottom: 90px;
+    }
+    &__address-title {
+      font-size: 24px;
+      margin-bottom: 35px;
+      max-width: 200px;
+    }
+    &__link {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+  }
+  .footer {
+    padding-top: 58px;
+    & nav {
+      right: 0;
+    }
+    & .nav-wrapper:nth-child(1) {
+      width: 77%;
+    }
+    &__bottom {
+      padding: 50px 20px 0;
+    }
+  }
+
+}
+
+@media (max-width: 1023px) {
+  .title {
+    font-size: 40px;
+  }
+  .welcome {
+    &__wrapper {
+      position: static;
+      align-items: center;
+    }
+    &__subtitle {
+      font-size: 20px;
+      margin-bottom: 40px;
+    }
+    &__title {
+      margin-bottom: 10px;
+    }
+    &-slider__slide {
+      width: 728px;
+      height: 546px;
+      background-image: url(./assets/img/welcome/1.jpg);
+    }
+  }
+  .btn__welcome {
+    display: none;
+  }
+  .burger-menu {
+    & .nav.active {
+      width: 100%;
+    }
+  }
 }
