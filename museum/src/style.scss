@@ -230,14 +230,14 @@ input::-webkit-inner-spin-button {
   cursor: pointer;
   transition: 0.5s;
   &.prev{
-    background: url(./assets/img/left__btn.svg);
+    background-image: url(./assets/img/left__btn.svg);
     margin-right: 20px;
     &:hover {
       background-image: url(./assets/img/left__btn_h.svg);
     }
   }
   &.next {
-    background: url(./assets/img/right__btn.svg);
+    background-image: url(./assets/img/right__btn.svg);
     &:hover {
       background-image: url(./assets/img/right__btn_h.svg);
     }
@@ -584,6 +584,12 @@ input::-webkit-inner-spin-button {
   &__title {
     color: $gold;
     margin-bottom: 101px;
+  }
+  &__img {
+    background-image: url(./assets/img/tickets.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 }
 .form {
@@ -1639,6 +1645,7 @@ input[type=time]::-webkit-calendar-picker-indicator {
     font-size: 40px;
   }
   .welcome {
+    padding: 0;
     &__wrapper {
       position: static;
       align-items: center;
@@ -1655,6 +1662,12 @@ input[type=time]::-webkit-calendar-picker-indicator {
       height: 546px;
       background-image: url(./assets/img/welcome/1.jpg);
     }
+    &-slider__items {
+      bottom: 0;
+      position: relative;
+      justify-content: center;
+      padding: 37px 75px;
+    }
   }
   .btn__welcome {
     display: none;
@@ -1662,6 +1675,435 @@ input[type=time]::-webkit-calendar-picker-indicator {
   .burger-menu {
     & .nav.active {
       width: 100%;
+    }
+  }
+  .visiting {
+    padding-top: 47px;
+    padding-bottom: 55px;
+    &__wrapper {
+      column-gap: 57px;
+      row-gap: 16px;
+    }
+    &__card-img {
+      width: 280px;
+      height: 180px;
+    }
+    &__title {
+      margin-bottom: 69px;
+    }
+    &__card-name {
+      font-size: 22px;
+
+    }
+
+  }
+  .underline-title::after {
+    bottom: -30px;
+  }
+  .explore {
+    padding: 50px 0 38px;
+    &__text {
+      display: none;
+    }
+    &__img {
+      max-height: 626px;
+      max-width: 728px;
+    }
+  }
+  .video {
+    padding: 47px 0 80px;
+    &__title-wrapper {
+      margin-bottom: 26px;
+    }
+  }
+  .player {
+    margin-bottom: 16px;
+    &__small-wrapper iframe:nth-last-child(1) {
+      display: none;
+    }
+    &__small-wrapper iframe {
+      width: 354px;
+      height: 199px;
+    }
+    &__small-wrapper {
+      margin-bottom: 19px;
+    }
+    &__dot {
+      width: 10px;
+      height: 10px;
+    }
+  }
+  .gallery {
+    padding-top: 47px;
+    &__container {
+      height: 1173px;
+    }
+    &__wrapper::before {
+      position: absolute;
+    }
+    &__wrapper {
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-content: inherit;
+    }
+    &__img {
+      max-width: 352px;
+    }
+  }
+  .tickets {
+    padding: 47px 0 40px;
+    &__img {
+      width: 447px;
+    }
+    &__title {
+      margin-bottom: 70px;
+    }
+    &__wrapper {
+      grid-column-gap: 58px;
+    }
+  }
+  .form {
+    &__title {
+      margin: 0 0 35px;
+    }
+    &__amount-button {
+      margin-bottom: 22px;
+    }
+    &__amount-button2 {
+      margin-bottom: 35px;
+    }
+    &__amount-total {
+      margin-bottom: 38px;
+    }
+  }
+  .parallax {
+    height: 300px;
+  }
+  .contacts {
+    padding: 47px 0 73px;
+    &__wrapper {
+      flex-direction: column;
+    }
+    &__address-title {
+      font-size: 20px;
+      max-width: 165px;
+      margin-bottom: 42px;
+    }
+    &__link {
+      font-size: 18px;
+    }
+    &__title {
+      margin-bottom: 70px;
+
+    }
+    &__address {
+      margin-bottom: 23px;
+    }
+    &__img {
+      max-width: 100%;
+    }
+  }
+  .footer {
+    &__top {
+      flex-wrap: wrap;
+    }
+    &__bottom {
+      padding-top: 36px;
+    }
+    & nav {
+      width: 520px;
+    }
+    & .nav {
+      padding-left: 90px;
+    }
+    & .social-network {
+      right: -233px;
+      position: relative;
+
+    }
+    & .nav__link {
+      font-size: 18px;
+    }
+  }
+  .popup-form {
+    display: block;
+    padding: 40px 30px;
+    width: 590px;
+    height: auto;
+    &__right {
+      flex-direction: column;
+      margin: 0;
+    }
+    &__left {
+      width: 530px;
+      padding: 0;
+      margin-bottom: 50px;
+    }
+    .select {
+      width: 251px;
+      &__label-date {
+        margin-right: 28px;
+      }
+    }
+    .popup__input {
+      width: 530px;
+    }
+    .popup__select-type {
+      width: 530px;
+    }
+    .popup__entry-name::after {
+      bottom: -5px;
+    }
+    .popup__entry-block {
+      width: 530px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .social-network {
+    right: 0;
+  }
+  .logo {
+    &__img {
+      height: 17px;
+    }
+    &__name {
+      font-size: 16px;
+    }
+
+  }
+  .title {
+    font-size: 28px;
+  }
+  .welcome {
+    &-slider__slide {
+      width: 380px;
+      height: 285px;
+    }
+    &__subtitle {
+      font-size: 16px;
+      margin-bottom: 50px;
+    }
+    & p:nth-child(2) {
+      margin-bottom: 28px;
+    }
+    &-slider__dot {
+      width: 7px;
+      height: 7px;
+      margin: 0 5px;
+    }
+    &-slider__counter {
+      font-size: 16px;
+    }
+    &-slider__counter-wrapper {
+      margin-right: 0;
+    }
+    &-slider__items {
+      padding: 27px 62px;
+
+    }
+  }
+  .slider__btn {
+    width: 20px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+  .welcome-slider__dots-wrapper {
+    margin-right: 16px;
+  }
+  .underline-title::after {
+    bottom: -25px;
+  }
+  .visiting {
+    padding-bottom: 20px;
+    &__title {
+      margin-bottom: 65px;
+    }
+    &__card-name {
+      font-size: 18px;
+      letter-spacing: 5px;
+    }
+    &__card-description {
+      font-size: 16px;
+    }
+    &__card {
+      margin-bottom: 13px;
+    }
+  }
+  .explore {
+    padding: 45px 0 16px;
+    &__description {
+      margin-bottom: 0;
+    }
+  }
+  .video {
+    padding-bottom: 41px;
+    &__title {
+      width: 100%;
+    }
+    &__title-wrapper {
+      margin-bottom: 17px;
+    }
+  }
+  .player {
+    margin-bottom: 31px;
+    &__small-wrapper iframe {
+      width: 180px;
+      height: 101px;
+    }
+    &__small-wrapper {
+      margin-bottom: 37px;
+    }
+    &__dot {
+      width: 7px;
+      height: 7px;
+    }
+    &__arrow {
+      width: 7px;
+      height: 8px;
+    }
+  }
+  .gallery__img:nth-child(3n+1) {
+    top: 98px;
+  }
+  .gallery {
+    &__img {
+      max-width: 178px;
+    }
+    &__wrapper {
+      column-gap: 12px;
+    }
+    &__title {
+      margin-bottom: -5px;
+    }
+    &__container {
+      height: 711px;
+    }
+  }
+  .tickets {
+    &__title {
+      margin-bottom: 64px;
+    }
+    &__img {
+      max-height: 160px;
+      height: 160px;
+      width: 380px;
+      margin-bottom: 41px;
+    }
+    &__wrapper {
+      grid-template-columns: 1fr;
+      justify-content: center;
+    }
+    .form {
+      &__amount-wrapper {
+        align-items: center;
+        width: 100%;
+      }
+      &__title {
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
+      &__amount-age {
+        font-size: 16px;
+        width: 176px;
+      }
+      &__amount-total {
+        font-size: 16px;
+      }
+    }
+  }
+  .contacts {
+    padding-bottom: 41px;
+    &__title.underline-title::after {
+      bottom: -25px;
+    }
+    &__address-title {
+      font-size: 16px;
+      max-width: 130px;
+    }
+    &__link {
+      font-size: 16px;
+    }
+
+  }
+  .footer {
+    padding-top: 40px;
+    .logo__wrapper {
+      margin-bottom: 38px;
+    }
+    .nav {
+      padding-left: 0;
+      width: 100%;
+    }
+    .social-network {
+      right: 0;
+      padding: 0;
+    }
+    &__bottom-text {
+      font-size: 16px;
+    }
+    &__bottom-text:nth-child(2) {
+      display: none;
+    }
+  }
+  .popup {
+    &-form__left {
+      width: 360px;
+    }
+    &__select-wrapper {
+      flex-direction: column;
+      margin: 0;
+    }
+    &__btn {
+      right: 15px;
+    }
+    .select {
+      width: 360px;
+      &__label {
+        margin-bottom: 20px;
+      }
+    }
+    &__subtitle {
+      margin-bottom: 57px;
+    }
+    .underline-title::after {
+      bottom: -47px;
+    }
+    .popup-form .popup__entry-name::after {
+      bottom: -5px;
+  }
+  
+    .popup__input {
+      width: 360px;
+    }
+    .popup__entry-block {
+      width: 360px;
+    }
+    .popup-form__right {
+      width: 360px;
+      padding: 25px 15px;
+      height: 910px;
+    }
+    .card {
+      width: 330px;
+      margin-bottom: 25px;
+      &__input {
+        width: 210px;
+      }
+      &__input.cardholder {
+        width: 290px;
+      }
+      &__input.expiration {
+        width: 100px;
+      }
+      &-back {
+        width: 330px;
+        position: relative;
+        left: 0;
+        top: 0;
+      }
     }
   }
 }
