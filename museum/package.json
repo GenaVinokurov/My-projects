@@ -12,5 +12,8 @@
     "sass": "^1.41.1",
     "sass-loader": "^12.1.0",
     "webpack": "^5.53.0"
+  },
+  "dependencies": {
+    "tiny-slider": "^2.9.3"
   }
 }

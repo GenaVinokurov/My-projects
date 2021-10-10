@@ -6,14 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing</title>
 		<link rel="icon" href="./assets/img/gallery/3.jpg">
-		<link rel="stylesheet" href="./assets/normalize.css">
-    <link rel="stylesheet" href="style.css">
+		
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Forum&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css">
+		<link href="https://api.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.css" rel="stylesheet">
+		<script src="https://api.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.js"></script>
+		<link rel="stylesheet" href="./assets/normalize.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<div class="popup">
@@ -261,33 +265,30 @@
 				<div class="welcome-slider">
 					<div class="welcome-slider__wrapper">
 						<div class="welcome-slider__slide">
-							<!-- <img src="./assets/img/welcome/1.jpg" alt="image"> -->
 						</div>
-						<!-- <div class="welcome-slider__slide">
-							<img src="" alt="image">
+						<div class="welcome-slider__slide a">
 						</div>
-						<div class="welcome-slider__slide">
-							<img src="" alt="image">
+						<div class="welcome-slider__slide b">
 						</div>
-						<div class="welcome-slider__slide">
-							<img src="" alt="image">
+						<div class="welcome-slider__slide c">
 						</div>
-						<div class="welcome-slider__slide">
-							<img src="" alt="image">
-						</div> -->
+						<div class="welcome-slider__slide d">
+						</div>
 					</div>
 					<div class="welcome-slider__items">
 						<div class="welcome-slider__counter-wrapper">
-							<input type="number" value="01" step="1" min="1" max="5" class="welcome-slider__counter"></input>
+							<!-- <input type="number" value="01" step="1" min="1" max="5" class="welcome-slider__counter currentSlide"></input> -->
+							<span class="welcome-slider__counter currentSlide"></span>
 							<span class="welcome-slider__line">|</span>
-							<input type="number" value="05" class="welcome-slider__counter"></input>
+							<!-- <input type="number" value="05" class="welcome-slider__counter totalSlides"></input> -->
+							<span class="welcome-slider__counter totalSlides"></span>
 						</div>
 						<div class="welcome-slider__dots-wrapper">
-							<span class="welcome-slider__dot"></span>
-							<span class="welcome-slider__dot"></span>
-							<span class="welcome-slider__dot"></span>
-							<span class="welcome-slider__dot"></span>
-							<span class="welcome-slider__dot"></span>
+							<span data-nav="0" class="welcome-slider__dot"></span>
+							<span data-nav="1" class="welcome-slider__dot"></span>
+							<span data-nav="2" class="welcome-slider__dot"></span>
+							<span data-nav="3" class="welcome-slider__dot"></span>
+							<span data-nav="4" class="welcome-slider__dot"></span>
 						</div>
 						<div class="welcome-slider__btn-wrapper">
 							<div class="slider__btn prev"></div>
@@ -362,7 +363,16 @@
 					<p class="explore__text">It was cleaned in 1984 to remove a <span>"yellow veil"</span> of dust that had gathered since the previous restoration in the 19th century.</p>
 					<p class="explore__text">The cleaning provoked furious protests, not because the picture had been damaged in any way, but because it looked different.</p>
 				</div>
-				<img src="./assets/img/after.jpg" alt="img" class="explore__img">
+				<div class="explore__img-container img-comp-container">
+					<div class="explore__img-wrapper img-comp-img">
+						<img src="./assets/img/after.jpg" alt="img" class="">
+					</div>
+					<div class="explore__img-wrapper img-comp-img img-comp-overlay">
+						<img src="./assets/img/before.jpg" alt="img" class="">
+					</div>
+				</div>
+				
+					
 			</div>
 		</section>
 		<section id="video" class="video">
@@ -377,6 +387,7 @@
 				</div>
 				<div class="player__wrapper">
 					<div class="player">
+						<div class="player__big-play"></div>
 						<video src="./assets/video/video0.mp4" class="player__video viewer" poster="./assets/video/poster.png" ></video>
 						<div class="player__controls">
 							<button class="player__button" title="Toggle Play"></button>
@@ -479,7 +490,8 @@
 						<a href="tel: +33(0) 1 40 20 50 50" class="contacts__link">phone: +33(0) 1 40 20 50 50</a>
 						<a href="mailto: info@louvre.fr" class="contacts__link">mail: info@louvre.fr</a>
 					</div>
-					<img src="./assets/img/map.png" alt="map" class="contacts__img">
+					<!-- <img src="./assets/img/map.png" alt="map" class="contacts__img"> -->
+					<div class="map" id="map"></div>
 				</div>
 			</div>
 		</section>
@@ -560,7 +572,7 @@
 						<a href="https://www.pinterest.com/" class="social-network__link">
 							<svg class="social-network__img" width="20" height="20" viewBox="0 0 20 20"  xmlns="http://www.w3.org/2000/svg">
 								<path d="M10.0002 0C7.67571 0.00823729 5.42667 0.826025 3.63977 2.31277C1.85286 3.79952 0.63972 5.86234 0.208905 8.1466C-0.221909 10.4309 0.156518 12.7939 1.27913 14.8293C2.40174 16.8648 4.1984 18.4456 6.36023 19.3C6.26023 18.51 6.19023 17.3 6.39023 16.43L7.56023 11.46C7.56023 11.46 7.26023 10.86 7.26023 9.98C7.26023 8.59 8.07023 7.56 9.08023 7.56C9.93023 7.56 10.3502 8.2 10.3502 8.96C10.3502 9.82 9.80023 11.1 9.51023 12.29C9.27023 13.29 10.0102 14.1 11.0002 14.1C12.7802 14.1 14.1402 12.23 14.1402 9.53C14.1402 7.13 12.4202 5.47 9.96023 5.47C9.37582 5.44433 8.79227 5.53734 8.2448 5.74342C7.69733 5.94951 7.19729 6.26438 6.77487 6.66904C6.35245 7.07371 6.01641 7.55977 5.78702 8.09789C5.55763 8.63601 5.43966 9.21503 5.44023 9.8C5.44023 10.66 5.77023 11.58 6.18023 12.08C6.26023 12.18 6.27023 12.27 6.24023 12.37L5.96023 13.5C5.92023 13.68 5.81023 13.73 5.63023 13.64C4.37023 13.05 3.59023 11.24 3.59023 9.76C3.59023 6.61 5.89023 3.72 10.2102 3.72C13.6702 3.72 16.3802 6.18 16.3802 9.49C16.3802 12.94 14.2002 15.71 11.1802 15.71C10.1802 15.71 9.22023 15.18 8.90023 14.56L8.27023 16.93C7.97509 17.8577 7.55811 18.7421 7.03023 19.56C8.40406 19.9816 9.85261 20.1021 11.2772 19.9133C12.7018 19.7245 14.069 19.2309 15.2856 18.4661C16.5023 17.7014 17.5398 16.6833 18.3275 15.4814C19.1152 14.2795 19.6346 12.9219 19.8504 11.5011C20.0661 10.0804 19.9731 8.62979 19.5776 7.24822C19.1822 5.86664 18.4936 4.58652 17.5588 3.49506C16.6241 2.40359 15.465 1.52642 14.1607 0.923296C12.8563 0.320168 11.4373 0.00525257 10.0002 0Z" fill="white"/>
-								</svg>
+								</svg></a>
 					</li>
 				</ul>
 			</div>
@@ -572,5 +584,6 @@
 			<a href="https://github.com/GenaVinokurov" class="footer__bottom-text">GenaVinokurov</a>
 		</div>
 	</footer>
+	
 </body>
 </html>
