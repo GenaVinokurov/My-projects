@@ -148,6 +148,7 @@ window.addEventListener('keydown', function (e) {
 var swiper = new Swiper(".swiper-container", {
   slidesPerView: 3,
   spaceBetween: 42,
+  loop: true,
   pagination: {
     el: ".player__swiper-dots",
     clickable: true,
