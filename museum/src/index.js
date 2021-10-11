@@ -56,8 +56,7 @@ playerVolume.addEventListener('input', function () {
   }
 })
 
-volumeButton.addEventListener('click', function () {
-  let v = this.value;
+function volumeFunc() {
   if (video.volume != 0) {
     video.volume = 0;
     volumeButton.classList.add('mute');
@@ -69,7 +68,9 @@ volumeButton.addEventListener('click', function () {
     playerVolume.value = 0.5;
     playerVolume.style.background = `linear-gradient(to right, #710707 ${0.5 * 100}%, #710707 ${0.5}%, #C4C4C4 ${0.5}%, #C4C4C4 100%)`;
   }
-})
+}
+
+volumeButton.addEventListener('click', volumeFunc)
 
 function togglePlay() {
   const method = video.paused ? 'play' : 'pause';
@@ -99,8 +100,7 @@ playerRewind.addEventListener('click', function () {
   video.play();
   playerButton.classList.add('pause');
 })
-
-fullButton.addEventListener('click', function () {
+function fullScreenFunc() {
   if (document.fullscreenElement == null) {
     player.requestFullscreen();
 
@@ -110,7 +110,53 @@ fullButton.addEventListener('click', function () {
 
     }
   }
+}
+
+fullButton.addEventListener('click', fullScreenFunc)
+
+window.addEventListener('keydown', function (e) {
+  const key = e.keyCode;
+  e.preventDefault()
+  if (key == 32) {
+    togglePlay()
+  }
+  if (key == 77) {
+    volumeFunc()
+  }
+  if (key == 70) {
+    fullScreenFunc()
+  }
 })
+//-------------------Video slider
+
+// var slider = tns({
+//   container: '.player__small-wrapper',
+//   items: 3,
+//   slideBy: 'page',
+//   autoplay: false,
+//   prevButton: '.player__arrow.prev',
+//   nextButton: '.player__arrow.next',
+//   // controlsContainer: '.welcome-slider__btn-wrapper',
+//   mouseDrag: true,
+//   navContainer: '.player__dots-wrapper',
+//   navItems: '.player__dot',
+//   loop: true,
+//   swipeAngle: false,
+//   rewind: true,
+// });
+
+var swiper = new Swiper(".swiper-container", {
+  slidesPerView: 3,
+  spaceBetween: 42,
+  pagination: {
+    el: ".player__swiper-dots",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: '.player__arrow.next',
+    prevEl: '.player__arrow.prev'
+  }
+});
 
 //-------popup
 
@@ -224,7 +270,7 @@ function checkSlide(e) {
     const imageBottom = sliderImage.offsetTop + sliderImage.height;
     const isHalfShown = slideInAt > sliderImage.offsetTop;
     const isNotScrolledPast = window.scrollY < imageBottom;
-    console.log(window.scrollY, imageBottom, isNotScrolledPast)
+
     if (isHalfShown && isNotScrolledPast) {
       sliderImage.classList.add('active');
     } else {

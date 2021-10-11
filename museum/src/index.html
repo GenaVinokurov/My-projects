@@ -16,6 +16,10 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css">
 		<link href="https://api.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.css" rel="stylesheet">
 		<script src="https://api.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.js"></script>
+		<link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
 		<link rel="stylesheet" href="./assets/normalize.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -397,20 +401,29 @@
 							<button class="player__fullscreen" title="fullscreen"></button>
 						</div>
 					</div>
-					<div class="player__small-wrapper">
-						<iframe width="452" height="254" src="https://www.youtube.com/embed/Vi5D6FKhRmo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-						<iframe width="452" height="254" src="https://www.youtube.com/embed/NOhDysLnTvY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-						<iframe width="452" height="254" src="https://www.youtube.com/embed/aWmJ5DgyWPI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					<div class="swiper-container">
+						<div class="player__small-wrapper swiper-wrapper">
+							<iframe class="swiper-slide" width="452" height="254" src="https://www.youtube.com/embed/zp1BXPX8jcU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							<iframe class="swiper-slide" width="452" height="254" src="https://www.youtube.com/embed/Vi5D6FKhRmo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							<iframe class="swiper-slide" width="452" height="254" src="https://www.youtube.com/embed/NOhDysLnTvY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							<iframe class="swiper-slide" width="452" height="254" src="https://www.youtube.com/embed/aWmJ5DgyWPI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							<iframe class="swiper-slide" width="452" height="254" src="https://www.youtube.com/embed/2OR0OCr6uRE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						
+						</div>
+						<div class="player__dots-wrapper">
+							<span class="player__arrow prev"></span>
+							<div class="player__swiper-dots">
+								<!-- <span class="player__dot active"></span>
+								<span class="player__dot"></span>
+								<span class="player__dot"></span>
+								<span class="player__dot"></span>
+								<span class="player__dot"></span> -->
+							</div>
+							<span class="player__arrow next"></span>
+						</div>
 					</div>
-					<div class="player__dots-wrapper">
-						<span class="player__arrow prev"></span>
-						<span class="player__dot active"></span>
-						<span class="player__dot"></span>
-						<span class="player__dot"></span>
-						<span class="player__dot"></span>
-						<span class="player__dot"></span>
-						<span class="player__arrow next"></span>
-					</div>
+					
+					
 				</div>
 			</div>
 		</section>
@@ -584,6 +597,6 @@
 			<a href="https://github.com/GenaVinokurov" class="footer__bottom-text">GenaVinokurov</a>
 		</div>
 	</footer>
-	
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 </body>
 </html>
