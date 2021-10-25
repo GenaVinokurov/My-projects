@@ -193,11 +193,16 @@ body {
   font-size: 44px;
 }
 .select-language {
-  background-color: transparent;
+  background-color: #710707;
   border: none;
-  color: rgb(51, 255, 0);
+  color: rgb(238, 238, 238);
   font-size: 18px;
   cursor: pointer;
+  margin-top: 15px;
+  border-radius: 12px;
+  width: 55px;
+  height: 32px;
+  padding: 4px;
 }
 
 .city {

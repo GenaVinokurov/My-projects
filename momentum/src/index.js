@@ -6,6 +6,10 @@ const langArr = {
     en: "Good",
     ru: "Добрый",
   },
+  "greetingHolder": {
+    en: "[Entry your name]",
+    ru: "[Введите своё имя]",
+  },
   "wind": {
     en: "wind speed: ",
     ru: "скорость ветра: ",
@@ -14,11 +18,15 @@ const langArr = {
     en: "humidity: ",
     ru: "влажность: ",
   },
+  "town": {
+    en: "[Entry your town]",
+    ru: "[Введите свой город]",
+  },
 }
 
 
 const select = document.querySelector('.select-language');
-
+const allLang = ['en', 'ru'];
 select.addEventListener('change', changeURLLanguage);
 
 function changeURLLanguage() {
@@ -32,7 +40,10 @@ function changeLanguage() {
   hash = window.location.hash;
   hash = hash.substr(1);
   select.value = hash;
-
+  if (!allLang.includes(hash)) {
+    location.href = window.location.pathname + "#en";
+    location.reload();
+  }
   return hash
 }
 changeLanguage()
@@ -51,7 +62,7 @@ showTime();
 function showDate() {
   const date = new Date();
   const options = { weekday: 'long', month: 'long', day: 'numeric', timeZone: 'Europe/Minsk' };
-  const currentDate = date.toLocaleDateString('en-Gb', options);
+  const currentDate = date.toLocaleDateString(`${hash}-Gb`, options);
   dateHtml.textContent = currentDate;
   setTimeout(showDate, 1000);
 }
@@ -62,6 +73,8 @@ const getTimeOfDate = function () {
   const date = new Date();
   const hours = date.getHours();
   const greetingHtml = document.querySelector('.greeting');
+  const greetingHolder = document.querySelector('.name');
+  greetingHolder.placeholder = `${langArr['greetingHolder'][hash]}`;
   if (hash == 'en') {
     if (hours < 6) {
       greeting = 'night';
@@ -91,8 +104,6 @@ const getTimeOfDate = function () {
       }
     }
   }
-
-  console.log()
   greetingHtml.textContent = `${langArr['greetingLang'][hash]} ${greeting}`;
   if (hours < 6) {
     greeting = 'night';
@@ -111,11 +122,7 @@ const getTimeOfDate = function () {
 }
 getTimeOfDate();
 
-
-
 //-------------------------------------------Change BG image
-
-
 
 let randomNum;
 let min;
@@ -140,7 +147,6 @@ setBg();
 
 const nextBtn = document.querySelector('.slide-next');
 const prevBtn = document.querySelector('.slide-prev');
-// let randomNum = randomNum;
 
 const getSlideNext = function () {
   randomNum = (randomNum + 1 > 20) ? 1 : randomNum + 1;
@@ -162,7 +168,7 @@ const weatherDescription = document.querySelector('.weather-description');
 const city = document.querySelector('.city');
 const wind = document.querySelector('.wind');
 const humidity = document.querySelector('.humidity');
-
+city.placeholder = langArr['town'][hash]
 async function getWeather() {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=${hash}&appid=94e79d036c9efc29c9a2c590a84d4fdc&units=metric`;
   const res = await fetch(url);
@@ -237,6 +243,7 @@ getQuotes();
 quoteButton.addEventListener('click', getQuotes);
 
 //----------------------------------Audio player
+
 import playList from '../src/playList.js';
 
 const player = document.querySelector('.player');
