@@ -27,10 +27,50 @@
       </div>
       <ul class="play-list"></ul>
     </div>
-    <select class="select-language">
-      <option value="en" >EN</option>
-      <option value="ru">RU</option>
-    </select>
+    <button class="settings-btn"></button>
+    <div class="settings-wrapper">
+      <div class="settings-description">
+        <span class="settings-language_text text-lang">Language </span>
+        <select class="select-language">
+          <option value="en" >EN</option>
+          <option value="ru">RU</option>
+        </select>
+      </div>
+      <div class="settings-description">
+        <span class="settings-language_text text-img">Change Img API </span>
+        <select class="select-img">
+          <option value="github" selected>Github</option>
+          <option value="unsplash">Unsplash</option>
+          <option value="flickr">Flickr</option>
+        </select>
+      </div>
+      <div class="settings-description">
+        <span class="settings-language_text text-tag">Change tag </span>
+        <input type="text" class="settings-tag" value="nature">
+      </div>
+      <div class="settings-description">
+        <label class="settings-language_text text-audio">Audio player </label>
+        <input type="checkbox" class="check" id="1">
+      </div>
+      <div class="settings-description">
+        <label class="settings-language_text text-weather">Weather </label>
+        <input type="checkbox" class="check" id="2">
+      </div>
+      <div class="settings-description">
+        <label class="settings-language_text text-quotes">Quotes </label>
+        <input type="checkbox" class="check" id="3">
+      </div>
+      <div class="settings-description">
+        <label class="settings-language_text text-time">Time </label>
+        <input type="checkbox" class="check" id="4">
+      </div>
+      <div class="settings-description">
+        <label class="settings-language_text text-date">Date </label>
+        <input type="checkbox" class="check" id="5">
+      </div>
+      
+    </div>
+    
     <div class="weather">
       <input type="text" class="city" value="Minsk" placeholder="[Entry your town]"/>
       <i class="weather-icon owf"></i>
@@ -57,7 +97,7 @@
   </main>
   <footer class="footer">
     <button class="change-quote"></button>
-    <div>
+    <div class="quote-wrapper">
       <div class="quote"></div>
       <div class="author"></div>
     </div>

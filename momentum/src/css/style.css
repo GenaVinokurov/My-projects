@@ -9,6 +9,104 @@
   padding: 0;
 }
 
+.settings-btn {
+  margin-top: 10px;
+  background-image: url(../assets/svg/settings.png);
+  width: 45px;
+  height: 45px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.settings-wrapper {
+  position: absolute;
+  right: 225px;
+  top: 20px;
+  width: 280px;
+  background-color: white;
+  border-radius: 2.5px;
+  transform: translateY(-300%);
+  transition: .5s;
+  padding: 15px;
+  z-index: 2;
+}
+.settings-wrapper.js-act {
+  transform: translateY(0);
+}
+
+.check {
+  width: 25px;
+  height: 25px;
+}
+.settings-description {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.settings-language_text {
+  color: #000;
+  font-size: 16px;
+}
+
+.select-img {
+  background-color: #710707;
+  border: none;
+  color: rgb(238, 238, 238);
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 12px;
+  width: 105px;
+  height: 32px;
+  padding: 4px;
+}
+.settings-tag {
+  background-color: #710707;
+  border: none;
+  color: rgb(238, 238, 238);
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 12px;
+  width: 105px;
+  height: 32px;
+  padding: 6px;
+}
+
+.select-language {
+  background-color: #710707;
+  border: none;
+  color: rgb(238, 238, 238);
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 12px;
+  width: 55px;
+  height: 32px;
+  padding: 4px;
+}
+
+.city {
+  width: 170px;
+  height: 34px;
+  padding: 5px;
+  font-size: 20px;
+  line-height: 24px;
+  color: #fff;  
+  border: 0;
+  outline: 0;
+  border-bottom: 1px solid #fff;
+  background-color: transparent;
+}
+
+.city::placeholder {  
+  font-size: 20px;
+  color: #fff;
+  opacity: .6;
+}
+
+
 body {
   min-width: 480px;
   min-height: 100vh;
@@ -19,6 +117,7 @@ body {
   background:  center/cover, rgba(0, 0, 0, 0.5);
   background-blend-mode: multiply;
   transition: background-image 1s ease-in-out;
+  
 }
 
 .header {
@@ -29,6 +128,8 @@ body {
   height: 30vh;
   min-height: 220px;  
   padding: 20px;
+  position: relative;
+  
 }
 
 .player-controls {
@@ -175,6 +276,7 @@ body {
   width: 180px;
   min-height: 180px;  
   text-align: left;
+  transition: 0.5s;
 }
 
 .weather-error {
@@ -191,37 +293,6 @@ body {
 
 .weather-icon {
   font-size: 44px;
-}
-.select-language {
-  background-color: #710707;
-  border: none;
-  color: rgb(238, 238, 238);
-  font-size: 18px;
-  cursor: pointer;
-  margin-top: 15px;
-  border-radius: 12px;
-  width: 55px;
-  height: 32px;
-  padding: 4px;
-}
-
-.city {
-  width: 170px;
-  height: 34px;
-  padding: 5px;
-  font-size: 20px;
-  line-height: 24px;
-  color: #fff;  
-  border: 0;
-  outline: 0;
-  border-bottom: 1px solid #fff;
-  background-color: transparent;
-}
-
-.city::placeholder {  
-  font-size: 20px;
-  color: #fff;
-  opacity: .6;
 }
 
 .main {
@@ -343,4 +414,23 @@ body {
     font-size: 32px;
     padding: 5px;
   }
+}
+.player {
+  transition: .8s;
+}
+.weather {
+  transition: .8s;
+}
+.quote-wrapper {
+  transition: .8s;
+}
+.time {
+  transition: .8s;
+}
+.date {
+  transition: .8s;
+}
+.disabled {
+  /* visibility: hidden; */
+  transform: translateY(-3000px);
 }

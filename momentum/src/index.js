@@ -22,6 +22,38 @@ const langArr = {
     en: "[Entry your town]",
     ru: "[Введите свой город]",
   },
+  "lang": {
+    en: "Language",
+    ru: "Язык",
+  },
+  "imgApi": {
+    en: "Change img Api",
+    ru: "Изменить источник",
+  },
+  "tag": {
+    en: "Change tag",
+    ru: "Изменить тэг",
+  },
+  "audio": {
+    en: "Audio player",
+    ru: "Музыкальный плеер",
+  },
+  "weather": {
+    en: "Weather",
+    ru: "Погода",
+  },
+  "quotes": {
+    en: "Quotes",
+    ru: "Цитаты",
+  },
+  "time": {
+    en: "Time",
+    ru: "Время",
+  },
+  "date": {
+    en: "Date",
+    ru: "Дата",
+  },
 }
 
 
@@ -48,6 +80,26 @@ function changeLanguage() {
 }
 changeLanguage()
 
+const textLang = document.querySelector('.text-lang');
+const textImg = document.querySelector('.text-img');
+const textTag = document.querySelector('.text-tag');
+const textAudio = document.querySelector('.text-audio');
+const textWeather = document.querySelector('.text-weather');
+const textQuotes = document.querySelector('.text-quotes');
+const textTime = document.querySelector('.text-time');
+const textDate = document.querySelector('.text-date');
+
+function changeLanguageSettings() {
+  textLang.textContent = `${langArr['lang'][hash]}`;
+  textImg.textContent = `${langArr['imgApi'][hash]}`;
+  textTag.textContent = `${langArr['tag'][hash]}`;
+  textAudio.textContent = `${langArr['audio'][hash]}`;
+  textWeather.textContent = `${langArr['weather'][hash]}`;
+  textQuotes.textContent = `${langArr['quotes'][hash]}`;
+  textTime.textContent = `${langArr['time'][hash]}`;
+  textDate.textContent = `${langArr['date'][hash]}`;
+}
+changeLanguageSettings();
 //------------------------------------------TIME
 const timeHtml = document.querySelector('.time');
 const dateHtml = document.querySelector('.date');
@@ -122,6 +174,54 @@ const getTimeOfDate = function () {
 }
 getTimeOfDate();
 
+//-------------------API images
+let tag = document.querySelector('.settings-tag');
+async function getLinkToImage() {
+  const url = `https://api.unsplash.com/photos/random?orientation=landscape&query=${tag.value}&client_id=iJnU4ANf7OMilWcHceHML6-byMSmZ8I6Nxqx092JVak`;
+  const res = await fetch(url);
+  const data = await res.json();
+  const img = new Image();
+  img.src = `${data.urls.regular}`;
+  img.onload = () => {
+    body.style.backgroundImage = `url('${data.urls.regular}')`;
+  };
+}
+
+async function getLinkToImage2() {
+  const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=c3c902f067093ae4a02551d80c9a2ebb&tags=${tag.value}&extras=url_l&format=json&nojsoncallback=1`;
+  const res = await fetch(url);
+  const data = await res.json();
+  const img = new Image();
+  let randomNumImg;
+  let min = Math.ceil(1);
+  let max = Math.floor(40);
+  randomNumImg = Math.floor(Math.random() * (max - min + 1)) + min;
+  img.src = `${data.photos.photo[randomNumImg].url_l}`;
+  img.onload = () => {
+    body.style.backgroundImage = `url('${data.photos.photo[randomNumImg].url_l}')`;
+  };
+}
+const selectImg = document.querySelector('.select-img');
+
+selectImg.addEventListener('change', function () {
+  if (selectImg.value === 'github') {
+    setBg();
+  }
+  if (selectImg.value === 'unsplash') {
+    getLinkToImage();
+  }
+  if (selectImg.value === 'flickr') {
+    getLinkToImage2();
+  }
+});
+tag.addEventListener('change', function () {
+  if (selectImg.value === 'unsplash') {
+    getLinkToImage();
+  }
+  if (selectImg.value === 'flickr') {
+    getLinkToImage2();
+  }
+});
 //-------------------------------------------Change BG image
 
 let randomNum;
@@ -143,22 +243,44 @@ function setBg() {
     body.style.backgroundImage = `url('https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${greeting}/${randomNumBg}.jpg')`;
   };
 }
-setBg();
+// setBg();
 
 const nextBtn = document.querySelector('.slide-next');
 const prevBtn = document.querySelector('.slide-prev');
 
 const getSlideNext = function () {
-  randomNum = (randomNum + 1 > 20) ? 1 : randomNum + 1;
-  setBg();
+  if (selectImg.value === 'github') {
+    randomNum = (randomNum + 1 > 20) ? 1 : randomNum + 1;
+    setBg();
+  } else {
+    if (selectImg.value === 'unsplash') {
+      getLinkToImage()
+    } else {
+      if (selectImg.value === 'flickr') {
+        getLinkToImage2()
+      }
+    }
+  }
+
 }
 const getSlidePrev = function () {
-  randomNum = (randomNum - 1 < 1) ? 20 : randomNum - 1;
-  setBg();
+  if (selectImg.value === 'github') {
+    randomNum = (randomNum - 1 < 1) ? 20 : randomNum - 1;
+    setBg();
+  } else {
+    if (selectImg.value === 'unsplash') {
+      getLinkToImage()
+    } else {
+      if (selectImg.value === 'flickr') {
+        getLinkToImage2()
+      }
+    }
+  }
 }
 
 nextBtn.addEventListener('click', getSlideNext);
 prevBtn.addEventListener('click', getSlidePrev);
+
 
 //---------------------------------------------------Weather
 
@@ -203,21 +325,7 @@ city.addEventListener('change', getWeather);
 
 const nameHtml = document.querySelector('.name');
 
-function setLocalStorage() {
-  localStorage.setItem('name', nameHtml.value);
-  localStorage.setItem('city', city.value);
-}
-function getLocalStorage() {
-  if (localStorage.getItem('name')) {
-    nameHtml.value = localStorage.getItem('name');
-  }
-  if (localStorage.getItem('city')) {
-    city.value = localStorage.getItem('city');
-  }
-}
 
-window.addEventListener('load', getLocalStorage);
-window.addEventListener('beforeunload', setLocalStorage);
 
 // --------------------------------------------------Quote
 
@@ -401,3 +509,128 @@ function getTimeCodeFromNum(num) {
     seconds % 60
   ).padStart(2, 0)}`;
 }
+
+//-------------------settings
+
+const settingsBtn = document.querySelector('.settings-btn');
+const settingsWrapper = document.querySelector('.settings-wrapper');
+
+settingsBtn.addEventListener('click', function () {
+  settingsWrapper.classList.toggle('js-act');
+});
+
+//-----------------------Disabled
+
+const check1 = document.getElementById('1');
+const check2 = document.getElementById('2');
+const check3 = document.getElementById('3');
+const check4 = document.getElementById('4');
+const check5 = document.getElementById('5');
+const weather = document.querySelector('.weather');
+const quoteWrapper = document.querySelector('.quote-wrapper');
+
+check1.addEventListener('input', isCheck1);
+check2.addEventListener('input', isCheck2);
+check3.addEventListener('input', isCheck3);
+check4.addEventListener('input', isCheck4);
+check5.addEventListener('input', isCheck5);
+function isCheck1() {
+  let checkInput = check1;
+  if (checkInput.checked) {
+    player.classList.add('disabled');
+  } else {
+    player.classList.remove('disabled');
+  }
+}
+function isCheck2() {
+  let checkInput = check2;
+  if (checkInput.checked) {
+    weather.classList.add('disabled');
+  } else {
+    weather.classList.remove('disabled');
+  }
+}
+function isCheck3() {
+  let checkInput = check3;
+  if (checkInput.checked) {
+    quoteWrapper.classList.add('disabled');
+  } else {
+    quoteWrapper.classList.remove('disabled');
+  }
+}
+function isCheck4() {
+  let checkInput = check4;
+  if (checkInput.checked) {
+    timeHtml.classList.add('disabled');
+  } else {
+    timeHtml.classList.remove('disabled');
+  }
+}
+function isCheck5() {
+  let checkInput = check5;
+  if (checkInput.checked) {
+    dateHtml.classList.add('disabled');
+  } else {
+    dateHtml.classList.remove('disabled');
+  }
+}
+// ------------------LocalStorage
+
+function setLocalStorage() {
+  localStorage.setItem('name', nameHtml.value);
+  localStorage.setItem('city', city.value);
+  localStorage.setItem('imgAPI', selectImg.value);
+  // localStorage.setItem('check1', check1.checked);
+  // localStorage.setItem('check2', check2.checked);
+  // localStorage.setItem('check3', check3.checked);
+  // localStorage.setItem('check4', check4.checked);
+  // localStorage.setItem('check5', check5.checked);
+}
+function getLocalStorage() {
+  if (localStorage.getItem('name')) {
+    nameHtml.value = localStorage.getItem('name');
+  }
+  if (localStorage.getItem('city')) {
+    city.value = localStorage.getItem('city');
+  }
+  if (localStorage.getItem('imgAPI')) {
+    selectImg.value = localStorage.getItem('imgAPI');
+  }
+  // if (localStorage.getItem('check1')) {
+  //   check1.checked = localStorage.getItem('check1');
+  // }
+  // if (localStorage.getItem('check2')) {
+  //   check2.checked = localStorage.getItem('check2');
+  // }
+  // if (localStorage.getItem('check3')) {
+  //   check3.checked = localStorage.getItem('check3');
+  // }
+  // if (localStorage.getItem('check4')) {
+  //   check4.checked = localStorage.getItem('check4');
+  // }
+  // if (localStorage.getItem('check5')) {
+  //   check5.checked = localStorage.getItem('check5');
+  // }
+
+}
+
+window.addEventListener('load', getLocalStorage);
+window.addEventListener('beforeunload', setLocalStorage);
+
+window.addEventListener('load', function () {
+  if (selectImg.value === 'github') {
+    setBg();
+  }
+  if (selectImg.value === 'unsplash') {
+    getLinkToImage();
+  }
+  if (selectImg.value === 'flickr') {
+    getLinkToImage2()
+  }
+  isCheck1();
+  isCheck2();
+  isCheck3();
+  isCheck4();
+  isCheck5();
+});
+
