@@ -2,6 +2,8 @@
 import '@/styles/style.scss';
 import { settings } from './componets/settings';
 import { categories } from './componets/categories';
-import { imageFun } from './componets/quiz.js';
+import { quizFun } from './pages/quiz';
 
-console.log(imageFun)
+quizFun();
+
+

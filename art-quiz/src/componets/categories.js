@@ -1,5 +1,5 @@
-import { mainScreen } from "./settings.js";
-const categoriesArt = document.querySelector('.categories-art');
+import mainScreen from "./settings.js";
+export const categoriesArt = document.querySelector('.categories-art');
 const btnArt = document.querySelector("#btnArt");
 const btnPic = document.querySelector("#btnPic");
 const btnCategories = document.querySelector('.btn-categories');
@@ -19,3 +19,4 @@ let itemImgsCount = 0;
 itemImgs.forEach(el => {
   return el.style.backgroundImage = `url(./assets/img/${itemImgsCount}.jpg)`, itemImgsCount += 10
 })
+

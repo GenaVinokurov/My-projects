@@ -2,7 +2,7 @@ const volumeRewind = document.querySelector('.volume');
 const timeRewind = document.querySelector('.time');
 const btnSave = document.querySelector('.btn-save');
 const btnSettings = document.querySelector("#btnSettings");
-const mainScreen = document.querySelector('.main-screen');
+export const mainScreen = document.querySelector('.main-screen');
 const settings = document.querySelector('.settings');
 function rewind() {
   const value = this.value;
@@ -25,4 +25,4 @@ btnSave.addEventListener('click', function () {
 
 
 
-export { mainScreen };
+export default mainScreen;

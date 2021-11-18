@@ -94,7 +94,7 @@ body {
 }
 
 .hide{
-  display: none;
+  display: none !important;
 }
 .volume-check {
   width: 20px;
@@ -167,4 +167,39 @@ body {
 .tex {
   color: #15f54d;
   font-size: 20px;
+}
+.quiz {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &-answers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    padding: 10px;
+    &__li {
+      width: 158px;
+      height: 48px;
+      border: 1px solid #fff;
+      border-radius: 7px;
+      font-size: 16px;
+      list-style-type: none;
+      cursor: pointer;
+      transition: 0.5s;
+      text-align: center;
+      line-height: 48px;
+      overflow: hidden;
+      &:hover {
+        background: rgb(206, 206, 206);
+      }
+    }
+  }
+  &-img {
+    background-position: center;
+    background-size: contain;
+    width: 100%;
+    max-width: 328px;
+    height: 294px;
+  }
 }
