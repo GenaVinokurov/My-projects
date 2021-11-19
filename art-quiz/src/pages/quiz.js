@@ -1,97 +1,81 @@
-// export class Quiz {
-//   constructor(item) {
-//     this.item = item;
-//   };
-//   quiz() {
-//     const item 
-//   }
-//   // async render () {
-//   //   return CategoriesElement;
-//   // }
-
-//   // async after_render () {};
-// }
-
-import { mainScreen } from "../componets/settings";
-import { categoriesArt } from "../componets/categories"
-// import { imageFun } from '../componets/imageFun';
 import { images } from '../assets/images.js';
-export const quizFun = () => {
 
-  const splitArr = (arr, chunks) => [
-    ...Array(chunks),
-  ].map((_, c) => arr.filter((n, index) => index % chunks == c));
-
-
-  const questionByAuthor = [];
-  const questionByName = [];
-  images.forEach((item, index) => {
-    if (index % 2 == 0) {
-      questionByAuthor.push({
-        ...item,
-        type: 'author'
-      })
-    }
-    if (index % 2 != 0) {
-      questionByName.push({
-        ...item,
-        type: 'name'
-      })
-    }
-  });
-
-  const uniqAnswerByAuthor = [... new Set(questionByAuthor.map(item => item.author))];
-  const uniqAnswerByName = [... new Set(questionByName.map(item => item.author))];
-
-  const newQuestionByAuthor = splitArr(questionByAuthor, 12);
-  const newQuestionByName = splitArr(questionByName, 12)
-
-  const answers = {
-    uniqAnswerByAuthor,
-    uniqAnswerByName,
+class Quiz {
+  constructor() {
+    this.itemArr = document.querySelectorAll('.categories-item');
+    this.quizPage = document.querySelector('.quiz');
+    this.closeBtn = document.querySelector('.btn-close');
+    this.mainScreen = document.querySelector('.main-screen');
+    this.categoriesArt = document.querySelector('.categories-art');
+    this.level = [
+      document.getElementById('1'),
+      document.getElementById('2'),
+      document.getElementById('3'),
+      document.getElementById('4'),
+      document.getElementById('5'),
+      document.getElementById('6'),
+      document.getElementById('7'),
+      document.getElementById('8'),
+      document.getElementById('9'),
+      document.getElementById('10'),
+      document.getElementById('11'),
+      document.getElementById('12'),
+    ];
+    this.closeBtn.addEventListener('click', this.closeQuiz.bind(this));
+    this.eventQuizLevels();
   }
-
-  const question = {
-    questionByAuthor: newQuestionByAuthor,
-    questionByName: newQuestionByName,
+  eventQuizLevels() {
+    this.level.forEach(el => {
+      el.addEventListener('click', this.render.bind(this))
+    })
   }
-  console.log(question, answers)
+  closeQuiz() {
+    this.quizPage.classList.add('hide');
+    this.mainScreen.classList.remove('hide');
+    console.log(this.closeBtn)
+  }
+  render() {
+    this.quizPage.classList.remove('hide');
+    this.mainScreen.classList.add('hide');
+    this.categoriesArt.classList.add('hide');
+    const splitArr = (arr, chunks) => [
+      ...Array(chunks),
+    ].map((_, c) => arr.filter((n, index) => index % chunks == c));
 
-  const itemArr = document.querySelectorAll('.categories-item');
-  const quizPage = document.querySelector('.quiz');
-  const closeBtn = document.querySelector('.btn-close');
-  closeBtn.addEventListener('click', function () {
-    quizPage.classList.add('hide');
-    mainScreen.classList.remove('hide');
-  })
-
-  const catIcon1 = document.getElementById('1');
-  const catIcon2 = document.getElementById('2');
-  const catIcon3 = document.getElementById('3');
-  const catIcon4 = document.getElementById('4');
-  const catIcon5 = document.getElementById('5');
-  const catIcon6 = document.getElementById('6');
-  const catIcon7 = document.getElementById('7');
-  const catIcon8 = document.getElementById('8');
-  const catIcon9 = document.getElementById('9');
-  const catIcon10 = document.getElementById('10');
-  const catIcon11 = document.getElementById('11');
-  const catIcon12 = document.getElementById('12');
-
-  // let elId = 0;
-  itemArr.forEach((el, index) => {
-    el.addEventListener('click', function () {
-      quizPage.classList.remove('hide');
-      mainScreen.classList.add('hide');
-      categoriesArt.classList.add('hide');
-      // elId = event.target;
-      // console.log(elId)
-      // return elId = index
-
+    const questionByAuthor = [];
+    const questionByName = [];
+    images.forEach((item, index) => {
+      if (index % 2 == 0) {
+        questionByAuthor.push({
+          ...item,
+          type: 'author'
+        })
+      }
+      if (index % 2 != 0) {
+        questionByName.push({
+          ...item,
+          type: 'name'
+        })
+      }
     });
 
-  });
-  const renderQuestions = () => {
+    const uniqAnswerByAuthor = [... new Set(questionByAuthor.map(item => item.author))];
+    const uniqAnswerByName = [... new Set(questionByName.map(item => item.author))];
+
+    const newQuestionByAuthor = splitArr(questionByAuthor, 12);
+    const newQuestionByName = splitArr(questionByName, 12)
+
+    const answers = {
+      uniqAnswerByAuthor,
+      uniqAnswerByName,
+    }
+
+    const question = {
+      questionByAuthor: newQuestionByAuthor,
+      questionByName: newQuestionByName,
+    }
+    console.log(question, answers)
+
     const answersUl = document.querySelector('.quiz-answers')
     const id = event.currentTarget.id - 1;
     let imgQuestion = document.getElementById('question');
@@ -118,11 +102,8 @@ export const quizFun = () => {
       `;
     }
     renderAnswer()
-
-
   }
-  catIcon1.addEventListener('click', renderQuestions)
-};
+}
 
-
-export default quizFun;
+new Quiz()
+export default Quiz

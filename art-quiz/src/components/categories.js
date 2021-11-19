@@ -1,28 +1,33 @@
-import Settings from "./settings.js";
-// import mainScreen from "./settings.js";
-export const categoriesArt = document.querySelector('.categories-art');
-const btnArt = document.querySelector("#btnArt");
-const btnPic = document.querySelector("#btnPic");
-const btnCategories = document.querySelector('.btn-categories');
+import Quiz from '../pages/quiz'
 
-btnArt.addEventListener('click', function () {
-  categoriesArt.classList.remove('hide');
-  mainScreen.classList.add('hide');
-});
-btnCategories.addEventListener('click', function () {
-  categoriesArt.classList.add('hide');
-  mainScreen.classList.remove('hide');
-});
-
-//-----background icon
-const itemImgs = document.querySelectorAll('.item-img');
-let itemImgsCount = 0;
-itemImgs.forEach(el => {
-  return el.style.backgroundImage = `url(./assets/img/${itemImgsCount}.jpg)`, itemImgsCount += 10
-})
-
-class Categories extends Settings {
+class Categories {
   constructor() {
+    this.mainScreen = document.querySelector('.main-screen');
+    this.categoriesArt = document.querySelector('.categories-art');
+    this.btnArt = document.querySelector("#btnArt");
+    this.btnPic = document.querySelector("#btnPic");
+    this.btnCategories = document.querySelector('.btn-categories');
+    this.itemImgs = document.querySelectorAll('.item-img');
 
+    this.btnArt.addEventListener('click', this.open.bind(this));
+    this.btnCategories.addEventListener('click', this.close.bind(this));
+    this.setBackgrounds();
+    this.close()
+  }
+  open() {
+    this.categoriesArt.classList.remove('hide');
+    this.mainScreen.classList.add('hide');
+  }
+  close() {
+    this.categoriesArt.classList.add('hide');
+    this.mainScreen.classList.remove('hide');
+  }
+  setBackgrounds() {
+    let itemImgsCount = 0;
+    this.itemImgs.forEach(el => {
+      return el.style.backgroundImage = `url(./assets/img/${itemImgsCount}.jpg)`, itemImgsCount += 10
+    })
   }
 }
+new Categories()
+export default Categories

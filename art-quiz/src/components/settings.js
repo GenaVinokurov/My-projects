@@ -1,3 +1,5 @@
+import Categories from "./categories";
+
 class Settings {
   constructor() {
     this.volumeRewind = document.querySelector('.volume');
