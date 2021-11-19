@@ -123,7 +123,6 @@ export const quizFun = () => {
   }
   catIcon1.addEventListener('click', renderQuestions)
 };
-// document.addEventListener('click', quizFun)
 
 
 export default quizFun;

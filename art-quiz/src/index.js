@@ -1,9 +1,9 @@
 // eslint-disable-next-line import/no-unresolved
 import '@/styles/style.scss';
-import { settings } from './componets/settings';
-import { categories } from './componets/categories';
-import { quizFun } from './pages/quiz';
+import Settings from './components/settings';
+// import { categories } from './components/categories';
+// import { quizFun } from './pages/quiz';
 
-quizFun();
+// quizFun();
 
-
+new Settings();

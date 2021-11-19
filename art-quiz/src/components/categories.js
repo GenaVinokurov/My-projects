@@ -1,4 +1,5 @@
-import mainScreen from "./settings.js";
+import Settings from "./settings.js";
+// import mainScreen from "./settings.js";
 export const categoriesArt = document.querySelector('.categories-art');
 const btnArt = document.querySelector("#btnArt");
 const btnPic = document.querySelector("#btnPic");
@@ -20,3 +21,8 @@ itemImgs.forEach(el => {
   return el.style.backgroundImage = `url(./assets/img/${itemImgsCount}.jpg)`, itemImgsCount += 10
 })
 
+class Categories extends Settings {
+  constructor() {
+
+  }
+}
