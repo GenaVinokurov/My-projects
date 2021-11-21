@@ -1,30 +1,50 @@
-import Quiz from '../pages/quiz'
-
+import Quiz from '../pages/quiz';
 class Categories {
   constructor() {
     this.mainScreen = document.querySelector('.main-screen');
     this.categoriesArt = document.querySelector('.categories-art');
+    this.categoriesPic = document.querySelector('.categories-pic');
     this.btnArt = document.querySelector("#btnArt");
     this.btnPic = document.querySelector("#btnPic");
-    this.btnCategories = document.querySelector('.btn-categories');
+    this.btnCategoriesArt = document.querySelector('.btn-categories__art');
+    this.btnCategoriesPic = document.querySelector('.btn-categories__pic');
     this.itemImgs = document.querySelectorAll('.item-img');
-
     this.btnArt.addEventListener('click', this.open.bind(this));
-    this.btnCategories.addEventListener('click', this.close.bind(this));
+    this.btnPic.addEventListener('click', this.open.bind(this));
+    this.btnCategoriesArt.addEventListener('click', this.close.bind(this));
+    this.btnCategoriesPic.addEventListener('click', this.close.bind(this));
+    this.local = {};
     this.setBackgrounds();
-    this.close()
+    this.itemTotal = document.querySelectorAll('.tex');
   }
   open() {
-    this.categoriesArt.classList.remove('hide');
+    if (event.currentTarget.id == 'btnArt') {
+      this.categoriesArt.classList.remove('hide');
+    } else this.categoriesPic.classList.remove('hide');
     this.mainScreen.classList.add('hide');
+    this.itemTotal.forEach((el, i) => {
+      let result = '';
+      if (this.local[i] != null) {
+        result = this.local[i].filter(answer => answer == 'correct')
+      }
+      el.innerHTML = `${result.length}`
+    })
+    this.setBackgrounds();
   }
   close() {
-    this.categoriesArt.classList.add('hide');
+    if (event.currentTarget.id == 'btnBackArt') {
+      this.categoriesArt.classList.add('hide');
+    } else this.categoriesPic.classList.add('hide');
     this.mainScreen.classList.remove('hide');
   }
   setBackgrounds() {
     let itemImgsCount = 0;
-    this.itemImgs.forEach(el => {
+    this.local = localStorage.getItem('answers');
+    this.local = JSON.parse(this.local);
+    this.itemImgs.forEach((el, i) => {
+      if (this.local[i] == null) {
+        el.classList.add('item-img__unlock');
+      }
       return el.style.backgroundImage = `url(./assets/img/${itemImgsCount}.jpg)`, itemImgsCount += 10
     })
   }
