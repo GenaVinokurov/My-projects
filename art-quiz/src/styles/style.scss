@@ -248,7 +248,8 @@ html {
   font-size: 22px;
 }
 .pagination {
-  display: flex;
+  // display: flex;
+  display: none;
   justify-content: space-between;
   align-items: center;
   padding: 0;
@@ -378,9 +379,17 @@ html {
       background-size: cover;
       height: 145px;
       border-radius: 10px;
+    }   
+  
+  }
+  .quiz{
+    &-question {
+      font-size: 28px;
     }
-}}
-@media (min-width: 1400px) {
+
+  }
+}
+@media (min-width: 1600px) {
   .categories-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -389,6 +398,11 @@ html {
   .categories {
     &-item {
       width: 195px;
+    }
+  }
+  .quiz{
+    &-question {
+      font-size: 32px;
     }
   }
   .item {

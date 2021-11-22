@@ -1,5 +1,7 @@
 import { images } from '../assets/images.js';
-import Categories from '../components/categories'
+import Categories from '../components/categories';
+import AudioMy from '../components/audio';
+import Settings from '../components/settings.js';
 class Quiz {
   constructor() {
     this.itemArr = document.querySelectorAll('.categories-item');
@@ -26,6 +28,7 @@ class Quiz {
     this.quizPic = document.getElementById('quizPic');
     this.answerPicArray = document.querySelectorAll('.quiz-pic__answer');
     this.quizAuthor = document.querySelector('.quiz-author');
+    this.isTimeCheck = false;
     this.category = '';
     this.categoryNum = 0;
     this.localAnswers = {
@@ -91,6 +94,8 @@ class Quiz {
     })
   }
   closeQuiz() {
+    const click = new AudioMy();
+    click.click();
     this.quizPage.classList.add('hide');
     this.mainScreen.classList.remove('hide');
   }
@@ -102,9 +107,18 @@ class Quiz {
     } else this.categoriesArt.classList.remove('hide');
     this.quizPage.classList.add('hide');
     this.categoryNum = 0;
+    const click = new AudioMy();
+    click.click();
   }
 
   render() {
+    const click = new AudioMy();
+    click.click();
+    const timerSettings = new Settings();
+    timerSettings.isTime();
+    const timer = timerSettings.timer * 30
+    console.log(timer)
+
     this.localAnswers = localStorage.getItem('answers');
     this.localAnswers = JSON.parse(this.localAnswers);
     this.quizPage.classList.remove('hide');
@@ -132,7 +146,6 @@ class Quiz {
 
     const uniqAnswerByAuthor = [... new Set(questionByAuthor.map(item => item.author))];
     const uniqAnswerByName = [... new Set(questionByName.map(item => item.author))];
-    console.log(uniqAnswerByName)
     const newQuestionByAuthor = [];
     const newQuestionByName = [];
     const splitArr = (array, subarray, size) => {
@@ -152,10 +165,33 @@ class Quiz {
       questionByName: newQuestionByName,
     }
 
+    // let timerFun = () => {
+    //   this.popup.classList.remove('hide');
+    //   this.popupImage.src = `./assets/img/${this.currentImg}.jpg`;
+    //   popupName.innerText = `${this.category[this.id][this.numberQuestion].name}`;
+    //   popupAuthor.innerText = `${this.category[this.id][this.numberQuestion].author}`;
+    //   popupYear.innerText = `${this.category[this.id][this.numberQuestion].year}`;
+    //   this.iconResult.src = `./assets/svg/icon-wrong.svg`;
+    //   this.newArrayLocal.push('wrong');
+    //   click.isError();
+    //   this.currentImg = this.currentImg + 1;
+    //   this.numberQuestion = this.numberQuestion + 1;
+    //   if (this.numberQuestion < this.category[this.id].length) {
+    //     this.btnNext.addEventListener('click', renderAnswer);
+    //   } else {
+    //     if (this.categoryNum >= 12) {
+    //       this.id = this.id + 12;
+    //     }
+    //     this.popup.classList.add('hide');
+    //     this.popupResult.classList.remove('hide');
+    //     let result = this.newArrayLocal.filter(answer => answer == 'correct');
+    //     this.popupIndicator.innerHTML = `${result.length} / 10`;
+    //   }
+
+    // }
     let currentAnswer;
     let wrongAnswers;
     let currentAnswerPic;
-    let wrongAnswersPic;
     const pagination = document.querySelector('.pagination');
     const answersUl = document.querySelector('.quiz-answers');
     let answersLi = [];
@@ -223,7 +259,6 @@ class Quiz {
         for (let i = 1; i <= 3; i++) {
           answerArrPic.push((Math.floor(Math.random() * 239)).toString())
         }
-        console.log(currentAnswerPic, answerArrPic)
         function shuffle(array) {
           return array.sort(() => Math.random() - 0.5);
         }
@@ -238,7 +273,6 @@ class Quiz {
           answerArrPic.push(currentAnswerPic);
           answerArrPic = shuffle(answerArrPic);
         }
-        console.log(answerArrPic)
         this.quizPic.innerHTML = `
           <img src="./assets/img/${answerArrPic[0]}.jpg" alt="answer" class="quiz-pic__answer" data-answer="${answerArrPic[0]}">
           <img src="./assets/img/${answerArrPic[1]}.jpg" alt="answer" class="quiz-pic__answer" data-answer="${answerArrPic[1]}">
@@ -247,7 +281,12 @@ class Quiz {
         `
         answersImg = document.querySelectorAll('.quiz-pic__answer');
       }
-      function answerFun() {
+
+      // if (timer != 0) {
+      //   setTimeout(timerFun, timer * 1000);
+      // }
+      const answerFun = () => {
+        // clearTimeout(timerFun);
         this.popup.classList.remove('hide');
         this.popupImage.src = `./assets/img/${this.currentImg}.jpg`;
         popupName.innerText = `${this.category[this.id][this.numberQuestion].name}`;
@@ -258,20 +297,22 @@ class Quiz {
             // pagination.children[this.numberQuestion].classList.add('pagination__dot-correct')
             this.iconResult.src = `./assets/svg/icon-correct.svg`;
             this.newArrayLocal.push('correct');
-
+            click.isCorrect();
           } else {
             this.iconResult.src = `./assets/svg/icon-wrong.svg`;
             this.newArrayLocal.push('wrong');
+            click.isError();
           }
         } else {
-          console.log(event.currentTarget.dataset.answer)
           if (event.currentTarget.dataset.answer == this.category[this.id][this.numberQuestion].imageNum) {
             // pagination.children[this.numberQuestion].classList.add('pagination__dot-correct')
             this.iconResult.src = `./assets/svg/icon-correct.svg`;
             this.newArrayLocal.push('correct');
+            click.isCorrect();
           } else {
             this.iconResult.src = `./assets/svg/icon-wrong.svg`;
             this.newArrayLocal.push('wrong');
+            click.isError();
           }
         }
         this.currentImg = this.currentImg + 1;
@@ -288,6 +329,7 @@ class Quiz {
           this.popupIndicator.innerHTML = `${result.length} / 10`;
         }
       }
+
       answersLi.forEach(el => {
         el.addEventListener('click', answerFun.bind(this))
       })

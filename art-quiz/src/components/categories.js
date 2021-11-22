@@ -1,4 +1,5 @@
 import Quiz from '../pages/quiz';
+import AudioMy from './audio';
 class Categories {
   constructor() {
     this.mainScreen = document.querySelector('.main-screen');
@@ -18,6 +19,8 @@ class Categories {
     this.itemTotal = document.querySelectorAll('.tex');
   }
   open() {
+    const click = new AudioMy();
+    click.click();
     if (event.currentTarget.id == 'btnArt') {
       this.categoriesArt.classList.remove('hide');
     } else this.categoriesPic.classList.remove('hide');
@@ -36,6 +39,8 @@ class Categories {
       this.categoriesArt.classList.add('hide');
     } else this.categoriesPic.classList.add('hide');
     this.mainScreen.classList.remove('hide');
+    const click = new AudioMy();
+    click.click()
   }
   setBackgrounds() {
     let itemImgsCount = 0;
