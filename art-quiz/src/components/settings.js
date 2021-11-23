@@ -8,12 +8,12 @@ class Settings {
     this.btnSave = document.querySelector('.btn-save');
     this.settings = document.querySelector('.settings');
     this.mainScreen = document.querySelector('.main-screen');
-    this.btnSettings.addEventListener('click', this.openSettings.bind(this))
+    this.btnSettings.addEventListener('click', this.openSettings.bind(this));
     this.volumeRewind.addEventListener('input', this.rewind);
     this.timeRewind.addEventListener('input', this.isTime.bind(this));
     this.timeCheck = document.querySelector('.time-check');
     this.btnSave.addEventListener('click', this.saveSettings.bind(this))
-    this.timer = 0
+    this.timer = 0;
   }
   rewind() {
     const value = this.value;

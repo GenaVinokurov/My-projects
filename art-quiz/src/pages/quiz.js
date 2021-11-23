@@ -85,8 +85,14 @@ class Quiz {
       document.getElementById('24'),
     ];
     this.closeBtn.addEventListener('click', this.closeQuiz.bind(this));
+    this.checkLocalStorage();
     this.eventQuizLevels();
 
+  }
+  checkLocalStorage() {
+    if (localStorage.answers === undefined) {
+      localStorage.setItem('answers', JSON.stringify(this.localAnswers));
+    }
   }
   eventQuizLevels() {
     this.level.forEach(el => {
@@ -109,6 +115,8 @@ class Quiz {
     this.categoryNum = 0;
     const click = new AudioMy();
     click.click();
+    // document.location.reload();
+
   }
 
   render() {
@@ -342,5 +350,5 @@ class Quiz {
   }
 }
 
-new Quiz()
+
 export default Quiz

@@ -27,32 +27,39 @@ class Categories {
     this.mainScreen.classList.add('hide');
     this.itemTotal.forEach((el, i) => {
       let result = '';
-      if (this.local[i] != null) {
-        result = this.local[i].filter(answer => answer == 'correct')
+      if (localStorage.answers != undefined) {
+        if (this.local[i] != null) {
+          result = this.local[i].filter(answer => answer == 'correct');
+        }
       }
-      el.innerHTML = `${result.length}`
-    })
+
+      el.innerHTML = `${result.length}`;
+    });
     this.setBackgrounds();
-  }
+  };
   close() {
     if (event.currentTarget.id == 'btnBackArt') {
       this.categoriesArt.classList.add('hide');
     } else this.categoriesPic.classList.add('hide');
     this.mainScreen.classList.remove('hide');
     const click = new AudioMy();
-    click.click()
-  }
+    click.click();
+  };
   setBackgrounds() {
+
     let itemImgsCount = 0;
     this.local = localStorage.getItem('answers');
     this.local = JSON.parse(this.local);
+
     this.itemImgs.forEach((el, i) => {
-      if (this.local[i] == null) {
-        el.classList.add('item-img__unlock');
+      if (localStorage.answers != undefined) {
+        if (this.local[i] == null) {
+          el.classList.add('item-img__unlock');
+        }
       }
-      return el.style.backgroundImage = `url(./assets/img/${itemImgsCount}.jpg)`, itemImgsCount += 10
-    })
-  }
+      return el.style.backgroundImage = `url(./assets/img/${itemImgsCount}.jpg)`, itemImgsCount += 10;
+    });
+  };
 }
-new Categories()
+
 export default Categories

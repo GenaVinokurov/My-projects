@@ -1,6 +1,11 @@
 // eslint-disable-next-line import/no-unresolved
-import '@/styles/style.scss';
+import './styles/style.scss';
+import Quiz from './pages/quiz';
 import Settings from './components/settings';
+import Categories from './components/categories';
+import Audio from './components/categories';
+
+
 
 window.addEventListener('load', function () {
   const volumeRewind = document.querySelector('.volume');
@@ -11,6 +16,7 @@ window.addEventListener('load', function () {
   volumeCheck.checked = localStorage.getItem('volumeChecked');
   timeRewind.value = localStorage.getItem('time');
   timeCheck.checked = localStorage.getItem('timeChecked');
-  console.log(timeRewind.value, timeCheck.checked)
 });
+new Quiz();
 new Settings();
+new Categories();
