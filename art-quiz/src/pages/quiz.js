@@ -118,7 +118,30 @@ class Quiz {
     // document.location.reload();
 
   }
+  // timerFun = () => {
+  //   this.popup.classList.remove('hide');
+  //   this.popupImage.src = `./assets/img/${this.currentImg}.jpg`;
+  //   popupName.innerText = `${this.category[this.id][this.numberQuestion].name}`;
+  //   popupAuthor.innerText = `${this.category[this.id][this.numberQuestion].author}`;
+  //   popupYear.innerText = `${this.category[this.id][this.numberQuestion].year}`;
+  //   this.iconResult.src = `./assets/svg/icon-wrong.svg`;
+  //   this.newArrayLocal.push('wrong');
+  //   // click.isError();
+  //   this.currentImg = this.currentImg + 1;
+  //   this.numberQuestion = this.numberQuestion + 1;
+  //   if (this.numberQuestion < this.category[this.id].length) {
+  //     // this.btnNext.addEventListener('click', this.render.bind(this));
+  //   } else {
+  //     if (this.categoryNum >= 12) {
+  //       this.id = this.id + 12;
+  //     }
+  //     this.popup.classList.add('hide');
+  //     this.popupResult.classList.remove('hide');
+  //     let result = this.newArrayLocal.filter(answer => answer == 'correct');
+  //     this.popupIndicator.innerHTML = `${result.length} / 10`;
+  //   }
 
+  // }
   render() {
     const click = new AudioMy();
     click.click();
@@ -173,30 +196,7 @@ class Quiz {
       questionByName: newQuestionByName,
     }
 
-    // let timerFun = () => {
-    //   this.popup.classList.remove('hide');
-    //   this.popupImage.src = `./assets/img/${this.currentImg}.jpg`;
-    //   popupName.innerText = `${this.category[this.id][this.numberQuestion].name}`;
-    //   popupAuthor.innerText = `${this.category[this.id][this.numberQuestion].author}`;
-    //   popupYear.innerText = `${this.category[this.id][this.numberQuestion].year}`;
-    //   this.iconResult.src = `./assets/svg/icon-wrong.svg`;
-    //   this.newArrayLocal.push('wrong');
-    //   click.isError();
-    //   this.currentImg = this.currentImg + 1;
-    //   this.numberQuestion = this.numberQuestion + 1;
-    //   if (this.numberQuestion < this.category[this.id].length) {
-    //     this.btnNext.addEventListener('click', renderAnswer);
-    //   } else {
-    //     if (this.categoryNum >= 12) {
-    //       this.id = this.id + 12;
-    //     }
-    //     this.popup.classList.add('hide');
-    //     this.popupResult.classList.remove('hide');
-    //     let result = this.newArrayLocal.filter(answer => answer == 'correct');
-    //     this.popupIndicator.innerHTML = `${result.length} / 10`;
-    //   }
 
-    // }
     let currentAnswer;
     let wrongAnswers;
     let currentAnswerPic;
@@ -291,10 +291,10 @@ class Quiz {
       }
 
       // if (timer != 0) {
-      //   setTimeout(timerFun, timer * 1000);
+      //   setTimeout(this.timerFun, timer * 1000);
       // }
       const answerFun = () => {
-        // clearTimeout(timerFun);
+        // clearTimeout(this.timerFun);
         this.popup.classList.remove('hide');
         this.popupImage.src = `./assets/img/${this.currentImg}.jpg`;
         popupName.innerText = `${this.category[this.id][this.numberQuestion].name}`;
