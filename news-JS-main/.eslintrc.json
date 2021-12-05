@@ -24,7 +24,7 @@
   },
   "rules": {
     "no-debugger": "off",
-    "no-console": 0,
+    "no-console": "warn",
     "class-methods-use-this": "off"
   }
 }

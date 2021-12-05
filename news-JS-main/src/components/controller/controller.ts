@@ -12,6 +12,7 @@ class AppController extends AppLoader {
 
   getNews(e: Event, callback: CallbackType) {
     let target = e.target as HTMLElement;
+
     const newsContainer = e.currentTarget as HTMLElement;
 
     while (target !== newsContainer) {
