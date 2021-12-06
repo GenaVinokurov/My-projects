@@ -7,17 +7,27 @@
       <title>NewsPortal</title>
   </head>
   <body>
-    <header>
+    <header class="header">
       <h1>News Portal</h1>
+      <div class="weather">
+        <input type="text" class="city" value="Brest" placeholder="Entry your town"/>
+        <div class="weather-error"></div>
+        <div class="description-container">
+          <span class="temperature"></span>
+          <span class="weather-description"></span>
+        </div>
+        <div class="wind"></div>
+        <div class="humidity"></div>
+      </div>
     </header>
     <main>
       <div class="sources buttons"></div>
       <div class="news"></div>
     </main>
-    <footer>
-      <p class="copyright">
-        Copyright <a href="https://newsapi.org">NewsAPI</a>
-      </p>
+    <footer class="footer">
+      <span class="footer__text">© 2021</span>
+      <a href="https://rollingscopes.com/" class="footer__text">The Rolling Scopes School</a>
+			<a href="https://github.com/GenaVinokurov" class="footer__text">GenaVinokurov</a>
     </footer>
 
     <template id="sourceItemTemp">
