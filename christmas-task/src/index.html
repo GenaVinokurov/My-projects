@@ -28,9 +28,81 @@
       </div>
     </header>
     <main class="main">
-      <div class="page start-page">
+      <div class="page start-page hide">
         <h1 class="start-page__title">Помогите бабушке нарядить ёлку</h1>
-        <button class="start-page__btn btn">Начать</button>
+        <button class="start-page__btn btn" id="startBtn">Начать</button>
+      </div>
+      <div class="page toys-page">
+        <div class="toys-page__blur container">
+          <div class="settings">
+              <p class="settings-title">Фильтры по значению</p>
+              <div class="shape">
+                Форма:
+                <button date-filter="шар" class="active"></button>
+                <button date-filter="колокольчик"></button>
+                <button date-filter="шишка"></button>
+                <button date-filter="снежинка"></button>
+                <button date-filter="фигурка"></button>
+              </div>
+              <div class="color">
+                Цвет:
+                <button data-filter="белый"></button>
+                <button data-filter="жёлтый"></button>
+                <button data-filter="красный"></button>
+                <button data-filter="синий"></button>
+                <button data-filter="зелёный"></button>
+              </div>
+              <div class="size">
+                Форма:
+                <button data-filter="большой"></button>
+                <button data-filter="средний"></button>
+                <button data-filter="маленький"></button>
+              </div>
+              <div class="favorite-wrapper">
+                Только любимые: 
+                <input class="favorite-input" type="checkbox" id="favoriteInput">
+                <label for="favoriteInput" class="favorite-label"></label>
+              </div>
+            <div class="count">
+              <span class="settings-span">Количество экземпляров: </span>
+				      <input type="range" name="count" min=0 max=12 step="1"value="6" class="count-slider rewind">
+              <div class="count-wrapper">
+                <span class="count-text">1</span>
+                <span class="count-text">12</span>
+              </div>
+            </div>
+            <div class="year">
+              <span class="settings-span">Год приобретения: </span>
+				      <input type="range" name="year" min=0 max=60 step="10"value="30" class="year-slider rewind">
+              <div class="year-wrapper">
+                <span class="year-text">1940</span>
+                <span class="year-text">2020</span>
+              </div>
+            </div>
+            <div class="sort">
+              <span class="settings-span">Сортировка: </span>
+              <select class="sort-select" name="" id="sortSelect">
+                <option value="sort-name-max">По названию от A до Я</option>
+                <option value="sort-name-min">По названию от Я до А</option>
+                <option value="sort-count-max">Количество по возрастанию</option>
+                <option value="sort-count-min">Количество по уменьшению</option>
+              </select>
+              <button class="btn btn-reset">Сброс фильтров</button>
+            </div>
+          </div>
+          <div class="card-container">
+            <div class="card">
+              <div class="card-title">Большой шар с рисунком Цветок</div>
+              <img src="./assets/toys/1.png" alt="img" class="card-img">
+              <span class="card-count">Количество: 2</span>
+              <span class="card-year">Год покупки: 1960 год</span>
+              <span class="card-shape">Форма игрушки: шар</span>
+              <span class="card-color">Цвет игрушки: желтый</span>
+              <span class="card-size">Размер игрушки: большой</span>
+              <span class="card-favorite">Любимая: нет</span>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
     <footer class="footer">
@@ -40,6 +112,5 @@
 			  <a href="https://github.com/GenaVinokurov" class="footer__text">GenaVinokurov</a>
       </div>
     </footer>
-    <script src="./index.js"></script>
   </body>
 </html>
