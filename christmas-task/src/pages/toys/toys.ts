@@ -1,4 +1,7 @@
 import './toys.scss';
+// import Card from '../../components/card/card';
+
+
 
 class Toys {
   rewindCount: HTMLInputElement;

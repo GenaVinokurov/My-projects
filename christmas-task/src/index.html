@@ -35,14 +35,13 @@
       <div class="page toys-page">
         <div class="toys-page__blur container">
           <div class="settings">
-              <p class="settings-title">Фильтры по значению</p>
               <div class="shape">
                 Форма:
-                <button date-filter="шар" class="active"></button>
-                <button date-filter="колокольчик"></button>
-                <button date-filter="шишка"></button>
-                <button date-filter="снежинка"></button>
-                <button date-filter="фигурка"></button>
+                <button data-filter="шар"></button>
+                <button data-filter="колокольчик"></button>
+                <button data-filter="шишка"></button>
+                <button data-filter="снежинка"></button>
+                <button data-filter="фигурка"></button>
               </div>
               <div class="color">
                 Цвет:
@@ -82,8 +81,8 @@
             <div class="sort">
               <span class="settings-span">Сортировка: </span>
               <select class="sort-select" name="" id="sortSelect">
-                <option value="sort-name-max">По названию от A до Я</option>
-                <option value="sort-name-min">По названию от Я до А</option>
+                <option value="sort-name-max">Год выпуска по возрастанию</option>
+                <option value="sort-name-min">Год выпуска по уменьшению</option>
                 <option value="sort-count-max">Количество по возрастанию</option>
                 <option value="sort-count-min">Количество по уменьшению</option>
               </select>
@@ -91,16 +90,6 @@
             </div>
           </div>
           <div class="card-container">
-            <div class="card">
-              <div class="card-title">Большой шар с рисунком Цветок</div>
-              <img src="./assets/toys/1.png" alt="img" class="card-img">
-              <span class="card-count">Количество: 2</span>
-              <span class="card-year">Год покупки: 1960 год</span>
-              <span class="card-shape">Форма игрушки: шар</span>
-              <span class="card-color">Цвет игрушки: желтый</span>
-              <span class="card-size">Размер игрушки: большой</span>
-              <span class="card-favorite">Любимая: нет</span>
-            </div>
           </div>
         </div>
       </div>
