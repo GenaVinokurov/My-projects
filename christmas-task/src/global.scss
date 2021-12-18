@@ -1,9 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Knewave&display=swap');
+
 *{
   box-sizing: border-box;
+  font-family: 'Knewave', cursive;
 }
 .container {
   margin: 0 auto;
   padding: 0px 15px;
+}
+.hide {
+  display: none !important;
 }
 body {
   font-size: 18px;

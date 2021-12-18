@@ -52,7 +52,7 @@
                 <button data-filter="зелёный"></button>
               </div>
               <div class="size">
-                Форма:
+                Размер:
                 <button data-filter="большой"></button>
                 <button data-filter="средний"></button>
                 <button data-filter="маленький"></button>
@@ -64,18 +64,19 @@
               </div>
             <div class="count">
               <span class="settings-span">Количество экземпляров: </span>
-				      <input type="range" name="count" min=0 max=12 step="1"value="6" class="count-slider rewind">
+				      <!-- <input type="range" name="count" min=0 max=12 step="1"value="6" class="count-slider rewind"> -->
+              <div class="count-slider"></div>
               <div class="count-wrapper">
-                <span class="count-text">1</span>
-                <span class="count-text">12</span>
+                <span class="count-text" id="count-value-lower">1</span>
+                <span class="count-text" id="count-value-upper">12</span>
               </div>
             </div>
             <div class="year">
               <span class="settings-span">Год приобретения: </span>
-				      <input type="range" name="year" min=0 max=60 step="10"value="30" class="year-slider rewind">
-              <div class="year-wrapper">
-                <span class="year-text">1940</span>
-                <span class="year-text">2020</span>
+				      <div class="year-slider"></div>
+              <div class="count-wrapper">
+                <span class="count-text" id="year-value-lower">1940</span>
+                <span class="count-text" id="year-value-upper">2020</span>
               </div>
             </div>
             <div class="sort">
