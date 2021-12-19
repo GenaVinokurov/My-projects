@@ -301,7 +301,18 @@
   height: 342px;
   transition: 0.3s;
   cursor: pointer;
-
+  position: relative;
+  &.select-max::after {
+    position: absolute;
+    content: 'Извините, все слоты заполнены';
+    font-size: 13px;
+    background: #0a3d04;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    top: -20px;
+    left: 0;
+  }
   span {
     margin-bottom: 6px;
   }

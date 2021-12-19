@@ -1,15 +1,10 @@
 import data from '../../data.json';
-import noUiSlider, { API, Options, TargetElement } from 'nouislider';
+import noUiSlider, { API, TargetElement } from 'nouislider';
 import '../../../node_modules/nouislider/dist/nouislider.css';
 
 export interface IData {
   num: string; name: string; count: string; year: string; shape: string; color: string; size: string; favorite: boolean;
 }
-
-// type ValueSlider<T> = [
-//   lower: HTMLInputElement,
-//   upper: HTMLInputElement,
-// ];
 
 interface IObj {
   count: { start: string | number, end: string | number },
@@ -46,8 +41,6 @@ interface IObject {
   favorite?: boolean;
 }
 
-type GetResult = number | string | (string | number)[];
-
 type Target = TargetElement & IObj & API;
 
 class Card {
@@ -72,6 +65,7 @@ class Card {
   yearValueLower: HTMLInputElement;
   buttonReset: HTMLElement;
   buttonClear: HTMLElement;
+  selectArr: IData[];
   filterObj: IObj = {
     count: { start: '0', end: '12' },
     year: { start: '1940', end: '2020' },
@@ -107,6 +101,7 @@ class Card {
     this.sortSelect = document.querySelector('.sort-select') as HTMLSelectElement;
     this.shapeWrap = document.querySelector('.shape') as HTMLElement;
     this.colorWrap = document.querySelector('.color') as HTMLElement;
+    this.countWrap = document.querySelector('.count') as HTMLElement;
     this.sizeWrap = document.querySelector('.size') as HTMLElement;
     this.countValueUpper = document.getElementById('count-value-upper') as HTMLInputElement;
     this.countValueLower = document.getElementById('count-value-lower') as HTMLInputElement;
@@ -117,10 +112,10 @@ class Card {
     this.sizeCollection = this.sizeWrap.querySelectorAll('button') as NodeList;
     this.buttonReset = document.querySelector('.btn-reset') as HTMLElement;
     this.buttonClear = document.querySelector('.btn-clear-local') as HTMLElement;
+    this.selectArr = [] as IData[];
     this.shapeWrap.addEventListener('click', this.eventFilterShape.bind(this));
     this.colorWrap.addEventListener('click', this.eventFilterColor.bind(this));
     this.sizeWrap.addEventListener('click', this.eventFilterSize.bind(this));
-    this.countWrap = document.querySelector('.count') as HTMLElement;
     this.sortSelect.addEventListener('change', this.render.bind(this));
     this.favoriteEl.addEventListener('input', this.favoriteSort.bind(this));
     this.buttonReset.addEventListener('click', this.reset.bind(this));
@@ -156,6 +151,7 @@ class Card {
       },
       favorite: false,
     };
+    this.realToys = this.dataJson;
     this.render();
     this.checkFilters();
     document.querySelectorAll('[data-filter]').forEach(el => el.classList.remove('active'));
@@ -172,10 +168,18 @@ class Card {
     if (localStorage.filters === undefined) {
       localStorage.setItem('filters', JSON.stringify(this.filterObj));
     }
+    if (localStorage.select === undefined) {
+      localStorage.setItem('select', JSON.stringify([]));
+    }
     const localArrFav = localStorage.getItem('toys') || '';
     this.realToys = JSON.parse(localArrFav) as IData[];
     const filterLocal = localStorage.getItem('filters') || '';
     this.filterObj = JSON.parse(filterLocal) as IObj;
+    const selectNumLocal = localStorage.getItem('select') || '';
+    this.selectArr = JSON.parse(selectNumLocal) as IData[];
+    console.log(this.selectArr);
+    this.selectCountElem.innerHTML = `<span>${this.selectArr.length}</span>`;
+
   }
 
   checkFilters() {
@@ -444,14 +448,15 @@ class Card {
 
 
   render() {
+    // this.checkLocalStorage();
     this.sortList();
     (this.filterObj.favorite) ? this.favoriteEl.checked = true : this.favoriteEl.checked = false;
+
     localStorage.setItem('filters', JSON.stringify(this.filterObj));
     let localArr = localStorage.getItem('toys') || '';
     localArr = JSON.parse(localArr);
     let mainArr: IData[] = this.realToys;
     if (mainArr.length === 0) mainArr = this.dataJson;
-    console.log('mainArr', mainArr);
     this.cardContainer.innerHTML = '';
     mainArr.forEach((el, i) => {
       const div = document.createElement('div');
@@ -470,20 +475,60 @@ class Card {
       this.cardContainer.appendChild(div);
     });
     this.cardCollection = document.querySelectorAll('.card');
-    this.cardCollection.forEach(el => {
-      if (this.selectNumber <= 20) {
-        el.addEventListener('click', (e: Event) => {
-          const card = e.currentTarget as HTMLElement;
+    this.cardCollection.forEach((el, i) => {
+      const cardElem = (<Element>this.cardCollection[i]);
+      this.selectArr.forEach(item => {
+        if (item.num === cardElem.id) cardElem.classList.add('select-card');
+      });
+
+      el.addEventListener('click', (e: Event) => {
+        const card = e.currentTarget as HTMLElement;
+
+        if (this.selectArr.length < 20) {
           card.classList.toggle('select-card');
+          this.cardCollection.forEach((elem, num) => {
+            const cardElemRem = (<Element>this.cardCollection[num]);
+            cardElemRem.classList.remove('select-max');
+          });
+
           if (card.classList.contains('select-card')) {
-            this.selectNumber += 1;
+            const selectData: IData | undefined = this.dataJson.find(item => {
+              return item.num === card.id;
+            });
+            if (selectData != undefined) {
+              this.selectArr.push(selectData);
+            }
           } else {
-            this.selectNumber -= 1;
+            this.selectArr.forEach((item, index) => {
+              if (item.num === card.id) {
+                this.selectArr.splice(index, 1);
+              }
+            });
           }
-          localStorage.setItem('select', JSON.stringify(this.selectNumber));
-          this.selectCountElem.innerHTML = `<span>${this.selectNumber}</span>`;
-        });
-      }
+        } else if (card.classList.contains('select-card')) {
+          card.classList.remove('select-card');
+          this.selectArr.forEach((item, index) => {
+            if (item.num === card.id) {
+              this.selectArr.splice(index, 1);
+            }
+            this.cardCollection.forEach((elem, num) => {
+              const cardElemRem = (<Element>this.cardCollection[num]);
+              cardElemRem.classList.remove('select-max');
+            });
+          });
+        } else {
+          card.classList.add('select-max');
+          this.selectArr.forEach((item, index) => {
+            if (item.num === card.id) {
+              this.selectArr.splice(index, 1);
+            }
+          });
+        }
+
+        localStorage.setItem('select', JSON.stringify(this.selectArr));
+        this.selectCountElem.innerHTML = `<span>${this.selectArr.length}</span>`;
+        console.log(this.selectArr);
+      });
     });
     this.checkFilters();
     this.updateSort();

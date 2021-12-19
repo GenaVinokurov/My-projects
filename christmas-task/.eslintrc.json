@@ -36,6 +36,12 @@
       {
         "exceptAfterSingleLine": true
       }
+    ],
+    "keyword-spacing": "off",
+    "@typescript-eslint/keyword-spacing": [
+      {
+        "before": false
+      }
     ]
   }
 }
