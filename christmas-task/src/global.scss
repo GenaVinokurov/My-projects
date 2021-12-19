@@ -8,9 +8,10 @@
   margin: 0 auto;
   padding: 0px 15px;
 }
-.hide {
+.hide, .hide-count, .hide-year {
   display: none !important;
 }
+
 body {
   font-size: 18px;
   font-weight: 400;

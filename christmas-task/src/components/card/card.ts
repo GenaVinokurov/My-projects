@@ -6,9 +6,14 @@ export interface IData {
   num: string; name: string; count: string; year: string; shape: string; color: string; size: string; favorite: boolean;
 }
 
+// type ValueSlider<T> = [
+//   lower: HTMLInputElement,
+//   upper: HTMLInputElement,
+// ];
+
 interface IObj {
-  count: { start: number, end: number },
-  year: { start: number, end: number },
+  count: { start: string | number, end: string | number },
+  year: { start: string | number, end: string | number },
   shape: {
     ball: boolean,
     bell: boolean,
@@ -31,15 +36,20 @@ interface IObj {
   favorite: boolean,
 }
 interface IObject {
-  num: string;
-  name: string;
-  count: string;
-  year: string;
-  shape: string;
-  color: string;
-  size: string;
-  favorite: boolean;
+  num?: string;
+  name?: string;
+  count?: string;
+  year?: string;
+  shape?: string;
+  color?: string;
+  size?: string;
+  favorite?: boolean;
 }
+
+type GetResult = number | string | (string | number)[];
+
+type Target = TargetElement & IObj & API;
+
 class Card {
   dataJson: IData[];
   cardContainer: HTMLElement;
@@ -53,10 +63,18 @@ class Card {
   shapeCollection: NodeList;
   colorWrap: HTMLElement;
   colorCollection: NodeList;
+  sizeCollection: NodeList;
   countWrap: HTMLElement;
+  sizeWrap: HTMLElement;
+  countValueUpper: HTMLInputElement;
+  countValueLower: HTMLInputElement;
+  yearValueUpper: HTMLInputElement;
+  yearValueLower: HTMLInputElement;
+  buttonReset: HTMLElement;
+  buttonClear: HTMLElement;
   filterObj: IObj = {
-    count: { start: 0, end: 12 },
-    year: { start: 1940, end: 2020 },
+    count: { start: '0', end: '12' },
+    year: { start: '1940', end: '2020' },
     shape: {
       ball: false,
       bell: false,
@@ -89,208 +107,75 @@ class Card {
     this.sortSelect = document.querySelector('.sort-select') as HTMLSelectElement;
     this.shapeWrap = document.querySelector('.shape') as HTMLElement;
     this.colorWrap = document.querySelector('.color') as HTMLElement;
+    this.sizeWrap = document.querySelector('.size') as HTMLElement;
+    this.countValueUpper = document.getElementById('count-value-upper') as HTMLInputElement;
+    this.countValueLower = document.getElementById('count-value-lower') as HTMLInputElement;
+    this.yearValueUpper = document.getElementById('year-value-upper') as HTMLInputElement;
+    this.yearValueLower = document.getElementById('year-value-lower') as HTMLInputElement;
     this.shapeCollection = this.shapeWrap.querySelectorAll('button') as NodeList;
     this.colorCollection = this.colorWrap.querySelectorAll('button') as NodeList;
+    this.sizeCollection = this.sizeWrap.querySelectorAll('button') as NodeList;
+    this.buttonReset = document.querySelector('.btn-reset') as HTMLElement;
+    this.buttonClear = document.querySelector('.btn-clear-local') as HTMLElement;
     this.shapeWrap.addEventListener('click', this.eventFilterShape.bind(this));
     this.colorWrap.addEventListener('click', this.eventFilterColor.bind(this));
+    this.sizeWrap.addEventListener('click', this.eventFilterSize.bind(this));
     this.countWrap = document.querySelector('.count') as HTMLElement;
-    this.sortSelect.addEventListener('change', this.sortList.bind(this));
+    this.sortSelect.addEventListener('change', this.render.bind(this));
     this.favoriteEl.addEventListener('input', this.favoriteSort.bind(this));
+    this.buttonReset.addEventListener('click', this.reset.bind(this));
+    this.buttonClear.addEventListener('click', this.clearLocalStorage.bind(this));
     this.realToys = this.dataJson as IData[];
     this.checkLocalStorage();
     this.sliderUiFun();
 
   }
 
-  sliderUiFun() {
-    //--count
-    const skipSlider = document.querySelector('.count-slider') as TargetElement;
-    noUiSlider.create(skipSlider, {
-      connect: true,
-      behaviour: 'tap',
-      range: {
-        'min': 1,
-        '9.09%': 2,
-        '18.18%': 3,
-        '27.27%': 4,
-        '36.36%': 5,
-        '45.45%': 6,
-        '54.54%': 7,
-        '63.63%': 8,
-        '72.72%': 9,
-        '81.81%': 10,
-        '90.90%': 11,
-        'max': 12,
+  reset() {
+    this.filterObj = {
+      count: { start: '0', end: '12' },
+      year: { start: '1940', end: '2020' },
+      shape: {
+        ball: false,
+        bell: false,
+        pinecone: false,
+        snowflake: false,
+        figurine: false,
       },
-      snap: true,
-      start: [1, 12],
-    });
-    const skipValues: any = [
-      document.getElementById('count-value-lower'),
-      document.getElementById('count-value-upper'),
-    ];
-
-    skipSlider.noUiSlider.on('update', function (values, handle) {
-      skipValues[handle].innerHTML = Number(values[handle]);
-    });
-    //--Year
-    const skipSliderYear = document.querySelector('.year-slider') as TargetElement;
-    noUiSlider.create(skipSliderYear, {
-      connect: true,
-      behaviour: 'tap',
-      range: {
-        'min': 1940,
-        '12.5%': 1950,
-        '25%': 1960,
-        '37.5%': 1970,
-        '50%': 1980,
-        '62.5%': 1990,
-        '75%': 2000,
-        '87.5%': 2010,
-        'max': 2020,
+      color: {
+        white: false,
+        yellow: false,
+        red: false,
+        blue: false,
+        green: false,
       },
-      snap: true,
-      start: [1950, 2020],
-    });
-    const skipValuesYear: any = [
-      document.getElementById('year-value-lower'),
-      document.getElementById('year-value-upper'),
-    ];
-
-    skipSliderYear.noUiSlider.on('update', function (values, handle) {
-      skipValuesYear[handle].innerHTML = Number(values[handle]);
-    });
-
+      size: {
+        big: false,
+        medium: false,
+        small: false,
+      },
+      favorite: false,
+    };
+    this.render();
+    this.checkFilters();
+    document.querySelectorAll('[data-filter]').forEach(el => el.classList.remove('active'));
   }
 
-  getValueSortSlider() {
-    //--count
-    let startValueCount: string | number | undefined = document.getElementById('count-value-lower')?.innerText;
-    startValueCount = Number(startValueCount);
-    this.filterObj.count.start = startValueCount;
-    let endValueCount: string | number | undefined = document.getElementById('count-value-upper')?.innerText;
-    endValueCount = Number(endValueCount);
-    this.filterObj.count.end = endValueCount;
-    //--year
-    let startValue: string | number | undefined = document.getElementById('year-value-lower')?.innerText;
-    startValue = Number(startValue);
-    this.filterObj.year.start = startValue;
-    let endValue: string | number | undefined = document.getElementById('year-value-upper')?.innerText;
-    endValue = Number(endValue);
-    this.filterObj.year.end = endValue;
-
+  clearLocalStorage() {
+    localStorage.clear();
   }
-
 
   checkLocalStorage() {
     if (localStorage.toys === undefined) {
       localStorage.setItem('toys', JSON.stringify(this.dataJson));
     }
+    if (localStorage.filters === undefined) {
+      localStorage.setItem('filters', JSON.stringify(this.filterObj));
+    }
     const localArrFav = localStorage.getItem('toys') || '';
     this.realToys = JSON.parse(localArrFav) as IData[];
-  }
-
-  eventFilterShape(e: Event) {
-    const current = e.target as HTMLElement;
-    current.classList.toggle('active');
-    const elemArr = Array.prototype.slice.call(this.shapeCollection);
-    (elemArr[0].classList.contains('active')) ? this.filterObj.shape.ball = true : this.filterObj.shape.ball = false;
-    (elemArr[1].classList.contains('active')) ? this.filterObj.shape.bell = true : this.filterObj.shape.bell = false;
-    (elemArr[2].classList.contains('active')) ? this.filterObj.shape.pinecone = true : this.filterObj.shape.pinecone = false;
-    (elemArr[3].classList.contains('active')) ? this.filterObj.shape.snowflake = true : this.filterObj.shape.snowflake = false;
-    (elemArr[4].classList.contains('active')) ? this.filterObj.shape.figurine = true : this.filterObj.shape.figurine = false;
-    this.checkFilters();
-  }
-
-  eventFilterColor(e: Event) {
-    const current = e.target as HTMLElement;
-    current.classList.toggle('active');
-    const elemArr = Array.prototype.slice.call(this.colorCollection);
-    (elemArr[0].classList.contains('active')) ? this.filterObj.color.white = true : this.filterObj.color.white = false;
-    (elemArr[1].classList.contains('active')) ? this.filterObj.color.yellow = true : this.filterObj.color.yellow = false;
-    (elemArr[2].classList.contains('active')) ? this.filterObj.color.red = true : this.filterObj.color.red = false;
-    (elemArr[3].classList.contains('active')) ? this.filterObj.color.blue = true : this.filterObj.color.blue = false;
-    (elemArr[4].classList.contains('active')) ? this.filterObj.color.green = true : this.filterObj.color.green = false;
-    this.checkFilters();
-  }
-
-  mainFilter(active: string[][]) {
-    console.log('ключи', this.filterObj);
-    console.log(this.realToys);
-    let key: keyof IObject;
-    console.log(active);
-    const stringFilter = active[0];
-    const allFilter = active[1];
-    this.realToys = [];
-    this.dataJson.forEach((dataCard: IData, index: number) => {
-      for (key in dataCard) {
-        if (stringFilter.indexOf(String(key)) >= 0) {
-          // if (key === 'name') {
-          //   ((String(dataCard[key]).toLowerCase()).indexOf(String(other.name)))
-          // }
-          if (allFilter.indexOf(String(dataCard[key]).toLowerCase()) >= 0) {
-            console.log(allFilter.indexOf(String(dataCard[key])));
-            console.log('index= ', index, 'data= ', dataCard);
-            this.realToys.push(this.dataJson[index]);
-          }
-        }
-      }
-    });
-    console.log('dataJSon', this.dataJson);
-    this.render();
-    // let renderArr = [] as IData[];
-    // let localArr = [] as IData[];
-
-    // active.forEach(el => {
-    //   localArr = this.dataJson.filter((a: IData) => a.shape == el);
-    //   renderArr = renderArr.concat(localArr);
-
-    // });
-    // localStorage.setItem('toys', JSON.stringify(renderArr));
-    // this.realToys = renderArr;
-    // this.render();
-  }
-
-  favoriteSort() {
-    let renderArr = [] as IData[];
-    const localArrFav = localStorage.getItem('toys') || '';
-    const arrClone = JSON.parse(localArrFav);
-    if (this.favoriteEl.checked) {
-      this.realToys.map(function (a: IData): any {
-        if (a.favorite == true) {
-          renderArr.push(a);
-        }
-      });
-      localStorage.setItem('toys', JSON.stringify(renderArr));
-      this.filterObj.favorite = true;
-    } else {
-      this.filterObj.favorite = false;
-      this.checkFilters();
-      renderArr = this.realToys;
-    }
-    this.realToys = renderArr;
-    this.render();
-  }
-
-  sortList() {
-    const localArrFav = localStorage.getItem('toys') || '';
-    const arrClone = JSON.parse(localArrFav);
-    const renderArr = arrClone;
-
-    if (this.sortSelect.selectedIndex == 0) {
-      renderArr.sort((a: IData, b: IData) => a.year > b.year ? 1 : -1);
-    }
-    if (this.sortSelect.selectedIndex == 1) {
-      renderArr.sort((a: IData, b: IData) => a.year < b.year ? 1 : -1);
-    }
-    if (this.sortSelect.selectedIndex == 2) {
-      renderArr.sort((a: IData, b: IData) => Number(a.count) - Number(b.count));
-    }
-    if (this.sortSelect.selectedIndex == 3) {
-      renderArr.sort((a: IData, b: IData) => Number(b.count) - Number(a.count));
-    }
-    this.realToys = renderArr;
-    this.render();
+    const filterLocal = localStorage.getItem('filters') || '';
+    this.filterObj = JSON.parse(filterLocal) as IObj;
   }
 
   checkFilters() {
@@ -325,47 +210,245 @@ class Card {
                   (el === 'зелёный') ? activeArr[0].push('color') : undefined;
         });
       }
+      if (key === 'size') {
+        if (this.filterObj[key].big) activeArr[1].push('большой');
+        if (this.filterObj[key].medium) activeArr[1].push('средний');
+        if (this.filterObj[key].small) activeArr[1].push('малый');
 
+        activeArr[1].forEach(el => {
+          (el === 'большой') ? activeArr[0].push('size') :
+            (el === 'средний') ? activeArr[0].push('size') :
+              (el === 'малый') ? activeArr[0].push('size') : undefined;
+        });
+      }
     }
     if (activeArr != [[], []]) {
       this.mainFilter(activeArr);
     }
   }
 
-  // removeDuplicates(arr: IData[]) {
+  sliderUiFun() {
+    //--count
+    const skipSlider = document.querySelector('.count-slider') as Target;
+    noUiSlider.create(skipSlider, {
+      connect: true,
+      behaviour: 'tap',
+      range: {
+        'min': 1,
+        '9.09%': 2,
+        '18.18%': 3,
+        '27.27%': 4,
+        '36.36%': 5,
+        '45.45%': 6,
+        '54.54%': 7,
+        '63.63%': 8,
+        '72.72%': 9,
+        '81.81%': 10,
+        '90.90%': 11,
+        'max': 12,
+      },
+      snap: true,
+      start: [this.filterObj.count.start, this.filterObj.count.end],
+    });
+    const skipValues: any = [
+      this.countValueLower,
+      this.countValueUpper,
+    ];
 
-  //   const result: IData[] = [];
-  //   const duplicatesIndices: IData[] = [];
-  //   arr.forEach((current: any, index: any) => {
-  //     if (duplicatesIndices.includes(index)) return;
-  //     result.push(current);
-  //     for (let comparisonIndex = index + 1; comparisonIndex < arr.length; comparisonIndex++) {
-  //       const comparison: any = arr[comparisonIndex];
-  //       const currentKeys = Object.keys(current);
-  //       const comparisonKeys = Object.keys(comparison);
-  //       if (currentKeys.length !== comparisonKeys.length) continue;
-  //       const currentKeysString = currentKeys.sort().join('').toLowerCase();
-  //       const comparisonKeysString = comparisonKeys.sort().join('').toLowerCase();
-  //       if (currentKeysString !== comparisonKeysString) continue;
-  //       let valuesEqual = true;
-  //       for (let i = 0; i < currentKeys.length; i++) {
-  //         const key = currentKeys[i];
-  //         if (current[key] !== comparison[key]) {
-  //           valuesEqual = false;
-  //           break;
-  //         }
-  //       }
-  //       if (valuesEqual) duplicatesIndices.push(comparisonIndex);
-  //     }
-  //   });
-  //   return result;
-  // }
+    skipSlider.noUiSlider.on('update', function (values, handle) {
+      skipValues[handle].value = Number(values[handle]);
+    });
+
+
+
+    //--Year
+    const skipSliderYear = document.querySelector('.year-slider') as TargetElement;
+    noUiSlider.create(skipSliderYear, {
+      connect: true,
+      behaviour: 'tap',
+      range: {
+        'min': 1940,
+        '12.5%': 1950,
+        '25%': 1960,
+        '37.5%': 1970,
+        '50%': 1980,
+        '62.5%': 1990,
+        '75%': 2000,
+        '87.5%': 2010,
+        'max': 2020,
+      },
+      snap: true,
+      start: [this.filterObj.year.start, this.filterObj.year.end],
+    });
+    const skipValuesYear: any = [
+      document.getElementById('year-value-lower'),
+      document.getElementById('year-value-upper'),
+    ];
+
+    skipSliderYear.noUiSlider.on('update', function (values, handle) {
+      skipValuesYear[handle].innerHTML = Number(values[handle]);
+    });
+  }
+
+  updateSort() {
+    //count
+    const skipSlider = document.querySelector('.count-slider') as Target;
+    let valuesCount: any = [];
+    const updateFilterSortCount = () => {
+      this.filterObj.count.start = valuesCount[0];
+      this.filterObj.count.end = valuesCount[1];
+      localStorage.setItem('filters', JSON.stringify(this.filterObj));
+      this.sortForValueSlider();
+    };
+    skipSlider.noUiSlider.on('update', function () {
+      valuesCount = skipSlider.noUiSlider.get();
+      updateFilterSortCount();
+    });
+    const skipSliderYear = document.querySelector('.year-slider') as Target;
+    let valuesCountYear: any = [];
+    const updateFilterSortYear = () => {
+      this.filterObj.year.start = valuesCountYear[0];
+      this.filterObj.year.end = valuesCountYear[1];
+      localStorage.setItem('filters', JSON.stringify(this.filterObj));
+      this.sortForValueSlider();
+    };
+    skipSliderYear.noUiSlider.on('update', function () {
+      valuesCountYear = skipSliderYear.noUiSlider.get();
+      updateFilterSortYear();
+    });
+  }
+
+  sortForValueSlider() {
+    const allCards = document.querySelectorAll('.card');
+    const startCount = this.filterObj.count.start;
+    const endCount = this.filterObj.count.end;
+    const startYear = this.filterObj.year.start;
+    const endYear = this.filterObj.year.end;
+    this.realToys.forEach((dataCard: IData, index: number) => {
+      if ((Number(dataCard.count) < Number(startCount)) || (Number(dataCard.count) > Number(endCount))) {
+        allCards[index].classList.add('hide-count');
+      } else {
+        allCards[index].classList.remove('hide-count');
+      }
+    });
+    this.realToys.forEach((dataCard: IData, index: number) => {
+      if ((Number(dataCard.year) < Number(startYear)) || (Number(dataCard.year) > Number(endYear))) {
+        allCards[index].classList.add('hide-year');
+      } else {
+        allCards[index].classList.remove('hide-year');
+      }
+    });
+  }
+
+  eventFilterShape(e: Event) {
+    // debugger;
+    const current = e.target as HTMLElement;
+    current.classList.toggle('active');
+    const elemArr = Array.prototype.slice.call(this.shapeCollection);
+    (elemArr[0].classList.contains('active')) ? this.filterObj.shape.ball = true : this.filterObj.shape.ball = false;
+    (elemArr[1].classList.contains('active')) ? this.filterObj.shape.bell = true : this.filterObj.shape.bell = false;
+    (elemArr[2].classList.contains('active')) ? this.filterObj.shape.pinecone = true : this.filterObj.shape.pinecone = false;
+    (elemArr[3].classList.contains('active')) ? this.filterObj.shape.snowflake = true : this.filterObj.shape.snowflake = false;
+    (elemArr[4].classList.contains('active')) ? this.filterObj.shape.figurine = true : this.filterObj.shape.figurine = false;
+    this.checkFilters();
+    localStorage.setItem('filters', JSON.stringify(this.filterObj));
+  }
+
+  eventFilterColor(e: Event) {
+    const current = e.target as HTMLElement;
+    current.classList.toggle('active');
+    const elemArr = Array.prototype.slice.call(this.colorCollection);
+    (elemArr[0].classList.contains('active')) ? this.filterObj.color.white = true : this.filterObj.color.white = false;
+    (elemArr[1].classList.contains('active')) ? this.filterObj.color.yellow = true : this.filterObj.color.yellow = false;
+    (elemArr[2].classList.contains('active')) ? this.filterObj.color.red = true : this.filterObj.color.red = false;
+    (elemArr[3].classList.contains('active')) ? this.filterObj.color.blue = true : this.filterObj.color.blue = false;
+    (elemArr[4].classList.contains('active')) ? this.filterObj.color.green = true : this.filterObj.color.green = false;
+    this.checkFilters();
+    localStorage.setItem('filters', JSON.stringify(this.filterObj));
+  }
+
+  eventFilterSize(e: Event) {
+    const current = e.target as HTMLElement;
+    current.classList.toggle('active');
+    const elemArr = Array.prototype.slice.call(this.sizeCollection);
+    (elemArr[0].classList.contains('active')) ? this.filterObj.size.big = true : this.filterObj.size.big = false;
+    (elemArr[1].classList.contains('active')) ? this.filterObj.size.medium = true : this.filterObj.size.medium = false;
+    (elemArr[2].classList.contains('active')) ? this.filterObj.size.small = true : this.filterObj.size.small = false;
+    this.checkFilters();
+    localStorage.setItem('filters', JSON.stringify(this.filterObj));
+  }
+
+  mainFilter(active: string[][]) {
+    const allCards = document.querySelectorAll('.card');
+    let key: keyof IObject;
+    const stringFilter = active[0];
+    const allFilter = active[1];
+    this.realToys.forEach((dataCard: IData, index: number) => {
+      allCards[index].classList.remove('hide');
+      for (key in dataCard) {
+        if (stringFilter.indexOf(String(key)) >= 0) {
+          // if (key === 'name') {
+          //   ((String(dataCard[key]).toLowerCase()).indexOf(String(other.name)))
+          // }
+          if (allFilter.indexOf(String(dataCard[key]).toLowerCase()) < 0) {
+            allCards[index].classList.add('hide');
+          } else {
+            allFilter.forEach(i => {
+              document.querySelector(`[data-filter=${i}]`)?.classList.add('active');
+            });
+          }
+        }
+      }
+    });
+    this.sortForValueSlider();
+  }
+
+  favoriteSort() {
+    let renderArr = [] as IData[];
+    if (!this.filterObj.favorite) {
+      this.realToys.map(function (a: IData): any {
+        if (a.favorite == true) {
+          renderArr.push(a);
+        }
+      });
+
+      localStorage.setItem('toys', JSON.stringify(renderArr));
+      this.filterObj.favorite = true;
+      localStorage.setItem('filters', JSON.stringify(this.filterObj));
+    } else {
+      this.checkFilters();
+      renderArr = this.dataJson;
+      localStorage.setItem('toys', JSON.stringify(renderArr));
+      localStorage.setItem('filters', JSON.stringify(this.filterObj));
+      this.filterObj.favorite = false;
+    }
+    this.realToys = renderArr;
+    this.render();
+  }
+
+  sortList() {
+    if (this.sortSelect.selectedIndex == 0) {
+      this.realToys.sort((a: IData, b: IData) => a.year > b.year ? 1 : -1);
+    }
+    if (this.sortSelect.selectedIndex == 1) {
+      this.realToys.sort((a: IData, b: IData) => a.year < b.year ? 1 : -1);
+    }
+    if (this.sortSelect.selectedIndex == 2) {
+      this.realToys.sort((a: IData, b: IData) => Number(a.count) - Number(b.count));
+    }
+    if (this.sortSelect.selectedIndex == 3) {
+      this.realToys.sort((a: IData, b: IData) => Number(b.count) - Number(a.count));
+    }
+  }
+
+
 
   render() {
-
+    this.sortList();
+    (this.filterObj.favorite) ? this.favoriteEl.checked = true : this.favoriteEl.checked = false;
+    localStorage.setItem('filters', JSON.stringify(this.filterObj));
     let localArr = localStorage.getItem('toys') || '';
     localArr = JSON.parse(localArr);
-    console.log(this.realToys);
     let mainArr: IData[] = this.realToys;
     if (mainArr.length === 0) mainArr = this.dataJson;
     console.log('mainArr', mainArr);
@@ -402,6 +485,8 @@ class Card {
         });
       }
     });
+    this.checkFilters();
+    this.updateSort();
   }
 
 }
