@@ -1,11 +1,11 @@
 import './global.scss';
 import Start from './pages/start/start';
-import Card from './components/card/card';
+import RenderCards from './components/render-cards/render-cards';
 
 
 new Start();
 
-const a = new Card();
+const a = new RenderCards();
 a.render();
 console.log(` 
 1. Страница с игрушками содержит карточки всех игрушек а также фильтры, строку поиска, поле для сортировки. Выполняются требования к вёрстке +10;
