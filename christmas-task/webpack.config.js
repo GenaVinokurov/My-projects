@@ -5,6 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 var CopyPlugin = require('copy-webpack-plugin');
 
+
 const baseConfig = {
   entry: path.resolve(__dirname, './src/index.ts'),
   mode: 'development',
@@ -45,6 +46,8 @@ const baseConfig = {
           }
         ]
       },
+
+
     ],
   },
   resolve: {
@@ -64,6 +67,18 @@ const baseConfig = {
         {
           from: path.resolve(__dirname, './src/assets/toys'),
           to: path.resolve(__dirname, 'dist/assets/toys')
+        },
+        {
+          from: path.resolve(__dirname, './src/assets/audio'),
+          to: path.resolve(__dirname, 'dist/assets/audio')
+        },
+        {
+          from: path.resolve(__dirname, './src/assets/tree'),
+          to: path.resolve(__dirname, 'dist/assets/tree')
+        },
+        {
+          from: path.resolve(__dirname, './src/assets/bg'),
+          to: path.resolve(__dirname, 'dist/assets/bg')
         },
       ],
     }),

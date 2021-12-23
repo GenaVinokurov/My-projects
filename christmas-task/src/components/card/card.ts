@@ -138,7 +138,6 @@ class Card {
     this.filterObj = JSON.parse(filterLocal) as IObj;
     const selectNumLocal = localStorage.getItem('select') || '';
     this.selectArr = JSON.parse(selectNumLocal) as IData[];
-    console.log(this.selectArr);
     this.selectCountElem.innerHTML = `<span>${this.selectArr.length}</span>`;
 
   }

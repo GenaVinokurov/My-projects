@@ -2,7 +2,7 @@ import './start.scss';
 import Toys from '../toys/toys';
 import Tree from '../tree/tree';
 new Toys();
-new Tree();
+const renderTree = new Tree();
 
 class Start {
   startBtn: HTMLElement;
@@ -19,7 +19,7 @@ class Start {
     this.buttonBackMain = document.querySelector('.logo') as HTMLElement;
     this.switchToToys = document.querySelector('.switch-main') as HTMLElement;
     this.switchToTree = document.querySelector('.switch-tree') as HTMLElement;
-    this.treePage = document.querySelector('.page-tree') as HTMLElement;
+    this.treePage = document.querySelector('.tree-page') as HTMLElement;
     this.startBtn.addEventListener('click', this.start.bind(this));
     this.buttonBackMain.addEventListener('click', this.backToMainPage.bind(this));
     this.switchToToys.addEventListener('click', this.start.bind(this));
@@ -42,6 +42,7 @@ class Start {
     this.startPage.classList.add('hide');
     this.toysPage.classList.add('hide');
     this.treePage.classList.remove('hide');
+    renderTree.renderFav();
   }
 }
 
