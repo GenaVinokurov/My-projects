@@ -29,15 +29,23 @@ class RenderFavorites {
       });
       mainArr = firstToysArr;
     }
-    this.favoritesContainer.innerHTML = '';
+
     mainArr.forEach((el, i) => {
       const div = document.createElement('div');
-      div.classList.add('favorites-card');
-      // div.id = `${mainArr[i].num}`;
       div.innerHTML = `
       <div class="favorites-count">${mainArr[i].count}</div>
-      <img src="./assets/toys/${mainArr[i].num}.png" alt="toys" class="favorites-card-img">
       `;
+      let n = 0;
+      while (n < Number(mainArr[i].count)) {
+        n++;
+        const img = document.createElement('img');
+        img.classList.add('favorites-card-img');
+        img.id = `${i + 1}-${n}`;
+        img.alt = 'toy';
+        img.src = `./assets/toys/${mainArr[i].num}.png`;
+        div.appendChild(img);
+      }
+      div.classList.add('favorites-card');
       this.favoritesContainer.appendChild(div);
     });
   }
