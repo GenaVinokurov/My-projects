@@ -1,7 +1,9 @@
 import './tree.scss';
 import RenderFavorites from '../../components/renderFavorites/renderFavorites';
 import MainTree from '../../components/mainTree/mainTree';
+import DragToys from '../../components/dragToys/dragToys';
 new MainTree();
+
 class Tree extends RenderFavorites {
   audioControl: HTMLElement;
   playAudio: boolean;

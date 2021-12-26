@@ -33,13 +33,10 @@ class MainTree {
     this.bgCollection.forEach((el, i) => {
       const bgElem = (<Element>this.bgCollection[i]);
       bgElem.id = `${i + 1}`;
-      console.log('bg', bgElem);
       el.addEventListener('click', function (e) {
         const card = e.currentTarget as HTMLElement;
         bgNum = card.id;
-        console.log(bgNum);
         const mainBgEvent = document.querySelector('.tree-main') as HTMLElement;
-        console.log(mainBgEvent);
         mainBgEvent.style.backgroundImage = `url(./assets/bg/${bgNum}.jpg)`;
       });
     });

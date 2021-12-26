@@ -19,6 +19,7 @@ class RenderFavorites {
   }
 
   renderFav() {
+    this.favoritesContainer.innerHTML = '';
     const localArr = localStorage.getItem('select') ?? '';
     let mainArr: IData[] = [];
     if (localArr != '') mainArr = JSON.parse(localArr);
@@ -29,7 +30,6 @@ class RenderFavorites {
       });
       mainArr = firstToysArr;
     }
-
     mainArr.forEach((el, i) => {
       const div = document.createElement('div');
       div.innerHTML = `
@@ -43,12 +43,16 @@ class RenderFavorites {
         img.id = `${i + 1}-${n}`;
         img.alt = 'toy';
         img.src = `./assets/toys/${mainArr[i].num}.png`;
+        img.draggable = true;
+        img.dataset.slotNum = `${i + 1}`;
         div.appendChild(img);
       }
       div.classList.add('favorites-card');
+      div.dataset.num = `${i + 1}`;
       this.favoritesContainer.appendChild(div);
     });
   }
+
 }
 
 export default RenderFavorites;
