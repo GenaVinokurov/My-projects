@@ -1,7 +1,6 @@
 import './tree.scss';
 import RenderFavorites from '../../components/renderFavorites/renderFavorites';
 import MainTree from '../../components/mainTree/mainTree';
-import DragToys from '../../components/dragToys/dragToys';
 new MainTree();
 
 class Tree extends RenderFavorites {
@@ -15,6 +14,8 @@ class Tree extends RenderFavorites {
   blueBtn: HTMLElement;
   redBtn: HTMLElement;
   yellowBtn: HTMLElement;
+  snowControl: HTMLElement;
+  snowflake: HTMLElement;
   constructor() {
     super();
     this.audioControl = document.querySelector('.audio-control') as HTMLElement;
@@ -29,23 +30,24 @@ class Tree extends RenderFavorites {
     this.blueBtn = document.querySelector('.blue-btn') as HTMLElement;
     this.redBtn = document.querySelector('.red-btn') as HTMLElement;
     this.yellowBtn = document.querySelector('.yellow-btn') as HTMLElement;
+    this.snowControl = document.querySelector('.snow-control') as HTMLElement;
+    this.snowflake = document.querySelector('.snowflake-container') as HTMLElement;
     this.multiBtn.addEventListener('click', this.changeColors.bind(this));
     this.greenBtn.addEventListener('click', this.changeColors.bind(this));
     this.blueBtn.addEventListener('click', this.changeColors.bind(this));
     this.redBtn.addEventListener('click', this.changeColors.bind(this));
     this.yellowBtn.addEventListener('click', this.changeColors.bind(this));
     this.garlandBtn.addEventListener('click', this.garlandSwitch.bind(this));
+    this.snowControl.addEventListener('click', this.switchSnowflake.bind(this));
   }
 
   audio() {
     if (this.playAudio === false) {
-      console.log(this.playAudio);
       this.music.play();
       this.playAudio = true;
       this.audioControl.classList.add('active');
     } else if (this.playAudio === true) {
       this.music.pause();
-      console.log(this.playAudio);
       this.playAudio = false;
       this.audioControl.classList.remove('active');
     }
@@ -77,6 +79,10 @@ class Tree extends RenderFavorites {
         elem.classList.add(`${color}`);
       });
     });
+  }
+
+  switchSnowflake() {
+    this.snowflake.classList.toggle('hide');
   }
 
 }

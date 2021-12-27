@@ -1,9 +1,3 @@
-import RenderFavorites from '../renderFavorites/renderFavorites';
-
-// interface DragEvent {
-//   dataTransfer: DataTransfer;
-// }
-
 class DragToys {
   mapTree: HTMLElement;
   imgCollection: NodeList;
@@ -29,11 +23,10 @@ class DragToys {
     }
 
     function drop(event: DragEvent) {
-      const checkCountElem = (card: HTMLElement, num: number) => {
+      const checkCountElem = (card: Element) => {
         const counter = card.children[0];
-        counter.textContent = `${Number(counter.textContent) + num}`;
+        counter.textContent = `${card.children.length - 1}`;
       };
-
       const map = document.querySelector('.area') as HTMLElement;
       const eventTargetContainer = event.target as HTMLElement;
       const id = event.dataTransfer?.getData('id');
@@ -42,7 +35,7 @@ class DragToys {
       if (eventTargetContainer.classList.contains('area')) {
         if (event.target != null) {
           if (imgElem != null) {
-            checkCountElem(currentCard, -1);
+            checkCountElem(currentCard);
             map.append(imgElem);
             imgElem.style.left = '0px';
             imgElem.style.top = '0px';
@@ -56,7 +49,7 @@ class DragToys {
             currentCard.append(imgElem);
             imgElem.style.left = 'auto';
             imgElem.style.top = 'auto';
-            checkCountElem(currentCard, 1);
+            checkCountElem(currentCard);
           }
         }
       }

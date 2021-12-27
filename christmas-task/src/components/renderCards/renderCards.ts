@@ -90,7 +90,6 @@ class RenderCards extends Card {
 
         localStorage.setItem('select', JSON.stringify(this.selectArr));
         this.selectCountElem.innerHTML = `<span>${this.selectArr.length}</span>`;
-        console.log(this.selectArr);
       });
     });
     this.checkFilters();

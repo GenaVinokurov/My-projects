@@ -1,6 +1,7 @@
 import './start.scss';
 import Toys from '../toys/toys';
 import Tree from '../tree/tree';
+
 new Toys();
 const renderTree = new Tree();
 

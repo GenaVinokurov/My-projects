@@ -1,11 +1,14 @@
 import Card, { IData } from '../card/card';
 import data from '../../data.json';
+import DragToys from '../dragToys/dragToys';
+
 
 class RenderFavorites {
   favoritesContainer: HTMLElement;
   dataJson: IData[];
   buttonClear: HTMLElement;
   constructor() {
+
     this.dataJson = data as IData[];
     this.buttonClear = document.querySelector('.btn-clear-local-tree') as HTMLElement;
     this.favoritesContainer = document.querySelector('.favorites-container') as HTMLElement;
@@ -14,7 +17,6 @@ class RenderFavorites {
   }
 
   clearLocalStorage() {
-    console.log('1');
     localStorage.clear();
   }
 
@@ -51,6 +53,7 @@ class RenderFavorites {
       div.dataset.num = `${i + 1}`;
       this.favoritesContainer.appendChild(div);
     });
+    const drag = new DragToys();
   }
 
 }
