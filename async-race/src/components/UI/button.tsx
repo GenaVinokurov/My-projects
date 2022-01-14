@@ -1,5 +1,5 @@
 import React from 'react';
-import './button.css';
+import './ui.css';
 
 const Button: React.FC = ({ children }) => (
   <button className="btn" type="button">

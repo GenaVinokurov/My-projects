@@ -2,11 +2,39 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: aliceblue;
+  color: rgb(255, 255, 255);
+}
+body {
+  background-color: rgb(14, 6, 36);
 }
 .App {
   margin: 0 auto;
   padding: 15px 15px;
-  background-color: #000;
+  
   height: 100%;
+}
+.header {
+  padding: 10px 0;
+  margin-bottom: 40px;
+}
+.nav-wrapper {
+  display: flex;
+  margin-bottom: 20px;
+}
+.form-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.car__btn-wrapper {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+.car-container {
+  border-bottom: 2px solid rgb(223, 222, 222);
+  padding: 20px 10px 0;
+  border-radius: 2px;
+  margin-bottom: 20px;
 }

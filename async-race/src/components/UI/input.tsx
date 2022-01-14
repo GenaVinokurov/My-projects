@@ -1,4 +1,5 @@
 import React from 'react';
+import './ui.css';
 
 type InputProps = {
   id: string;
@@ -8,7 +9,7 @@ type InputProps = {
 const MyInput = ({ placeholder, id }: InputProps) => (
   <div className="input-wrapper">
     <label htmlFor={id}>
-      <input type="text" placeholder={placeholder} id={id} />
+      <input type="text" placeholder={placeholder} id={id} className="input" />
     </label>
 
   </div>

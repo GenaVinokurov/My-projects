@@ -1,13 +1,18 @@
 import React from 'react';
 import './App.css';
 import Garage from './pages/garage';
-import Button from './components/UI/button/button';
+import Button from './components/UI/button';
+
+import Form from './components/form/form';
 
 const App: React.FC = () => (
   <div className="App">
     <header className="header">
-      <Button>To Garage</Button>
-      <Button>To winners</Button>
+      <div className="nav-wrapper">
+        <Button>To Garage</Button>
+        <Button>To winners</Button>
+      </div>
+      <Form />
     </header>
     <Garage />
   </div>
