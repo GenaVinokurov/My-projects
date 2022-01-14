@@ -1,52 +1,73 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": [
-        "plugin:react/recommended",
-        "airbnb"
+    "ecmaVersion": 13,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "linebreak-style": 0,
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
     ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 13,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react",
-        "@typescript-eslint"
+    "react/jsx-filename-extension": [
+      2,
+      {
+        "extensions": [
+          ".ts",
+          ".tsx"
+        ]
+      }
     ],
-    "rules": {
-        "react/jsx-filename-extension": [
-            2,
-            {
-                "extensions": [
-                    ".js",
-                    ".jsx",
-                    ".ts",
-                    ".tsx"
-                ]
-            }
-        ],
-        "no-debugger": "off",
-        "no-console": "warn",
-        "class-methods-use-this": "off",
-        "@typescript-eslint/no-explicit-any": "error",
-        "no-unused-expressions": "off",
-        "@typescript-eslint/no-unused-expressions": [
-            "warn"
-        ],
-        "@typescript-eslint/lines-between-class-members": [
-            "error",
-            "always",
-            {
-                "exceptAfterSingleLine": true
-            }
-        ],
-        "keyword-spacing": "off",
-        "@typescript-eslint/keyword-spacing": "off"
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function"
+      }
+    ],
+    "@typescript-eslint/no-explicit-any": 2,
+    "no-console": 2,
+    "eol-last": 0,
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1,
+        "maxEOF": 0
+      }
+    ],
+    "react/require-default-props": 0,
+    "react/default-props-match-prop-types": 0
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".ts",
+          ".tsx"
+        ]
+      }
     }
+  }
 }

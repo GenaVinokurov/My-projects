@@ -1,5 +1,5 @@
 {
-  "name": "async-race",
+  "name": "react-template",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -45,6 +45,7 @@
     "@typescript-eslint/parser": "^5.9.1",
     "eslint": "^8.6.0",
     "eslint-config-airbnb": "^19.0.4",
+    "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
