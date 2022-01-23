@@ -1,36 +1,50 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ICar } from './types';
 import CarBtn from './UI/carBtn';
+import { deleteCar, getCars } from './api';
+import { CarsContext } from '../CarsProvider';
 
-interface ICar {
-  name: string;
-  color: string;
-}
-
-const Car = ({ name, color }: ICar) => (
-  <div className="car-container">
-    <div className="car__btn-wrapper">
-      <CarBtn>Select</CarBtn>
-      <CarBtn>Remove</CarBtn>
-      <p className="car-name">{name}</p>
-    </div>
-    <div className="car__btn-wrapper">
-      <CarBtn>Start</CarBtn>
-      <CarBtn>Stop</CarBtn>
-    </div>
-    <svg
-      version="1.0"
-      xmlns="http://www.w3.org/2000/svg"
-      width="58.000000pt"
-      height="27.000000pt"
-      viewBox="0 0 1280.000000 596.000000"
-      preserveAspectRatio="xMidYMid meet"
-    >
-      <g
-        transform="translate(0.000000,596.000000) scale(0.100000,-0.100000)"
-        fill={`#${color}`}
-        stroke="none"
+export let selectCar: HTMLButtonElement;
+const Car = ({ name, color, id }: ICar) => {
+  const { cars, setCars } = useContext(CarsContext);
+  const deleteFunction = () => {
+    deleteCar(id)
+      .then(() => getCars().then((result: any) => setCars(result.items)));
+  };
+  const selectCarFunc = (e: Event) => {
+    if (selectCar !== undefined) {
+      selectCar.disabled = false;
+      selectCar.classList.remove('disabled');
+    }
+    selectCar = e.target as HTMLButtonElement;
+    selectCar.disabled = true;
+    selectCar.classList.add('disabled');
+  };
+  return (
+    <div className="car-container" id={id}>
+      <div className="car__btn-wrapper">
+        <CarBtn onClick={(e) => selectCarFunc(e)}>Select</CarBtn>
+        <CarBtn onClick={() => deleteFunction()}>Remove</CarBtn>
+        <p className="car-name">{name}</p>
+      </div>
+      <div className="car__btn-wrapper">
+        <CarBtn>Start</CarBtn>
+        <CarBtn>Stop</CarBtn>
+      </div>
+      <svg
+        version="1.0"
+        xmlns="http://www.w3.org/2000/svg"
+        width="58.000000pt"
+        height="27.000000pt"
+        viewBox="0 0 1280.000000 596.000000"
+        preserveAspectRatio="xMidYMid meet"
       >
-        <path d="M5022 5925 c-387 -79 -745 -104 -1052 -75 -132 12 -134 12 -260 5
+        <g
+          transform="translate(0.000000,596.000000) scale(0.100000,-0.100000)"
+          fill={`${color}`}
+          stroke="none"
+        >
+          <path d="M5022 5925 c-387 -79 -745 -104 -1052 -75 -132 12 -134 12 -260 5
         -90 -6 -123 -13 -230 -52 -250 -91 -554 -244 -604 -304 -12 -14 -27 -24 -34
         -21 -17 5 -112 -57 -112 -74 0 -8 -6 -11 -15 -8 -33 13 -353 -220 -565 -411
         -199 -178 -476 -491 -467 -526 3 -11 2 -17 -2 -15 -18 12 -61 -54 -61 -94 0
@@ -70,10 +84,11 @@ const Car = ({ name, color }: ICar) => (
         -88 35 -91 410 l-3 329 113 -5 c62 -3 451 -17 863 -30z m1508 -484 c47 -34 47
         -35 47 -93 0 -32 -3 -58 -7 -58 -8 0 -164 231 -172 254 -2 6 16 -7 40 -29 24
         -22 65 -56 92 -74z"
-        />
-      </g>
-    </svg>
-  </div>
-);
+          />
+        </g>
+      </svg>
+    </div>
+  );
+};
 
 export default Car;

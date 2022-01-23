@@ -47,8 +47,7 @@
         "namedComponents": "arrow-function"
       }
     ],
-    "@typescript-eslint/no-explicit-any": 2,
-    "no-console": 2,
+    // "@typescript-eslint/no-explicit-any": 2,
     "eol-last": 0,
     "no-multiple-empty-lines": [
       "error",
@@ -58,7 +57,21 @@
       }
     ],
     "react/require-default-props": 0,
-    "react/default-props-match-prop-types": 0
+    "react/default-props-match-prop-types": 0,
+    "no-console": "warn",
+    "import/prefer-default-export": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "object-curly-newline": [
+      "warn",
+      "always"
+    ],
+    "arrow-body-style": [
+      "warn",
+      "always"
+    ],
+    "no-debugger": "off",
+    "import/no-mutable-exports": "warn"
   },
   "settings": {
     "import/resolver": {

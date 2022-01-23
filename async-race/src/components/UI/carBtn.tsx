@@ -1,8 +1,9 @@
 import React from 'react';
 import './ui.css';
+import { ButtonProp } from '../types';
 
-const CarBtn: React.FC = ({ children }) => (
-  <button className="btn-car" type="button">
+const CarBtn = ({ children, onClick }: ButtonProp) => (
+  <button className="btn-car" type="button" onClick={onClick}>
     {children}
   </button>
 );

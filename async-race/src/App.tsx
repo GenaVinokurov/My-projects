@@ -15,6 +15,7 @@ const App: React.FC = () => (
       <Form />
     </header>
     <Garage />
+
   </div>
 );
 
