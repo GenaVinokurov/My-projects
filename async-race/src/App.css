@@ -48,3 +48,10 @@ body {
 .disabled {
   opacity: 0.5;
 }
+.page {
+  font-size: 18px;
+}
+.page span {
+  color: rgb(19, 255, 51);
+  font-weight: 800;
+}

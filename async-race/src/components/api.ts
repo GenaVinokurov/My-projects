@@ -8,7 +8,7 @@ const garage = `${base}/garage`;
 //   return response.data;
 // };
 
-export const getCars: any = async (page: number = 1, limit: number = 100) => {
+export const getCars: any = async (page: number = 1, limit: number = 7) => {
   const response = await fetch(`${garage}?_page=${page}&_limit=${limit}`);
 
   return {

@@ -17,6 +17,8 @@ export interface IResult {
 }
 export type ButtonProp = {
   children: ReactNode;
+  extraClass?: string;
+  disabled?: boolean;
   onClick?: (e: any) => void;
   // React.MouseEvent<HTMLButtonElement>
 };

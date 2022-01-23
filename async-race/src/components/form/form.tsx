@@ -3,15 +3,17 @@ import MyInput from '../UI/input';
 import Button from '../UI/button';
 import { creatCar, updateCar, getCars } from '../api';
 import { selectCar } from '../car';
-import { CarsContext } from '../../CarsProvider';
+import { CarsContext, CountContext } from '../../CarsProvider';
 import GenerateCars from './generateCars';
+import store from '../store';
 
 const Form: React.FC = () => {
   const [name, setCar] = useState<string>();
   const [color, setColor] = useState<string>();
   const [nameUpd, setCarUpd] = useState<string>();
   const [colorUpd, setColorUpd] = useState<string>();
-  const { cars, setCars } = useContext(CarsContext);
+  const { setCars } = useContext(CarsContext);
+  const { setCount } = useContext(CountContext);
 
   const changeHandler = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -22,12 +24,20 @@ const Form: React.FC = () => {
 
   const getFunction = () => {
     creatCar({ name, color })
-      .then(() => getCars().then((result: any) => setCars(result.items)));
+      .then(() => getCars(store.page)
+        .then((result: any) => {
+          setCount(result.count);
+          setCars(result.items);
+        }));
   };
   const updateFunction = () => {
     const parent = selectCar.parentElement?.parentElement as HTMLElement;
     updateCar({ name: nameUpd, color: colorUpd, id: parent.id })
-      .then(() => getCars().then((result: any) => setCars(result.items)));
+      .then(() => getCars(store.page)
+        .then((result: any) => {
+          setCount(result.count);
+          setCars(result.items);
+        }));
   };
 
   return (
@@ -36,7 +46,7 @@ const Form: React.FC = () => {
         <MyInput
           value={name}
           id="input-1"
-          placeholder="Hello"
+          placeholder="Add name"
           onChange={(event) => changeHandler(event, setCar)}
         />
         <input
@@ -53,7 +63,7 @@ const Form: React.FC = () => {
         <MyInput
           value={nameUpd}
           id="input-2"
-          placeholder="Change"
+          placeholder="Change name"
           onChange={(event) => changeHandler(event, setCarUpd)}
         />
         <input

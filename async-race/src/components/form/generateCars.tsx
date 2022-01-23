@@ -1,16 +1,22 @@
 import React, { useContext } from 'react';
-import { CarsContext } from '../../CarsProvider';
+import { CarsContext, CountContext } from '../../CarsProvider';
 import { creatCar, getCars } from '../api';
 import Button from '../UI/button';
 import { generateRandomCars } from '../utile';
+import store from '../store';
 
 const GenerateCars = () => {
-  const { cars, setCars } = useContext(CarsContext);
+  const { setCars } = useContext(CarsContext);
+  const { setCount } = useContext(CountContext);
   const generate = () => {
     const newCars = generateRandomCars();
     newCars.forEach((car) => {
       creatCar(car)
-        .then(() => getCars().then((result: any) => setCars(result.items)));
+        .then(() => getCars(store.page)
+          .then((result: any) => {
+            setCount(result.count);
+            setCars(result.items);
+          }));
     });
   };
   return (

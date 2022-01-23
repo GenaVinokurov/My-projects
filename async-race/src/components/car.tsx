@@ -2,14 +2,20 @@ import React, { useContext } from 'react';
 import { ICar } from './types';
 import CarBtn from './UI/carBtn';
 import { deleteCar, getCars } from './api';
-import { CarsContext } from '../CarsProvider';
+import { CarsContext, CountContext } from '../CarsProvider';
+import store from './store';
 
 export let selectCar: HTMLButtonElement;
 const Car = ({ name, color, id }: ICar) => {
   const { cars, setCars } = useContext(CarsContext);
+  const { setCount } = useContext(CountContext);
   const deleteFunction = () => {
     deleteCar(id)
-      .then(() => getCars().then((result: any) => setCars(result.items)));
+      .then(() => getCars(store.page)
+        .then((result: any) => {
+          setCount(result.count);
+          setCars(result.items);
+        }));
   };
   const selectCarFunc = (e: Event) => {
     if (selectCar !== undefined) {

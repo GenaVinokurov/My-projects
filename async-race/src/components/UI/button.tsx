@@ -2,8 +2,8 @@ import React from 'react';
 import './ui.css';
 import { ButtonProp } from '../types';
 
-const Button = ({ children, onClick }: ButtonProp) => (
-  <button className="btn" type="button" onClick={onClick}>
+const Button = ({ children, extraClass = '', disabled, onClick }: ButtonProp) => (
+  <button className={`${extraClass} btn`} type="button" onClick={onClick} disabled={disabled}>
     {children}
   </button>
 );

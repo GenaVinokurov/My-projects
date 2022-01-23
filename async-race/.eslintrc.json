@@ -71,7 +71,9 @@
       "always"
     ],
     "no-debugger": "off",
-    "import/no-mutable-exports": "warn"
+    "import/no-mutable-exports": "warn",
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-boolean-value": "off"
   },
   "settings": {
     "import/resolver": {
