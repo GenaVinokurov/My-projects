@@ -12,5 +12,5 @@ export default {
   view: 'garage',
   sort: 'id',
   order: 'ASC',
-  animation: {},
+  animation: {} as Record<string, Record<string, number>>,
 };

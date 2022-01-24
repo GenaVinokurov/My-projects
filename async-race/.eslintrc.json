@@ -73,7 +73,8 @@
     "no-debugger": "off",
     "import/no-mutable-exports": "warn",
     "react/jsx-one-expression-per-line": "off",
-    "react/jsx-boolean-value": "off"
+    "react/jsx-boolean-value": "off",
+    "no-param-reassign": "warn"
   },
   "settings": {
     "import/resolver": {
