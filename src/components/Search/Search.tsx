@@ -9,12 +9,9 @@ class Search extends Component<Record<string, unknown>, IState> {
   constructor(props: Record<string, unknown>) {
     super(props);
     this.state = {
-      search: '',
+      search: localStorage.getItem('search') || '',
     };
   }
-  // componentDidUpdate() {
-  //   console.log(this.state);
-  // }
   onClick() {
     localStorage.setItem('search', this.state.search);
   }
@@ -26,9 +23,15 @@ class Search extends Component<Record<string, unknown>, IState> {
     return (
       <div className={css.container}>
         <label>
-          <input type="text" placeholder="Enter the text" onChange={(e) => this.onChange(e)} />
+          <input
+            type="text"
+            placeholder="Enter the text"
+            onChange={(e) => this.onChange(e)}
+            title="search"
+            value={this.state.search}
+          />
         </label>
-        <button type="button" onClick={() => this.onClick()}>
+        <button type="button" onClick={() => this.onClick()} title="button">
           Search
         </button>
       </div>

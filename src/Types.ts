@@ -2,7 +2,7 @@ export interface ICard {
   flag: string;
   name: string;
   region: string;
-  id?: number;
+  id?: string;
   capital: string;
 }
 export type RenderCards = {

@@ -8,7 +8,12 @@ class Card extends Component<Partial<ICard>> {
   }
   render() {
     return (
-      <li className={css.container} key={this.props.id}>
+      <li
+        className={css.container}
+        key={this.props.id}
+        id={this.props.name}
+        data-testid={`card-${this.props.id}`}
+      >
         <img src={this.props.flag} alt="img-flag" className={css.flag} />
         <div className={css.description}>
           <h3 className={css.name}>{this.props.name}</h3>

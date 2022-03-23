@@ -4,11 +4,6 @@ import css from './Main.module.css';
 import Card from '../../components/Card/Card';
 import { ICard, RenderCards } from '../../Types';
 
-export const getCountriesAPI = async (): Promise<Array<ICard>> => {
-  const response = await fetch('https://restcountries.com/v2/all');
-  return response.json();
-};
-
 class Main extends Component<Record<string, unknown>, Partial<RenderCards>> {
   constructor(props: Record<string, unknown>) {
     super(props);
@@ -38,26 +33,24 @@ class Main extends Component<Record<string, unknown>, Partial<RenderCards>> {
   render() {
     const { error, isLoaded, allCountries } = this.state;
     if (error) {
-      return <div>Ошибка: {error}</div>;
+      return <div>Error: {error}</div>;
     } else if (!isLoaded) {
-      return <div>Загрузка...</div>;
+      return <div>Loading...</div>;
     } else {
       return (
-        <div className={css.container}>
-          Main page
+        <div className={css.container} title="container-cards">
           <Search></Search>
           <ul className={css.wrapper}>
-            {allCountries?.map((el, id) => {
-              {
-                console.log(el);
-              }
+            {allCountries?.map((el, i) => {
               return (
                 <Card
-                  key={id}
+                  key={i}
+                  id={el.name}
                   name={el.name}
                   region={el.region}
                   flag={el.flag}
                   capital={el.capital}
+                  data-testid={`item-${i}`}
                 />
               );
             })}
