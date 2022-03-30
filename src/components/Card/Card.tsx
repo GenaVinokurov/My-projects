@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import css from './Card.module.css';
-import { ICard } from '../../Types';
+import { CardType } from '../../Types';
 
-class Card extends Component<Partial<ICard>> {
-  constructor(props: Partial<ICard>) {
+class Card extends Component<Partial<CardType>> {
+  constructor(props: Partial<CardType>) {
     super(props);
   }
   render() {

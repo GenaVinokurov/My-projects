@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Search from '../../components/Search/Search';
 import css from './Main.module.css';
 import Card from '../../components/Card/Card';
-import { ICard, RenderCards } from '../../Types';
+import { RenderCards } from '../../Types';
 
 class Main extends Component<Record<string, unknown>, Partial<RenderCards>> {
   constructor(props: Record<string, unknown>) {
@@ -32,32 +32,29 @@ class Main extends Component<Record<string, unknown>, Partial<RenderCards>> {
   }
   render() {
     const { error, isLoaded, allCountries } = this.state;
-    if (error) {
-      return <div>Error: {error}</div>;
-    } else if (!isLoaded) {
-      return <div>Loading...</div>;
-    } else {
-      return (
-        <div className={css.container} title="container-cards">
-          <Search></Search>
-          <ul className={css.wrapper}>
-            {allCountries?.map((el, i) => {
-              return (
-                <Card
-                  key={i}
-                  id={el.name}
-                  name={el.name}
-                  region={el.region}
-                  flag={el.flag}
-                  capital={el.capital}
-                  data-testid={`item-${i}`}
-                />
-              );
-            })}
-          </ul>
-        </div>
-      );
-    }
+    if (error) return <div>Error: {error}</div>;
+    if (!isLoaded) return <div>Loading...</div>;
+
+    const countries =
+      allCountries &&
+      allCountries.map((el, i) => (
+        <Card
+          key={i}
+          id={el.name}
+          name={el.name}
+          region={el.region}
+          flag={el.flag}
+          capital={el.capital}
+          data-testid={`item-${i}`}
+        />
+      ));
+
+    return (
+      <div className={css.container}>
+        <Search />
+        <ul className={css.wrapper}>{countries}</ul>
+      </div>
+    );
   }
 }
 

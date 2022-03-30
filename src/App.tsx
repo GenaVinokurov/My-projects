@@ -7,7 +7,6 @@ import AboutUs from './pages/AboutUs/AboutUs';
 import Error from './pages/Error/Error';
 
 function App() {
-  console.log('test');
   return (
     <div className="App">
       <Routes>

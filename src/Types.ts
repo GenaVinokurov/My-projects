@@ -1,4 +1,4 @@
-export interface ICard {
+export type CardType = {
   flag: string;
   name: string;
   region: string;
@@ -8,5 +8,5 @@ export interface ICard {
 export type RenderCards = {
   error: null;
   isLoaded: boolean;
-  allCountries?: ICard[];
+  allCountries?: CardType[];
 }

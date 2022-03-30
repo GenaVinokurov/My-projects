@@ -8,7 +8,7 @@ class Layout extends Component {
     return (
       <>
         <header className={css.container}>
-          <Nav></Nav>
+          <Nav />
         </header>
         <Outlet />
       </>
