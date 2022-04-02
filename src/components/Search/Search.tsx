@@ -1,36 +1,43 @@
 import React, { Component } from 'react';
-import css from './Search.module.css';
 
 interface IState {
-  search: string;
+  inputValue: string;
 }
 
-class Search extends Component<Record<string, unknown>, IState> {
+export default class Search extends Component<Record<string, unknown>, IState> {
   constructor(props: Record<string, unknown>) {
     super(props);
+    this.handleChange = this.handleChange.bind(this);
     this.state = {
-      search: localStorage.getItem('search') || '',
+      inputValue: '',
     };
   }
+
+  componentDidMount = () => this.setState({ inputValue: localStorage.getItem('inputValue') || '' });
+
+  componentWillUnmount = () => localStorage.setItem('inputValue', this.state.inputValue);
+
+  handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    this.setState({ inputValue: e.target.value });
+  };
+
   onClick() {
-    localStorage.setItem('search', this.state.search);
-  }
-  onChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const text = e.target.value;
-    this.setState({ search: text });
+    localStorage.setItem('inputValue', this.state.inputValue);
   }
   render() {
     return (
-      <div className={css.container}>
-        <label>
-          <input
-            type="text"
-            placeholder="Enter the text"
-            onChange={(e) => this.onChange(e)}
-            title="search"
-            value={this.state.search}
-          />
-        </label>
+      <div className="flex items-center pt-3 pb-6 gap-x-3">
+        <i className="fa-solid fa-magnifying-glass" />
+        <input
+          className="w-full p-1 rounded-md pl-2"
+          type="search"
+          color="warning"
+          value={this.state.inputValue}
+          onChange={this.handleChange}
+          placeholder="Search"
+          autoComplete="off"
+          data-testid="input-search"
+        />
         <button type="button" onClick={() => this.onClick()} title="button">
           Search
         </button>
@@ -38,5 +45,3 @@ class Search extends Component<Record<string, unknown>, IState> {
     );
   }
 }
-
-export default Search;
