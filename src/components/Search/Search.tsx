@@ -36,6 +36,7 @@ export default class Search extends Component<Record<string, unknown>, IState> {
           placeholder="Search"
           autoComplete="off"
           data-testid="input-search"
+          title="search"
         />
         <button type="button" onClick={() => this.onClick()} title="button">
           Search

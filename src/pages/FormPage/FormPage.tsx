@@ -75,19 +75,10 @@ class FormPage extends Component<unknown, FormState> {
       this.activeButton();
     } else this.disabledButton();
   };
-  // handlerImg = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   this.inputTextHandler(e);
-  //   const input = e.target as any;
-  //   const preview = this.preview;
-  //   const reader = new FileReader();
-  //   reader.onload = function () {
-  //     preview.current.innerHTML = `<img src="${input.result}"`
-  //   }
-  // }
   render() {
     return (
       <div className={css.container}>
-        <form action="#" className={css.form} onSubmit={this.handleSubmit}>
+        <form action="#" className={css.form} onSubmit={this.handleSubmit} data-testid="form">
           <div className={css.wrapper__input}>
             <input
               type="text"
@@ -101,6 +92,7 @@ class FormPage extends Component<unknown, FormState> {
               maxLength={12}
               pattern="[A-Za-z]{2,12}"
               title="Use latin letters"
+              data-testid="name"
             />
             <input
               type="text"
@@ -114,6 +106,7 @@ class FormPage extends Component<unknown, FormState> {
               maxLength={18}
               pattern="[A-Za-z]{2,18}"
               title="Use latin letters"
+              data-testid="lastName"
             />
           </div>
           <input
@@ -123,8 +116,15 @@ class FormPage extends Component<unknown, FormState> {
             ref={this.date}
             required
             onChange={(e) => this.inputTextHandler(e)}
+            data-testid="date"
           />
-          <select name="countries" id="selectCountries" className={css.select} ref={this.countries}>
+          <select
+            name="countries"
+            id="selectCountries"
+            className={css.select}
+            ref={this.countries}
+            data-testid="countries"
+          >
             <option value="Belarus">Belarus</option>
             <option value="Ukraine">Ukraine</option>
             <option value="Poland">Poland</option>
