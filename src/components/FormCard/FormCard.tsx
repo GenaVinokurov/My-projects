@@ -9,10 +9,10 @@ class FormCard extends Component<Partial<FormCardType>> {
   render() {
     return (
       <div className={css.container}>
-        <p className={css.text}>{this.props.name}</p>
-        <p className={css.text}>{this.props.lastName}</p>
-        <p className={css.text}>{this.props.date}</p>
-        <p className={css.text}>{this.props.countries}</p>
+        <p className={css.text}>Name: {this.props.name}</p>
+        <p className={css.text}>Last name: {this.props.lastName}</p>
+        <p className={css.text}>Date: {this.props.date}</p>
+        <p className={css.text}>Country: {this.props.countries}</p>
       </div>
     );
   }

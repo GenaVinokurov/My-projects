@@ -15,6 +15,7 @@ class Input extends Component<InputType, string> {
         value={this.props.value}
         id={this.props.id}
         ref={this.props.ref}
+        required
       />
     );
   }

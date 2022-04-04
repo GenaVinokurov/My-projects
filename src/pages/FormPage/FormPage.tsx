@@ -11,6 +11,8 @@ class FormPage extends Component<unknown, FormState> {
   date: React.RefObject<HTMLInputElement>;
   countries: React.RefObject<HTMLSelectElement>;
   img: React.RefObject<HTMLInputElement>;
+  notify: React.RefObject<HTMLInputElement>;
+  preview: React.RefObject<HTMLInputElement>;
   constructor(props: Record<string, unknown>) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,8 +21,11 @@ class FormPage extends Component<unknown, FormState> {
     this.date = React.createRef();
     this.countries = React.createRef();
     this.img = React.createRef();
+    this.notify = React.createRef();
+    this.preview = React.createRef();
     this.state = {
       formData: [],
+      isDisabled: true,
     };
   }
   handleSubmit(event: FormEvent) {
@@ -45,16 +50,44 @@ class FormPage extends Component<unknown, FormState> {
     this.date.current!.value = '';
     this.countries.current!.value = 'Belarus';
     this.img.current!.value = '';
+    this.notify.current!.value = '';
   }
   addCard = (newCard: FormCardType) => {
     this.setState({
       formData: this.state.formData.concat(newCard),
     });
   };
+  activeButton = () => this.setState({ isDisabled: false });
+  disabledButton = () => this.setState({ isDisabled: true });
+  inputTextHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (
+      this.name.current &&
+      this.name.current.checkValidity() &&
+      this.lastName.current &&
+      this.lastName.current.checkValidity() &&
+      this.date.current &&
+      this.date.current.checkValidity() &&
+      this.img.current &&
+      this.img.current.checkValidity() &&
+      this.notify.current &&
+      this.notify.current.checkValidity()
+    ) {
+      this.activeButton();
+    } else this.disabledButton();
+  };
+  // handlerImg = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   this.inputTextHandler(e);
+  //   const input = e.target as any;
+  //   const preview = this.preview;
+  //   const reader = new FileReader();
+  //   reader.onload = function () {
+  //     preview.current.innerHTML = `<img src="${input.result}"`
+  //   }
+  // }
   render() {
     return (
       <div className={css.container}>
-        <form action="" className={css.form} onSubmit={this.handleSubmit}>
+        <form action="#" className={css.form} onSubmit={this.handleSubmit}>
           <div className={css.wrapper__input}>
             <input
               type="text"
@@ -63,6 +96,11 @@ class FormPage extends Component<unknown, FormState> {
               id="name"
               ref={this.name}
               required
+              onChange={(e) => this.inputTextHandler(e)}
+              minLength={2}
+              maxLength={12}
+              pattern="[A-Za-z]{2,12}"
+              title="Use latin letters"
             />
             <input
               type="text"
@@ -71,9 +109,21 @@ class FormPage extends Component<unknown, FormState> {
               id="lastName"
               ref={this.lastName}
               required
+              onChange={(e) => this.inputTextHandler(e)}
+              minLength={2}
+              maxLength={18}
+              pattern="[A-Za-z]{2,18}"
+              title="Use latin letters"
             />
           </div>
-          <input type="date" className={css.input} id="date" ref={this.date} />
+          <input
+            type="date"
+            className={css.input}
+            id="date"
+            ref={this.date}
+            required
+            onChange={(e) => this.inputTextHandler(e)}
+          />
           <select name="countries" id="selectCountries" className={css.select} ref={this.countries}>
             <option value="Belarus">Belarus</option>
             <option value="Ukraine">Ukraine</option>
@@ -85,20 +135,44 @@ class FormPage extends Component<unknown, FormState> {
             <p>I want to be notified about promotions:</p>
             <Switch />
           </div>
-          <label className={css.img__label}>
-            Загрузить фото:
-            <input type="file" name="img" ref={this.img} />
-          </label>
+          <div className={css.img__wrapper}>
+            <label className={css.img__label}>
+              <input
+                type="file"
+                className={css.input__img}
+                name="img"
+                ref={this.img}
+                accept=".jpg .png .gif"
+                required
+                onChange={(e) => this.inputTextHandler(e)}
+              />
+              <button className={css.img__btn}>Choose image</button>
+              <div className={css.img__preview} id="preview" ref={this.preview}></div>
+            </label>
+          </div>
           <div className={css.wrapper}>
             <label htmlFor="checkbox">Agree to data processing:</label>
-            <Input type="checkbox" placeholder="Last name" id="checkbox" />
+            <input
+              type="checkbox"
+              placeholder="Last name"
+              id="checkbox"
+              ref={this.notify}
+              required
+              title="Choose it"
+            />
           </div>
-          <input type="submit" className={css.btn__submit} placeholder="submit" />
+          <input
+            type="submit"
+            className={css.btn__submit}
+            id="btnSubmit"
+            placeholder="submit"
+            disabled={this.state.isDisabled}
+          />
         </form>
         <div className={css.card__wrapper}>
           {this.state.formData.map((card, i) => (
             <div key={card.date + i} className={css.container__card}>
-              {this.img.current?.files && <img src={card.img} alt="" />}
+              {this.img.current?.files && <img src={card.img} alt="img" />}
               <FormCard
                 name={card.name}
                 lastName={card.lastName}

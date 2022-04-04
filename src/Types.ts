@@ -21,7 +21,8 @@ export type InputType = {
   ref?: React.RefObject<HTMLInputElement>
 }
 export type FormState = {
-  formData: FormCardType[]
+  formData: FormCardType[];
+  isDisabled: boolean;
 }
 export type FormCardType = {
   name: string;
