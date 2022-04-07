@@ -1,6 +1,5 @@
 import React, { Component, FormEvent } from 'react';
 import css from './FormPage.module.css';
-import Input from '../../components/Input/Input';
 import Switch from '../../components/Switch/Switch';
 import { FormCardType, FormState } from '../../Types';
 import FormCard from '../../components/FormCard/FormCard';
@@ -94,6 +93,7 @@ class FormPage extends Component<unknown, FormState> {
               title="Use latin letters"
               data-testid="name"
             />
+            <label htmlFor="name" id={css.labelName}></label>
             <input
               type="text"
               className={css.input}
@@ -142,7 +142,6 @@ class FormPage extends Component<unknown, FormState> {
                 className={css.input__img}
                 name="img"
                 ref={this.img}
-                accept=".jpg .png .gif"
                 required
                 onChange={(e) => this.inputTextHandler(e)}
               />
@@ -169,19 +168,21 @@ class FormPage extends Component<unknown, FormState> {
             disabled={this.state.isDisabled}
           />
         </form>
-        <div className={css.card__wrapper}>
-          {this.state.formData.map((card, i) => (
-            <div key={card.date + i} className={css.container__card}>
-              {this.img.current?.files && <img src={card.img} alt="img" />}
-              <FormCard
-                name={card.name}
-                lastName={card.lastName}
-                countries={card.countries}
-                date={card.date}
-              />
-            </div>
-          ))}
-        </div>
+        {this.state.formData?.length > 0 && (
+          <div className={css.card__wrapper}>
+            {this.state.formData.map((card, i) => (
+              <div key={card.date + i} className={css.container__card}>
+                {this.img.current?.files && <img src={card.img} alt="img" />}
+                <FormCard
+                  name={card.name}
+                  lastName={card.lastName}
+                  countries={card.countries}
+                  date={card.date}
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     );
   }

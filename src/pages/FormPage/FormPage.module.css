@@ -88,6 +88,7 @@
   border: 1px solid #000;
   padding: 0 15px;
   margin-bottom: 20px;
+  position: relative;
 }
 
 .card__wrapper {
@@ -145,4 +146,24 @@ select:focus {
 
 input:invalid {
   border: 1px solid red;
+}
+
+#labelName {
+  position: absolute;
+}
+
+#labelName::after {
+  position: absolute;
+  content: 'Use latin letters';
+  display: none;
+  left: 0;
+  top: 0;
+  width: 100px;
+  height: 30px;
+  background-color: #fff;
+  color: #000;
+}
+
+#name:focus+#labelName::after {
+  display: block;
 }
