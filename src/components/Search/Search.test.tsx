@@ -1,6 +1,7 @@
+import React from 'react';
 import { render, fireEvent } from "@testing-library/react";
 import Search from "./Search";
-import React from 'react';
+
 
 it('should render  input', () => {
   const { queryByTitle } = render(<Search />);

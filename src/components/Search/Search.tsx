@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import css from './Search.module.css';
 
 interface IState {
   inputValue: string;
@@ -26,10 +27,8 @@ export default class Search extends Component<Record<string, unknown>, IState> {
   }
   render() {
     return (
-      <div className="flex items-center pt-3 pb-6 gap-x-3">
-        <i className="fa-solid fa-magnifying-glass" />
+      <div className={css.container}>
         <input
-          className="w-full p-1 rounded-md pl-2"
           type="search"
           color="warning"
           value={this.state.inputValue}
@@ -37,6 +36,7 @@ export default class Search extends Component<Record<string, unknown>, IState> {
           placeholder="Search"
           autoComplete="off"
           data-testid="input-search"
+          title="search"
         />
         <button type="button" onClick={() => this.onClick()} title="button">
           Search

@@ -17,6 +17,11 @@ class Nav extends Component {
               About Us
             </Link>
           </li>
+          <li>
+            <Link to="/form" className={css.link}>
+              Form
+            </Link>
+          </li>
         </ul>
       </nav>
     );
