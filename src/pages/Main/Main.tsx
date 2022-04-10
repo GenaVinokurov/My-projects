@@ -51,7 +51,12 @@ class Main extends Component<Record<string, unknown>, Partial<RenderCards>> {
 
     return (
       <div className={css.container}>
-        <Search />
+        {console.log(this.state)}
+        <Search
+          state={this.state.allCountries}
+          isLoaded={this.state.isLoaded}
+          error={this.state.error}
+        />
         <ul className={css.wrapper}>{countries}</ul>
       </div>
     );
