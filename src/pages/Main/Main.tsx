@@ -40,15 +40,26 @@ class Main extends Component<Record<string, unknown>, Partial<RenderCards>> {
     if (str === '') {
       this.allDownload();
     } else {
-      const rez = await fetch(`https://restcountries.com/v2/name/${str}`)
+      fetch(`https://restcountries.com/v2/name/${str}`)
         .then((res) => res.json())
-        .then((result) => {
-          return result;
-        });
-      this.setState({
-        isLoaded: true,
-        allCountries: rez as unknown as CardType[],
-      });
+        .then(
+          (result) => {
+            if (result.status >= 200 && result.status < 300) {
+              this.setState({
+                isLoaded: true,
+                allCountries: result,
+              });
+            } else {
+              alert('Wrong name country');
+            }
+          },
+          (error) => {
+            this.setState({
+              isLoaded: true,
+              error,
+            });
+          }
+        );
     }
   };
   toggleModal = (name: string, region: string, capital: string) => {
