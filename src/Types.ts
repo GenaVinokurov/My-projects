@@ -6,11 +6,16 @@ export type CardType = {
   region: string;
   id?: string;
   capital: string;
+  onOpen: () => void;
 }
 export type RenderCards = {
   error: null;
   isLoaded: boolean;
   allCountries?: CardType[];
+  isModalOpen: boolean;
+  countryName: string;
+  countryRegion: string;
+  countryCapital: string;
 }
 export type InputType = {
   type: string;

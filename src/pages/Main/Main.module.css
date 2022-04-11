@@ -5,10 +5,25 @@
   justify-content: center;
   padding: 25px;
 }
+
 .wrapper {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 15px;
   margin: 0;
   padding: 0;
+}
+
+.btn__more {
+  padding: 15px 20px;
+  background-color: #fff;
+  color: #000;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.btn__more:hover {
+  background-color: #80fa7d;
 }

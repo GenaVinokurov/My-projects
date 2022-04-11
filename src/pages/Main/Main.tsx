@@ -3,7 +3,7 @@ import Search from '../../components/Search/Search';
 import css from './Main.module.css';
 import Card from '../../components/Card/Card';
 import { CardType, RenderCards } from '../../Types';
-
+import Modal from '../../components/Modal/Modal';
 class Main extends Component<Record<string, unknown>, Partial<RenderCards>> {
   constructor(props: Record<string, unknown>) {
     super(props);
@@ -11,32 +11,69 @@ class Main extends Component<Record<string, unknown>, Partial<RenderCards>> {
       error: null,
       isLoaded: true,
       allCountries: [],
+      isModalOpen: false,
     };
   }
-  componentDidMount() {}
+  allDownload() {
+    fetch('https://restcountries.com/v2/all')
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            allCountries: result,
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error,
+          });
+        }
+      );
+  }
+  componentDidMount() {
+    this.allDownload();
+  }
 
   onSearch = async (str: string) => {
-    const rez = await fetch(`https://restcountries.com/v2/name/${str}`)
-      .then((res) => res.json())
-      .then((result) => {
-        return result;
+    if (str === '') {
+      this.allDownload();
+    } else {
+      const rez = await fetch(`https://restcountries.com/v2/name/${str}`)
+        .then((res) => res.json())
+        .then((result) => {
+          return result;
+        });
+      this.setState({
+        isLoaded: true,
+        allCountries: rez as unknown as CardType[],
       });
-
-    this.setState({
-      isLoaded: true,
-      allCountries: rez as unknown as CardType[],
-    });
+    }
   };
-
+  toggleModal = (name: string, region: string, capital: string) => {
+    this.setState((state) => ({
+      isModalOpen: !state.isModalOpen,
+      countryName: name || '',
+      countryRegion: region || '',
+      countryCapital: capital || '',
+    }));
+  };
   render() {
     const { error, isLoaded, allCountries } = this.state;
-    console.log('allCountries', allCountries);
     if (error) return <div>Error: {error}</div>;
     if (!isLoaded) return <div>Loading...</div>;
 
     return (
       <div className={css.container}>
-        {console.log(this.state)}
+        {this.state.isModalOpen && (
+          <Modal
+            onClose={() => this.toggleModal('', '', '')}
+            name={this.state.countryName}
+            region={this.state.countryRegion}
+            capital={this.state.countryCapital}
+          ></Modal>
+        )}
         <Search
           onSearch={this.onSearch}
           state={this.state.allCountries}
@@ -54,7 +91,14 @@ class Main extends Component<Record<string, unknown>, Partial<RenderCards>> {
                 flag={el.flag}
                 capital={el.capital}
                 data-testid={`item-${i}`}
-              />
+              >
+                <button
+                  className={css.btn__more}
+                  onClick={() => this.toggleModal(el.name, el.region, el.capital)}
+                >
+                  More information
+                </button>
+              </Card>
             ))}
         </ul>
       </div>
