@@ -44,8 +44,11 @@ class Main extends Component<Record<string, unknown>, Partial<RenderCards>> {
         .then((res) => res.json())
         .then(
           (result) => {
-            if (result.status >= 200 && result.status < 300) {
+            console.log(result);
+            if ((result.status >= 200 && result.status < 300) || result.status === undefined) {
               return result;
+            } else {
+              alert('Wrong name country');
             }
           },
           (error) => {
