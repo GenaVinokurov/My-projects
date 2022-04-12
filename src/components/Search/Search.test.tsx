@@ -1,11 +1,12 @@
 import React from 'react';
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, screen } from "@testing-library/react";
 import Search from "./Search";
+import Main from "../../pages/Main/Main";
 
-
-it('should render  input', () => {
-  const { queryByTitle } = render(<Search />);
-  const input = queryByTitle('search');
+it('should render  input', async () => {
+  render(<Main />);
+  render(<Search />);
+  const input = await screen.findByTestId('input-search');
   expect(input).toBeTruthy();
 });
 

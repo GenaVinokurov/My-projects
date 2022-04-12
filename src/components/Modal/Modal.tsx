@@ -1,11 +1,11 @@
-import React, { Component, ReactNode } from 'react';
+import React, { Component } from 'react';
 import css from './Modal.module.css';
 import ReactDOM from 'react-dom';
 type ModalType = {
   onClose: () => void;
-  name: string | undefined;
-  region: string | undefined;
-  capital: string | undefined;
+  name?: string;
+  region?: string;
+  capital?: string;
 };
 
 class Modal extends Component<ModalType> {

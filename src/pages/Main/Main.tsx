@@ -9,7 +9,7 @@ class Main extends Component<Record<string, unknown>, Partial<RenderCards>> {
     super(props);
     this.state = {
       error: null,
-      isLoaded: true,
+      isLoaded: false,
       allCountries: [],
       isModalOpen: false,
     };
@@ -44,11 +44,10 @@ class Main extends Component<Record<string, unknown>, Partial<RenderCards>> {
         .then((res) => res.json())
         .then(
           (result) => {
-            console.log(result);
             if ((result.status >= 200 && result.status < 300) || result.status === undefined) {
               return result;
             } else {
-              alert('Wrong name country');
+              alert('No result');
             }
           },
           (error) => {
@@ -73,7 +72,8 @@ class Main extends Component<Record<string, unknown>, Partial<RenderCards>> {
     }));
   };
   render() {
-    const { error, isLoaded, allCountries } = this.state;
+    const { error, isLoaded, allCountries, countryName, countryCapital, countryRegion } =
+      this.state;
     if (error) return <div>Error: {error}</div>;
     if (!isLoaded) return <div>Loading...</div>;
 
@@ -82,29 +82,16 @@ class Main extends Component<Record<string, unknown>, Partial<RenderCards>> {
         {this.state.isModalOpen && (
           <Modal
             onClose={() => this.toggleModal('', '', '')}
-            name={this.state.countryName}
-            region={this.state.countryRegion}
-            capital={this.state.countryCapital}
+            name={countryName}
+            region={countryRegion}
+            capital={countryCapital}
           ></Modal>
         )}
-        <Search
-          onSearch={this.onSearch}
-          state={this.state.allCountries}
-          isLoaded={this.state.isLoaded}
-          error={this.state.error}
-        />
+        <Search onSearch={this.onSearch} state={allCountries} isLoaded={isLoaded} error={error} />
         <ul className={css.wrapper}>
           {allCountries &&
             allCountries.map((el, i) => (
-              <Card
-                key={i}
-                id={el.name}
-                name={el.name}
-                region={el.region}
-                flag={el.flag}
-                capital={el.capital}
-                data-testid={`item-${i}`}
-              >
+              <Card key={i} {...el} data-testid={`item-${i}`}>
                 <button
                   className={css.btn__more}
                   onClick={() => this.toggleModal(el.name, el.region, el.capital)}
