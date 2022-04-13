@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Layout from './components/Layout/Layout';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
@@ -7,19 +7,21 @@ import AboutUs from './pages/AboutUs/AboutUs';
 import Error from './pages/Error/Error';
 import FormPage from './pages/FormPage/FormPage';
 
-function App() {
-  return (
-    <div className="App">
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Main />} />
-          <Route path="about" element={<AboutUs />} />
-          <Route path="form" element={<FormPage />} />
-          <Route path="*" element={<Error />} />
-        </Route>
-      </Routes>
-    </div>
-  );
+class App extends Component<Record<string, unknown>> {
+  render() {
+    return (
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Main />} />
+            <Route path="about" element={<AboutUs />} />
+            <Route path="form" element={<FormPage />} />
+            <Route path="*" element={<Error />} />
+          </Route>
+        </Routes>
+      </div>
+    );
+  }
 }
 
 export default App;

@@ -10,7 +10,9 @@ describe('mainTest', () => {
   })
   it('test all cards', async () => {
     render(<Main />);
-    const cardElements = await screen.findAllByTestId(/card/i);
-    expect(cardElements.length).toBe(250);
+    setTimeout(() => {
+      const cardElements = screen.getAllByTestId(/card/i);
+      expect(cardElements.length).toBe(250);
+    }, 3000)
   })
 })

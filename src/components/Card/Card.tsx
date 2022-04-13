@@ -17,8 +17,7 @@ class Card extends Component<Partial<CardType>> {
         <img src={this.props.flag} alt="img-flag" className={css.flag} />
         <div className={css.description}>
           <h3 className={css.name}>{this.props.name}</h3>
-          <p className={css.text}>Region: {this.props.region}</p>
-          <p className={css.text}>Capital: {this.props.capital}</p>
+          {this.props.children}
         </div>
       </li>
     );

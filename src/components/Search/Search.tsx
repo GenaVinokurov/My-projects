@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
 import css from './Search.module.css';
+import { CardType } from '../../Types';
+import Main from '../../pages/Main/Main';
 
 interface IState {
   inputValue: string;
 }
+type PropsTypes = {
+  allCountries: CardType[];
+  onSearch: (arg1: string) => void;
+};
 
 export default class Search extends Component<Record<string, unknown>, IState> {
-  constructor(props: Record<string, unknown>) {
+  onSearch: (arg1: string) => void;
+  constructor(props: PropsTypes) {
     super(props);
+    this.onSearch = props.onSearch.bind(Main);
     this.handleChange = this.handleChange.bind(this);
     this.state = {
-      inputValue: '',
+      inputValue: localStorage.getItem('inputValue') || '',
     };
   }
-
-  componentDidMount = () => this.setState({ inputValue: localStorage.getItem('inputValue') || '' });
 
   componentWillUnmount = () => localStorage.setItem('inputValue', this.state.inputValue);
 
@@ -23,6 +29,7 @@ export default class Search extends Component<Record<string, unknown>, IState> {
   };
 
   onClick() {
+    this.onSearch(this.state.inputValue);
     localStorage.setItem('inputValue', this.state.inputValue);
   }
   render() {
