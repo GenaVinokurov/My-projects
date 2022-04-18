@@ -31,6 +31,7 @@ export type FormCardType = {
   date: string;
   countries: string;
   img?: string;
+  notify?: string;
 }
 export type ModalType = {
   onClose: () => void;

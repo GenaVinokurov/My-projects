@@ -148,22 +148,16 @@ input:invalid {
   border: 1px solid red;
 }
 
-#labelName {
-  position: absolute;
+.container__input {
+  position: relative;
 }
 
-#labelName::after {
+.message {
   position: absolute;
-  content: 'Use latin letters';
-  display: none;
-  left: 0;
-  top: 0;
-  width: 100px;
-  height: 30px;
-  background-color: #fff;
-  color: #000;
-}
-
-#name:focus+#labelName::after {
-  display: block;
+  top: -50px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #be0000;
+  padding: 5px;
+  border-radius: 4px;
 }
