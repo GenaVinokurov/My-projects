@@ -1,46 +1,41 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import Search from '../../components/Search/Search';
 import css from './Main.module.css';
 import Card from '../../components/Card/Card';
 import { CardType, RenderCards } from '../../Types';
 import Modal from '../../components/Modal/Modal';
-class Main extends Component<Record<string, unknown>, Partial<RenderCards>> {
-  constructor(props: Record<string, unknown>) {
-    super(props);
-    this.state = {
-      error: null,
-      isLoaded: false,
-      allCountries: [],
-      isModalOpen: false,
-    };
-  }
-  allDownload() {
+
+const Main: React.FC = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [allCountries, setAllCountries] = useState<CardType[]>([]);
+  const [error, setError] = useState();
+  const [isModal, setIsModal] = useState(false);
+  const [countryName, setCountryName] = useState<string>('');
+  const [countryRegion, setCountryRegion] = useState<string>('');
+  const [countryCapital, setCountryCapital] = useState<string>('');
+  const allDownload = () => {
     fetch('https://restcountries.com/v2/all')
       .then((res) => res.json())
       .then(
         (result) => {
-          this.setState({
-            isLoaded: true,
-            allCountries: result,
-          });
+          setIsLoaded(true);
+          setAllCountries(result);
         },
         (error) => {
-          this.setState({
-            isLoaded: true,
-            error,
-          });
+          setIsLoaded(true);
+          setError(error);
         }
       );
-  }
-  componentDidMount() {
-    this.allDownload();
-  }
+  };
+  useEffect(() => {
+    allDownload();
+  }, []);
 
-  onSearch = async (str: string) => {
+  const onSearch = async (str: string) => {
     if (str === '') {
-      this.allDownload();
+      allDownload();
     } else {
-      const rez = await fetch(`https://restcountries.com/v2/name/${str}`)
+      const res = await fetch(`https://restcountries.com/v2/name/${str}`)
         .then((res) => res.json())
         .then(
           (result) => {
@@ -51,59 +46,48 @@ class Main extends Component<Record<string, unknown>, Partial<RenderCards>> {
             }
           },
           (error) => {
-            this.setState({
-              isLoaded: true,
-              error,
-            });
+            setIsLoaded(true);
+            setError(error);
           }
         );
-      this.setState({
-        isLoaded: true,
-        allCountries: rez as unknown as CardType[],
-      });
+      setIsLoaded(true);
+      setAllCountries(res) as unknown as CardType[];
     }
   };
-  toggleModal = (name: string, region: string, capital: string) => {
-    this.setState((state) => ({
-      isModalOpen: !state.isModalOpen,
-      countryName: name || '',
-      countryRegion: region || '',
-      countryCapital: capital || '',
-    }));
+  const toggleModal = (name: string, region: string, capital: string) => {
+    setIsModal(!isModal);
+    setCountryName(name || '');
+    setCountryRegion(region || '');
+    setCountryCapital(capital || '');
   };
-  render() {
-    const { error, isLoaded, allCountries, countryName, countryCapital, countryRegion } =
-      this.state;
-    if (error) return <div>Error: {error}</div>;
-    if (!isLoaded) return <div>Loading...</div>;
-
-    return (
-      <div className={css.container}>
-        {this.state.isModalOpen && (
-          <Modal
-            onClose={() => this.toggleModal('', '', '')}
-            name={countryName}
-            region={countryRegion}
-            capital={countryCapital}
-          ></Modal>
-        )}
-        <Search onSearch={this.onSearch} state={allCountries} isLoaded={isLoaded} error={error} />
-        <ul className={css.wrapper}>
-          {allCountries &&
-            allCountries.map((el, i) => (
-              <Card key={i} {...el} data-testid={`item-${i}`}>
-                <button
-                  className={css.btn__more}
-                  onClick={() => this.toggleModal(el.name, el.region, el.capital)}
-                >
-                  More information
-                </button>
-              </Card>
-            ))}
-        </ul>
-      </div>
-    );
-  }
-}
+  if (error) return <div>Error: {error}</div>;
+  if (!isLoaded) return <div>Loading...</div>;
+  return (
+    <div className={css.container}>
+      {isModal && (
+        <Modal
+          onClose={() => toggleModal('', '', '')}
+          name={countryName}
+          region={countryRegion}
+          capital={countryCapital}
+        ></Modal>
+      )}
+      <Search onSearch={onSearch} />
+      <ul className={css.wrapper}>
+        {allCountries &&
+          allCountries.map((el, i) => (
+            <Card key={i} {...el}>
+              <button
+                className={css.btn__more}
+                onClick={() => toggleModal(el.name, el.region, el.capital)}
+              >
+                More information
+              </button>
+            </Card>
+          ))}
+      </ul>
+    </div>
+  );
+};
 
 export default Main;
