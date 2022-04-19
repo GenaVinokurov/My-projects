@@ -1,19 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Nav from '../Nav/Nav';
 import css from './Layout.module.css';
 import { Outlet } from 'react-router-dom';
 
-class Layout extends Component {
-  render() {
-    return (
-      <>
-        <header className={css.container}>
-          <Nav />
-        </header>
-        <Outlet />
-      </>
-    );
-  }
-}
+const Layout = () => {
+  return (
+    <>
+      <header className={css.container}>
+        <Nav />
+      </header>
+      <Outlet />
+    </>
+  );
+};
 
 export default Layout;

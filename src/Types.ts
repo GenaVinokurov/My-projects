@@ -6,7 +6,7 @@ export type CardType = {
   region: string;
   id?: string;
   capital: string;
-  onOpen: () => void;
+  onOpen?: () => void;
 }
 export type RenderCards = {
   error: null;
@@ -25,14 +25,17 @@ export type InputType = {
   onChange?: ({ target: value }: { target: string }) => void;
   ref?: React.RefObject<HTMLInputElement>
 }
-export type FormState = {
-  formData: FormCardType[];
-  isDisabled: boolean;
-}
 export type FormCardType = {
   name: string;
   lastName: string;
   date: string;
   countries: string;
-  img: string;
+  img?: string;
+  notify?: string;
 }
+export type ModalType = {
+  onClose: () => void;
+  name?: string;
+  region?: string;
+  capital?: string;
+};

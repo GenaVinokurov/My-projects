@@ -1,25 +1,23 @@
 import React from 'react';
 import { render, fireEvent, screen } from "@testing-library/react";
-import Search from "./Search";
 import Main from "../../pages/Main/Main";
 
 it('should render  input', async () => {
   render(<Main />);
-  render(<Search />);
   const input = await screen.findByTestId('input-search');
   expect(input).toBeTruthy();
 });
 
-it('should render  button', () => {
-  const { queryByTitle } = render(<Search />);
-  const button = queryByTitle('button');
+it('should render  button', async () => {
+  render(<Main />);
+  const button = await screen.findByTestId('button-search');
   expect(button).toBeTruthy();
 });
 
 describe('Search or Search component', () => {
-  it('onChange', () => {
-    const { queryByTitle } = render(<Search />);
-    const input = queryByTitle('search') as HTMLInputElement;
+  it('onChange', async () => {
+    render(<Main />);
+    const input = await screen.findByTestId('input-search') as HTMLInputElement;
     fireEvent.change(input, { target: { value: "testValue" } });
     expect(input.value).toBe("testValue");
   });
