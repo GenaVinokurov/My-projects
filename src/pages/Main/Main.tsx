@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import Search from '../../components/Search/Search';
 import css from './Main.module.css';
 import Card from '../../components/Card/Card';
-import { CardType, RenderCards } from '../../Types';
+import { CardType } from '../../Types';
 import Modal from '../../components/Modal/Modal';
 
 const Main: React.FC = () => {
@@ -13,8 +13,16 @@ const Main: React.FC = () => {
   const [countryName, setCountryName] = useState<string>('');
   const [countryRegion, setCountryRegion] = useState<string>('');
   const [countryCapital, setCountryCapital] = useState<string>('');
+  const [sort, setSort] = useState<string>('all');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [countriesPerPage, setCountriesPerPage] = useState(10);
+
+  const lastCountryIndex = currentPage * countriesPerPage;
+  const firstCountryIndex = lastCountryIndex - countriesPerPage;
+  const currentCountry = allCountries.slice(firstCountryIndex, lastCountryIndex);
+
   const allDownload = () => {
-    fetch('https://restcountries.com/v2/all')
+    fetch(`https://restcountries.com/v2/${sort}`)
       .then((res) => res.json())
       .then(
         (result) => {
@@ -29,7 +37,7 @@ const Main: React.FC = () => {
   };
   useEffect(() => {
     allDownload();
-  }, []);
+  }, [sort]);
 
   const onSearch = async (str: string) => {
     if (str === '') {
@@ -60,6 +68,10 @@ const Main: React.FC = () => {
     setCountryRegion(region || '');
     setCountryCapital(capital || '');
   };
+  const changeValueSort = (e: ChangeEvent) => {
+    const el = e.target as HTMLSelectElement;
+    setSort(el.value);
+  };
   if (error) return <div>Error: {error}</div>;
   if (!isLoaded) return <div>Loading...</div>;
   return (
@@ -73,6 +85,42 @@ const Main: React.FC = () => {
         ></Modal>
       )}
       <Search onSearch={onSearch} />
+
+      <div className={css.sort__container}>
+        <div>
+          <h3 className={css.sort__title}>Regional bloc</h3>
+          <select
+            className={css.sort}
+            onChange={(e) => {
+              changeValueSort(e);
+            }}
+          >
+            <option value="all">All nations</option>
+            <option value="/regionalbloc/EU">European union</option>
+            <option value="/regionalbloc/EEU">Eurasian Economic Union</option>
+            <option value="/regionalbloc/PA">Pacific Alliance</option>
+            <option value="/regionalbloc/ASEAN">Association of Southeast Asian Nations</option>
+            <option value="/regionalbloc/NAFTA">North American Free Trade Agreement</option>
+          </select>
+        </div>
+        <div>
+          <h3 className={css.sort__title}>LANGUAGE</h3>
+          <select
+            className={css.sort}
+            onChange={(e) => {
+              changeValueSort(e);
+            }}
+          >
+            <option value="all">All languages</option>
+            <option value="/lang/en">English</option>
+            <option value="/lang/es">Spanish</option>
+            <option value="/lang/ru">Russian</option>
+            <option value="/lang/fr">French</option>
+            <option value="/lang/de">German</option>
+          </select>
+        </div>
+      </div>
+
       <ul className={css.wrapper}>
         {allCountries &&
           allCountries.map((el, i) => (
