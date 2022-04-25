@@ -1,0 +1,33 @@
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.page__item {
+  font-size: 15px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #000;
+  list-style-type: none;
+  font-weight: 500;
+  margin: 5px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.page__item:hover {
+  background-color: aquamarine;
+}
+
+.page__link {
+  color: #000;
+  text-decoration: none;
+}
+
+.page__active {
+  background-color: rgb(5, 194, 40);
+}

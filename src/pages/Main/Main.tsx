@@ -4,6 +4,7 @@ import css from './Main.module.css';
 import Card from '../../components/Card/Card';
 import { CardType } from '../../Types';
 import Modal from '../../components/Modal/Modal';
+import Pagination from '../../components/Pagination/Pagination';
 
 const Main: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -16,10 +17,6 @@ const Main: React.FC = () => {
   const [sort, setSort] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
   const [countriesPerPage, setCountriesPerPage] = useState(10);
-
-  const lastCountryIndex = currentPage * countriesPerPage;
-  const firstCountryIndex = lastCountryIndex - countriesPerPage;
-  const currentCountry = allCountries.slice(firstCountryIndex, lastCountryIndex);
 
   const allDownload = () => {
     fetch(`https://restcountries.com/v2/${sort}`)
@@ -72,6 +69,12 @@ const Main: React.FC = () => {
     const el = e.target as HTMLSelectElement;
     setSort(el.value);
   };
+  const lastCountryIndex = currentPage * countriesPerPage;
+  const firstCountryIndex = lastCountryIndex - countriesPerPage;
+  const currentCountry = allCountries.slice(firstCountryIndex, lastCountryIndex);
+
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
   if (error) return <div>Error: {error}</div>;
   if (!isLoaded) return <div>Loading...</div>;
   return (
@@ -122,8 +125,8 @@ const Main: React.FC = () => {
       </div>
 
       <ul className={css.wrapper}>
-        {allCountries &&
-          allCountries.map((el, i) => (
+        {currentCountry &&
+          currentCountry.map((el, i) => (
             <Card key={i} {...el}>
               <button
                 className={css.btn__more}
@@ -134,6 +137,12 @@ const Main: React.FC = () => {
             </Card>
           ))}
       </ul>
+      <Pagination
+        countriesPerPage={countriesPerPage}
+        totalCountries={allCountries.length}
+        paginate={paginate}
+        currentPage={currentPage}
+      />
     </div>
   );
 };

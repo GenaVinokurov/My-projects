@@ -39,3 +39,9 @@ export type ModalType = {
   region?: string;
   capital?: string;
 };
+export type PaginationType = {
+  countriesPerPage: number;
+  totalCountries: number;
+  paginate: (pageNumber: number) => void;
+  currentPage: number;
+}
