@@ -1,10 +1,18 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import Search from '../../components/Search/Search';
 import css from './Main.module.css';
 import Card from '../../components/Card/Card';
 import { CardType } from '../../Types';
 import Modal from '../../components/Modal/Modal';
 import Pagination from '../../components/Pagination/Pagination';
+import {
+  BlocOptContext,
+  BlocOptContextType,
+  ContextType,
+  CountriesContext,
+  LangOptContext,
+  LangOptContextType,
+} from '../../Context';
 
 const Main: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -14,10 +22,11 @@ const Main: React.FC = () => {
   const [countryName, setCountryName] = useState<string>('');
   const [countryRegion, setCountryRegion] = useState<string>('');
   const [countryCapital, setCountryCapital] = useState<string>('');
-  const [sort, setSort] = useState<string>('all');
+  const { sort, setSort } = useContext(CountriesContext) as ContextType;
   const [currentPage, setCurrentPage] = useState(1);
-  const [countriesPerPage, setCountriesPerPage] = useState(10);
-
+  const [countriesPerPage] = useState(10);
+  const { defaultBlocOpt, setDefaultBlocOpt } = useContext(BlocOptContext) as BlocOptContextType;
+  const { defaultLangOpt, setDefaultLangOpt } = useContext(LangOptContext) as LangOptContextType;
   const allDownload = () => {
     fetch(`https://restcountries.com/v2/${sort}`)
       .then((res) => res.json())
@@ -67,6 +76,13 @@ const Main: React.FC = () => {
   };
   const changeValueSort = (e: ChangeEvent) => {
     const el = e.target as HTMLSelectElement;
+    if (el.id === 'bloc-opt') {
+      setDefaultBlocOpt(el.value);
+      setDefaultLangOpt('all');
+    } else {
+      setDefaultLangOpt(el.value);
+      setDefaultBlocOpt('all');
+    }
     setSort(el.value);
   };
   const lastCountryIndex = currentPage * countriesPerPage;
@@ -74,6 +90,15 @@ const Main: React.FC = () => {
   const currentCountry = allCountries.slice(firstCountryIndex, lastCountryIndex);
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  const blocOptions = [
+    { value: 'all', label: 'All nations' },
+    { value: '/regionalbloc/EU', label: 'European union' },
+    { value: '/regionalbloc/EEU', label: 'Eurasian Economic Union' },
+    { value: '/regionalbloc/PA', label: 'Pacific Alliance' },
+    { value: '/regionalbloc/ASEAN', label: 'Association of Southeast Asian Nations' },
+    { value: '/regionalbloc/NAFTA', label: 'North American Free Trade Agreement' },
+  ];
 
   if (error) return <div>Error: {error}</div>;
   if (!isLoaded) return <div>Loading...</div>;
@@ -94,22 +119,27 @@ const Main: React.FC = () => {
           <h3 className={css.sort__title}>Regional bloc</h3>
           <select
             className={css.sort}
+            value={defaultBlocOpt}
+            id="bloc-opt"
             onChange={(e) => {
               changeValueSort(e);
             }}
           >
-            <option value="all">All nations</option>
-            <option value="/regionalbloc/EU">European union</option>
-            <option value="/regionalbloc/EEU">Eurasian Economic Union</option>
-            <option value="/regionalbloc/PA">Pacific Alliance</option>
-            <option value="/regionalbloc/ASEAN">Association of Southeast Asian Nations</option>
-            <option value="/regionalbloc/NAFTA">North American Free Trade Agreement</option>
+            {blocOptions.map((el) => {
+              return (
+                <option value={el.value} key={el.value}>
+                  {el.label}
+                </option>
+              );
+            })}
           </select>
         </div>
         <div>
           <h3 className={css.sort__title}>LANGUAGE</h3>
           <select
             className={css.sort}
+            id="lang-opt"
+            value={defaultLangOpt}
             onChange={(e) => {
               changeValueSort(e);
             }}
