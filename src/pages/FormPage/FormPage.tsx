@@ -4,10 +4,10 @@ import css from './FormPage.module.css';
 import Switch from '../../components/Switch/Switch';
 import { FormCardType } from '../../Types';
 import FormCard from '../../components/FormCard/FormCard';
-import { formDataContext, FormDataContextType } from '../../Context';
+import { FormDataContext, FormDataContextType } from '../../Context';
 
 const FormPage: React.FC = () => {
-  const { formData, setFormData } = useContext(formDataContext) as FormDataContextType;
+  const { formData, setFormData } = useContext(FormDataContext) as FormDataContextType;
   const img = useRef() as React.RefObject<HTMLInputElement>;
   const preview = useRef() as React.RefObject<HTMLInputElement>;
   const {

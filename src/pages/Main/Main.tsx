@@ -3,9 +3,10 @@ import Search from '../../components/Search/Search';
 import css from './Main.module.css';
 import Card from '../../components/Card/Card';
 import { CardType } from '../../Types';
-import Modal from '../../components/Modal/Modal';
 import Pagination from '../../components/Pagination/Pagination';
 import {
+  AllCountriesContext,
+  AllCountriesContextType,
   BlocOptContext,
   BlocOptContextType,
   ContextType,
@@ -13,20 +14,23 @@ import {
   LangOptContext,
   LangOptContextType,
 } from '../../Context';
+import { useNavigate } from 'react-router-dom';
 
 const Main: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [allCountries, setAllCountries] = useState<CardType[]>([]);
+  const { allCountries, setAllCountries } = useContext(
+    AllCountriesContext
+  ) as AllCountriesContextType;
   const [error, setError] = useState();
-  const [isModal, setIsModal] = useState(false);
-  const [countryName, setCountryName] = useState<string>('');
-  const [countryRegion, setCountryRegion] = useState<string>('');
-  const [countryCapital, setCountryCapital] = useState<string>('');
   const { sort, setSort } = useContext(CountriesContext) as ContextType;
   const [currentPage, setCurrentPage] = useState(1);
   const [countriesPerPage] = useState(10);
   const { defaultBlocOpt, setDefaultBlocOpt } = useContext(BlocOptContext) as BlocOptContextType;
   const { defaultLangOpt, setDefaultLangOpt } = useContext(LangOptContext) as LangOptContextType;
+  const navigate = useNavigate();
+  const toMoreInfo = (id: number) => {
+    navigate('/more', { state: id });
+  };
   const allDownload = () => {
     fetch(`https://restcountries.com/v2/${sort}`)
       .then((res) => res.json())
@@ -68,12 +72,6 @@ const Main: React.FC = () => {
       setAllCountries(res) as unknown as CardType[];
     }
   };
-  const toggleModal = (name: string, region: string, capital: string) => {
-    setIsModal(!isModal);
-    setCountryName(name || '');
-    setCountryRegion(region || '');
-    setCountryCapital(capital || '');
-  };
   const changeValueSort = (e: ChangeEvent) => {
     const el = e.target as HTMLSelectElement;
     if (el.id === 'bloc-opt') {
@@ -104,14 +102,6 @@ const Main: React.FC = () => {
   if (!isLoaded) return <div>Loading...</div>;
   return (
     <div className={css.container}>
-      {isModal && (
-        <Modal
-          onClose={() => toggleModal('', '', '')}
-          name={countryName}
-          region={countryRegion}
-          capital={countryCapital}
-        ></Modal>
-      )}
       <Search onSearch={onSearch} />
 
       <div className={css.sort__container}>
@@ -153,15 +143,11 @@ const Main: React.FC = () => {
           </select>
         </div>
       </div>
-
       <ul className={css.wrapper}>
         {currentCountry &&
           currentCountry.map((el, i) => (
             <Card key={i} {...el}>
-              <button
-                className={css.btn__more}
-                onClick={() => toggleModal(el.name, el.region, el.capital)}
-              >
+              <button onClick={() => toMoreInfo(i)} className={css.btn__more}>
                 More information
               </button>
             </Card>
