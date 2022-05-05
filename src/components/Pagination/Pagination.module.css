@@ -4,7 +4,7 @@
   align-items: center;
 }
 
-.page__item {
+.item {
   font-size: 15px;
   width: 60px;
   height: 60px;
@@ -19,15 +19,15 @@
   transition: 0.4s;
 }
 
-.page__item:hover {
+.item:hover {
   background-color: aquamarine;
 }
 
-.page__link {
+.link {
   color: #000;
   text-decoration: none;
 }
 
-.page__active {
+.active {
   background-color: rgb(5, 194, 40);
 }

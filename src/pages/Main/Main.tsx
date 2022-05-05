@@ -4,19 +4,12 @@ import css from './Main.module.css';
 import Card from '../../components/Card/Card';
 import { CardType } from '../../Types';
 import Pagination from '../../components/Pagination/Pagination';
-import {
-  AllCountriesContext,
-  AllCountriesContextType,
-  BlocOptContext,
-  BlocOptContextType,
-  ContextType,
-  CountriesContext,
-  LangOptContext,
-  LangOptContextType,
-} from '../../Context';
+import { AllCountriesContext, OptContext, CountriesContext } from '../../Context';
+import { ContextType, OptContextType, AllCountriesContextType } from '../../Types';
 import { useNavigate } from 'react-router-dom';
 
 const Main: React.FC = () => {
+  const DATA = 'https://restcountries.com/v2/';
   const [isLoaded, setIsLoaded] = useState(false);
   const { allCountries, setAllCountries } = useContext(
     AllCountriesContext
@@ -25,14 +18,13 @@ const Main: React.FC = () => {
   const { sort, setSort } = useContext(CountriesContext) as ContextType;
   const [currentPage, setCurrentPage] = useState(1);
   const [countriesPerPage] = useState(10);
-  const { defaultBlocOpt, setDefaultBlocOpt } = useContext(BlocOptContext) as BlocOptContextType;
-  const { defaultLangOpt, setDefaultLangOpt } = useContext(LangOptContext) as LangOptContextType;
+  const { defaultOpt, setDefaultOpt } = useContext(OptContext) as OptContextType;
   const navigate = useNavigate();
   const toMoreInfo = (id: number) => {
     navigate('/more', { state: id });
   };
   const allDownload = () => {
-    fetch(`https://restcountries.com/v2/${sort}`)
+    fetch(`${DATA + sort}`)
       .then((res) => res.json())
       .then(
         (result) => {
@@ -53,7 +45,7 @@ const Main: React.FC = () => {
     if (str === '') {
       allDownload();
     } else {
-      const res = await fetch(`https://restcountries.com/v2/name/${str}`)
+      const res = await fetch(`${DATA + 'name/' + str}`)
         .then((res) => res.json())
         .then(
           (result) => {
@@ -75,11 +67,15 @@ const Main: React.FC = () => {
   const changeValueSort = (e: ChangeEvent) => {
     const el = e.target as HTMLSelectElement;
     if (el.id === 'bloc-opt') {
-      setDefaultBlocOpt(el.value);
-      setDefaultLangOpt('all');
+      setDefaultOpt({
+        bloc: el.value,
+        lang: 'all',
+      });
     } else {
-      setDefaultLangOpt(el.value);
-      setDefaultBlocOpt('all');
+      setDefaultOpt({
+        bloc: 'all',
+        lang: el.value,
+      });
     }
     setSort(el.value);
   };
@@ -97,6 +93,14 @@ const Main: React.FC = () => {
     { value: '/regionalbloc/ASEAN', label: 'Association of Southeast Asian Nations' },
     { value: '/regionalbloc/NAFTA', label: 'North American Free Trade Agreement' },
   ];
+  const langOptions = [
+    { value: 'all', label: 'All nations' },
+    { value: '/lang/en', label: 'English' },
+    { value: '/lang/es', label: 'Spanish' },
+    { value: '/lang/ru', label: 'Russian' },
+    { value: '/lang/fr', label: 'French' },
+    { value: '/lang/de', label: 'German' },
+  ];
 
   if (error) return <div>Error: {error}</div>;
   if (!isLoaded) return <div>Loading...</div>;
@@ -109,7 +113,7 @@ const Main: React.FC = () => {
           <h3 className={css.sort__title}>Regional bloc</h3>
           <select
             className={css.sort}
-            value={defaultBlocOpt}
+            value={defaultOpt.bloc}
             id="bloc-opt"
             onChange={(e) => {
               changeValueSort(e);
@@ -129,17 +133,18 @@ const Main: React.FC = () => {
           <select
             className={css.sort}
             id="lang-opt"
-            value={defaultLangOpt}
+            value={defaultOpt.lang}
             onChange={(e) => {
               changeValueSort(e);
             }}
           >
-            <option value="all">All languages</option>
-            <option value="/lang/en">English</option>
-            <option value="/lang/es">Spanish</option>
-            <option value="/lang/ru">Russian</option>
-            <option value="/lang/fr">French</option>
-            <option value="/lang/de">German</option>
+            {langOptions.map((el) => {
+              return (
+                <option value={el.value} key={el.value}>
+                  {el.label}
+                </option>
+              );
+            })}
           </select>
         </div>
       </div>

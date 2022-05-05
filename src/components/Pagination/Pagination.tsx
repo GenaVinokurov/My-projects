@@ -16,7 +16,7 @@ const Pagination: React.FC<PaginationType> = ({
     <ul className={css.pagination}>
       {pageNumbers.map((num, i) => (
         <li
-          className={`${css.page__item} ${i === currentPage - 1 ? css.page__active : ''}`}
+          className={`${css.item} ${i === currentPage - 1 ? css.active : ''}`}
           key={num}
           onClick={() => paginate(num)}
         >

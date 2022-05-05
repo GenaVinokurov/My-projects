@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AllCountriesContext } from '../../Context';
 import css from './MorePage.module.css';
-import { AllCountriesContextType } from '../../Context';
-// onClick={() => toggleModal(el.name, el.region, el.capital)}
+import { AllCountriesContextType } from '../../Types';
+
 const MorePage = () => {
   const navigate = useNavigate();
   const goBack = () => navigate(-1);
@@ -16,7 +16,6 @@ const MorePage = () => {
   const { name, region, capital } = current;
   return (
     <div>
-      {console.log(current)}
       <button onClick={goBack} className={css.btn}>
         Go back
       </button>

@@ -6,4 +6,23 @@
   background-color: #494747;
   color: #fff;
   font-size: 20px;
-} 
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn {
+  background-color: #000000;
+  color: #ffffff;
+  width: 50px;
+  height: 25px;
+  border-radius: 4px;
+  font-size: 18px;
+}
+
+.text {
+  width: 100px;
+}
