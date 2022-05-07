@@ -1,15 +1,15 @@
-import React, { FormEvent, useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import css from './FormPage.module.css';
 import Switch from '../../components/Switch/Switch';
-import { FormCardType } from '../../Types';
+import { FormCardType, FormDataContextType } from '../../Types';
 import FormCard from '../../components/FormCard/FormCard';
+import { FormDataContext } from '../../Context';
 
 const FormPage: React.FC = () => {
-  const [formData, setFormData] = useState<FormCardType[]>([]);
+  const { formData, setFormData } = useContext(FormDataContext) as FormDataContextType;
   const img = useRef() as React.RefObject<HTMLInputElement>;
   const preview = useRef() as React.RefObject<HTMLInputElement>;
-  const notify = useRef() as React.RefObject<HTMLInputElement>;
   const {
     register,
     formState: { errors, isValid },

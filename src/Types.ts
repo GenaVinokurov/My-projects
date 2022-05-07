@@ -39,3 +39,39 @@ export type ModalType = {
   region?: string;
   capital?: string;
 };
+export type PaginationType = {
+  countriesPerPage: number;
+  totalCountries: number;
+  paginate: (pageNumber: number) => void;
+  currentPage: number;
+}
+export type ContextType = {
+  sort: string;
+  setSort: React.Dispatch<React.SetStateAction<string>>;
+};
+export type OptContextType = {
+  defaultOpt: {
+    bloc: string,
+    lang: string,
+  };
+  setDefaultOpt: React.Dispatch<React.SetStateAction<
+    {
+      bloc: string,
+      lang: string,
+    }>>;
+};
+export type FormDataContextType = {
+  formData: FormCardType[];
+  setFormData: React.Dispatch<React.SetStateAction<FormCardType[]>>;
+};
+export type AllCountriesContextType = {
+  allCountries: CardType[];
+  setAllCountries: React.Dispatch<React.SetStateAction<CardType[]>>;
+};
+
+export type CounterType = {
+  count: number,
+}
+export type ActionType = {
+  type: string,
+}
