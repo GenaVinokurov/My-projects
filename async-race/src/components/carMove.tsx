@@ -35,7 +35,7 @@ export function animation(
   state.id = window.requestAnimationFrame(step);
   return state;
 }
-
+const ci = () => 0;
 const startDriving = async (id: number):
   Promise<{ success: boolean, id: number, time: number }> => {
   const { velocity, distance } = await startEngine(id);

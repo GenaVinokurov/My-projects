@@ -66,10 +66,6 @@
       "warn",
       "always"
     ],
-    "arrow-body-style": [
-      "warn",
-      "always"
-    ],
     "no-debugger": "off",
     "import/no-mutable-exports": "warn",
     "react/jsx-one-expression-per-line": "off",
