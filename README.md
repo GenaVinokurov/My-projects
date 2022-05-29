@@ -1,5 +1,5 @@
 # My-projects
-### Links for deploy
+### Deploy links
 - [Project management app] [https://project-management-app-team.netlify.app/]
 - [RSLang] [https://rslang-pnv13.netlify.app/]
 - [React-components] [https://genavinokurov-react-components.netlify.app/]
